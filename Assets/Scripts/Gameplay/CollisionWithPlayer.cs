@@ -40,7 +40,8 @@ namespace Osmose.Gameplay
                             other.gameObject.GetComponent<Health>().IncreasePoints(500, gameObject);
                             gameObject.GetComponent<Health>().DecreasePoints(500, other.gameObject);
                         }
-                        if (other.gameObject.GetComponent<Health>().CurrentPoints > gameObject.GetComponent<Health>().CurrentPoints)
+                        // if neither player is in base, compare points
+                        else if (other.gameObject.GetComponent<Health>().CurrentPoints > gameObject.GetComponent<Health>().CurrentPoints)
                         {
                             //winning player steals 500 points from losing player
                             other.gameObject.GetComponent<Health>().IncreasePoints(500, gameObject);

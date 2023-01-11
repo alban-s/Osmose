@@ -26,11 +26,29 @@ namespace Osmose.Gameplay
         {
             if (other.gameObject.CompareTag("Base"))
             {
-                if (gameObject.GetComponent<Health>().CanMatch == false)
+                //if your base set IsInBase, and if !CanMatch, sets CanMatch to true, if enemy base and canMatch is true, get 10000 points
+                if (other.gameObject.GetComponent <Team>().GetTeam() == gameObject.GetComponent<Team>().GetTeam())
                 {
-                    gameObject.GetComponent<Health>().CanMatch = true;
+                    if (gameObject.GetComponent<Health>().IsInBase == false)
+                    {
+                        gameObject.GetComponent<Health>().IsInBase = true;
+                        if (gameObject.GetComponent<Health>().CanMatch == false)
+                        {
+                            gameObject.GetComponent<Health>().CanMatch = true;
+                        }
+                        else if (gameObject.GetComponent<Health>().CanMatch == true)
+                        {
+                            gameObject.GetComponent<Health>().IncreasePoints(10000, other.gameObject);
+                        }
+                    }
                 }
-                gameObject.GetComponent<Health>().IsInBase = true;
+                else if (other.gameObject.GetComponent<Team>().GetTeam() != gameObject.GetComponent<Team>().GetTeam())
+                {
+                    if (gameObject.GetComponent<Health>().CanMatch == true)
+                    {
+                        gameObject.GetComponent<Health>().IncreasePoints(10000, other.gameObject);
+                    }
+                }
             }
         }
 
