@@ -3,41 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 0;
 
-    private Rigidbody rb;
+    // Pour voir sur unity dans l'inspector
+    [SerializeField]
+    private float speed = 3f;
 
-    private float movementX;
-    private float movementY;
+    [SerializeField]
+    private float mouseSensitivityX = 10f;
+    [SerializeField]
+    private float mouseSensitivityY = 10f;
 
-    // Start is called before the first frame update
-    void Start()
+    private PlayerMotor motor;
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        motor = GetComponent<PlayerMotor>();
     }
 
-    private void OnMove(InputValue movementValue)
+    private void Update()
     {
-        Vector2 movementVector = movementValue.Get<Vector2>();
+        // Calculer la velocite du mouvement 
+        // Axe hor -> gauche droite 
+        float xMov = Input.GetAxisRaw("Horizontal");
+        // Recupere -1 pour q et 1 pour d ou 0 pour pas de déplacement
+        float zMov = Input.GetAxisRaw("Vertical");
 
-        movementX = movementVector.x;
-        movementY = movementVector.y;
+        //float yMov = Input.GetAxisRaw("Space");
+
+        Vector3 moveHorizontal = transform.right * xMov;
+        Vector3 moveVertical = transform.forward * zMov;
+        //Vector3 moveUp = transform.up * xMov;
+
+        Vector3 velocity = (moveHorizontal + moveVertical).normalized * speed;
+        motor.Move(velocity);
+
+
+        // Calculer la rotation du joueur 
+        float yRot = Input.GetAxisRaw("Mouse X");
+        Vector3 rotation = new Vector3(0, yRot, 0) * mouseSensitivityX;
+        motor.Rotate(rotation);
+
+        // Calculer la rotation de la camera 
+        float xRot = Input.GetAxisRaw("Mouse Y");
+        Vector3 cameraRotation = new Vector3(xRot, 0, 0) * mouseSensitivityY;
+        motor.RotateCamera(cameraRotation);
     }
 
-    private void FixedUpdate()
-    {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        Debug.Log(movement);
-        rb.AddForce(movement * speed);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("PickUp")) 
-        {
-            other.gameObject.SetActive(false);
-        }
-    }
 }
