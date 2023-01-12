@@ -7,23 +7,24 @@ namespace Osmose.Game
 {
     public class Health : MonoBehaviour
     {
-        [Tooltip("Starting amount of points")] public ushort StartPoints = 10000;
+        [Tooltip("Starting amount of points")] public ushort StartPoints = 100;
         [Tooltip("Current amount of points")] public ushort CurrentPoints { get; set; }
-
         public UnityAction<ushort, GameObject> OnLoseMatch;
         public UnityAction<ushort, GameObject> OnWinMatch;
         public UnityAction OnDie;
-
         public bool Invincible { get; set; }
         public bool CanMatch { get; set; }
-        public bool IsInBase { get; set; }
-        public float GetPoints() => CurrentPoints;
-
+        public bool IsInBase  { get; set; }
+        public ushort GetPoints() => CurrentPoints;
+        private TeamColour team;
         bool m_IsDead;
 
         void Start()
         {
-            CurrentPoints = StartPoints;
+            // CurrentPoints = StartPoints;
+            // num_equipe = Random.Range(1,3);
+            team = gameObject.GetComponent<Team>().GetTeam(); 
+            ChoixEquipe();
         }
 
 
@@ -85,6 +86,16 @@ namespace Osmose.Game
         void Update()
         {
 
+        }
+
+        void ChoixEquipe(){
+            if(team == TeamColour.Red){
+                GetComponent<Renderer>().material.color = Color.red;
+
+            }
+            if(team == TeamColour.Blue) {
+                GetComponent<Renderer>().material.color = Color.blue;
+            }
         }
     }
 }

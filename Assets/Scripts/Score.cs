@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour
-{
-    private int nb_equipe = 2;
-    private int num_equipe;
-    private int score_max_equipe = 10000;
-    private int score_equipe;
-    private int score_joueur;
-    private int[] score_joueurs;
-    private int nb_joueur_totale;
-    private int nb_joueur_equipe;
-    public int score;
-
+namespace Osmose.Game{
+    public class Score : MonoBehaviour{
+    public int nb_equipe = 2;
+    public ushort score_equipe_max = 10000;
+    public ushort score_equipe;
+    public int nb_joueur_totale;
+    public int nb_joueur_equipe;
+    public  GameObject[] joueurs;
     
     // Start is called before the first frame update
     void Start()
@@ -25,23 +21,23 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ComputeScoreEquipe(score_equipe,joueurs);
+    }
+    void ComputeScoreEquipe(ushort score_equipe,  GameObject[] joueurs){
+        for(GameObject objet in joueurs){
+            score_equipe += joueurs.GetPoints();
+        }
     }
 
-    int GetNumEquipe(){
-        return num_equipe;
-    }
-    int GetScoreJoueur(){
-        return score_joueur;
-    }
+   
 
-    void SetScoreEquipe(int score_joueurs, int score_equipe){
-        score_equipe -= score_joueur;
-    }
-
-    int GetScoreEquipe(){
+    ushort GetScoreEquipe(){
         return score_equipe;
     }
 
+    
+
+
+}
 
 }
