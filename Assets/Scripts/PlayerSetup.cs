@@ -7,7 +7,6 @@ public class PlayerSetup : NetworkBehaviour
     Behaviour[] componentsToDisable;
 
     Camera sceneCamera;
-
      private void Start()
     {
         if (!isLocalPlayer)
@@ -24,14 +23,16 @@ public class PlayerSetup : NetworkBehaviour
             }
 
         }
-
-
+        if (!isServer){
+            GetComponent<NetworkTransformReliable>().syncDirection = SyncDirection.ClientToServer;
+        }
+        
 
      }
 
       private void DisableComponents()
     {
-        // On va boucler sur les différents composants renseignés et les désactiver si ce joueur n'est pas le notre
+        // On va boucler sur les diffï¿½rents composants renseignï¿½s et les dï¿½sactiver si ce joueur n'est pas le notre
         for (int i = 0; i < componentsToDisable.Length; i++)
         {
             componentsToDisable[i].enabled = false;
