@@ -15,7 +15,7 @@ namespace Osmose.Game
         // Start is called before the first frame update
         void Start()
         {
-            SetTeam(TeamColour.Red);
+            SetTeam(team);
         }
 
         // Update is called once per frame
@@ -32,6 +32,11 @@ namespace Osmose.Game
         public TeamColour GetTeam()
         {
             return team;
+        }
+
+        public bool IsSameTeam(TeamColour team)
+        {
+            return this.team == team;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Osmose.Gameplay
         // Start is called before the first frame update
         void Start()
         {
-
+            Debug.Log("start");
         }
 
         // Update is called once per frame
@@ -19,14 +19,15 @@ namespace Osmose.Gameplay
 
         }
 
-        //When colliding with another player, checks the difference of points between them
-        void onTriggerEnter(Collider other)
+        public void HitPlayer(GameObject other)
         {
+            
             if (gameObject.GetComponent<Health>().CanMatch)
             {
                 if (other.gameObject.CompareTag("Player"))
                 {
-                    if (other.gameObject.GetComponent<Health>().CanMatch)
+                    Debug.Log("collision");
+                    if (other.gameObject.GetComponent<Health>().CanMatch && !gameObject.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
                     {
                         //if player IsInBase, wins match
                         if (gameObject.GetComponent<Health>().IsInBase == true)
@@ -46,13 +47,14 @@ namespace Osmose.Gameplay
                             //winning player steals 500 points from losing player
                             other.gameObject.GetComponent<Health>().IncreasePoints(500, gameObject);
                             gameObject.GetComponent<Health>().DecreasePoints(500, other.gameObject);
-                            //gameObject.GetComponent<Health>().winText.text = "You Lose!";
+                            Debug.Log("You Lose : " + gameObject.GetComponent<Health>().GetPoints());
                         }
                         else if (other.gameObject.GetComponent<Health>().CurrentPoints < gameObject.GetComponent<Health>().CurrentPoints)
                         {
                             //winning player steals 500 points from losing player
                             other.gameObject.GetComponent<Health>().DecreasePoints(500, gameObject);
                             gameObject.GetComponent<Health>().IncreasePoints(500, other.gameObject);
+                            Debug.Log("You Win : " + gameObject.GetComponent<Health>().GetPoints());
                             // other.gameObject.GetComponent<Health>().winText.text = "You Lose!";
                         }
                         else
@@ -61,11 +63,16 @@ namespace Osmose.Gameplay
                             //gameObject.GetComponent<Health>().winText.text = "Draw!";
                         }
                         //set both players to !CanMatch
-                        other.gameObject.GetComponent<Health>().CanMatch = false;
-                        gameObject.GetComponent<Health>().CanMatch = false;
+                        if (!other.gameObject.GetComponent<Health>().isTest) other.gameObject.GetComponent<Health>().CanMatch = false;
+                        if (!gameObject.GetComponent<Health>().isTest) gameObject.GetComponent<Health>().CanMatch = false;
                     }
                 }
             }
+        }
+        //When colliding with another player, checks the difference of points between them
+        void OnCollisionEnter(Collision other)
+        {
+            HitPlayer(other.gameObject);
         }
     }
 }

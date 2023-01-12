@@ -10,6 +10,7 @@ namespace Osmose.Game
         [Tooltip("Starting amount of points")] public ushort StartPoints = 10000;
         [Tooltip("Current amount of points")] public ushort CurrentPoints { get; set; }
 
+        public bool isTest;
         public UnityAction<ushort, GameObject> OnLoseMatch;
         public UnityAction<ushort, GameObject> OnWinMatch;
         public UnityAction OnDie;
@@ -24,6 +25,7 @@ namespace Osmose.Game
         void Start()
         {
             CurrentPoints = StartPoints;
+            CanMatch = true;
         }
 
 
@@ -37,6 +39,7 @@ namespace Osmose.Game
             if (trueWinAmount > 0)
             {
                 OnWinMatch?.Invoke(trueWinAmount, pointsSource);
+                Debug.Log("+" + trueWinAmount);
             }
         }
 
@@ -54,6 +57,7 @@ namespace Osmose.Game
             if (trueLoseAmount > 0)
             {
                 OnLoseMatch?.Invoke(trueLoseAmount, damageSource);
+                Debug.Log("-" + trueLoseAmount);
             }
 
             HandleDeath();
