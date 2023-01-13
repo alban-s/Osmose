@@ -18,7 +18,7 @@ public class JoinGame : MonoBehaviour
     {
         print(serveurURL);
         thisWindow.SetActive(false);
-        //persoSelectionWindow.SetActive(true);
+        persoSelectionWindow.SetActive(true);
     }
 
     public void ReturnMenu()
