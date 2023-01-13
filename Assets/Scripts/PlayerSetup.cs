@@ -17,18 +17,19 @@ public class PlayerSetup : NetworkBehaviour
         else
         {
             sceneCamera = Camera.main;
-            if(sceneCamera != null)
+            if (sceneCamera != null)
             {
                 sceneCamera.gameObject.SetActive(false);
             }
 
         }
-        if (!isServer){
+       /* if (!isServer)
+        {
             GetComponent<NetworkTransformReliable>().syncDirection = SyncDirection.ClientToServer;
-        }
-        
+        }*/
 
-     }
+
+    }
 
       private void DisableComponents()
     {
@@ -40,10 +41,10 @@ public class PlayerSetup : NetworkBehaviour
        
     }
 
-     private void OnDisable()
+    private void OnDisable()
     {
 
-        if(sceneCamera != null)
+        if (sceneCamera != null)
         {
             sceneCamera.gameObject.SetActive(true);
         }
