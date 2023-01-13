@@ -26,7 +26,7 @@ namespace Osmose.Gameplay
         void OnTriggerEnter(Collider other)
         {
             //Debug.Log("hey");
-            Debug.Log(gameObject.GetComponent<Health>().GetPoints());
+            //Debug.Log(gameObject.GetComponent<Health>().GetPoints());
             //Debug.Log(gameObject.GetComponent<Team>().GetTeam());
             //Debug.Log(other.gameObject.GetComponent<Team>().GetTeam());
             if (other.gameObject.CompareTag("Base"))

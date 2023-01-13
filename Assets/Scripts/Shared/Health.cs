@@ -81,6 +81,7 @@ namespace Osmose.Game
             if (CurrentPoints <= 0)
             {
                 m_IsDead = true;
+                gameObject.SetActive(false);
                 OnDie?.Invoke();
             }
         }
