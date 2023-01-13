@@ -18,10 +18,11 @@ namespace Osmose.Game
         public ushort GetPoints() => CurrentPoints;
         private TeamColour team;
         bool m_IsDead;
+        public bool islink;
 
         void Start()
         {
-            // CurrentPoints = StartPoints;
+            CurrentPoints = StartPoints;
             // num_equipe = Random.Range(1,3);
             team = gameObject.GetComponent<Team>().GetTeam(); 
             ChoixEquipe();
@@ -97,6 +98,8 @@ namespace Osmose.Game
                 GetComponent<Renderer>().material.color = Color.blue;
             }
         }
+
+       
     }
 }
 

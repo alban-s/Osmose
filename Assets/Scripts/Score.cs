@@ -10,7 +10,6 @@ namespace Osmose.Game{
     public ushort score_equipe;
     public int nb_joueur_totale;
     public int nb_joueur_equipe;
-    public  GameObject[] joueurs;
     
     // Start is called before the first frame update
     void Start()
@@ -25,12 +24,9 @@ namespace Osmose.Game{
     }
     void ComputeScoreEquipe(ushort score_equipe,  GameObject[] joueurs){
         for(GameObject objet in joueurs){
-            score_equipe += joueurs.GetPoints();
+            score_equipe += objet.GetPoints();
         }
     }
-
-   
-
     ushort GetScoreEquipe(){
         return score_equipe;
     }
