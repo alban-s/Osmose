@@ -23,10 +23,10 @@ public class PlayerSetup : NetworkBehaviour
             }
 
         }
-       /* if (!isServer)
+        if (!isServer)
         {
             GetComponent<NetworkTransformReliable>().syncDirection = SyncDirection.ClientToServer;
-        }*/
+        }
 
 
     }

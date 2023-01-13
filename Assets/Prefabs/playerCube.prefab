@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 185803081976785886}
   - component: {fileID: 185803081976785858}
   - component: {fileID: 185803081976785859}
-  - component: {fileID: 185803081976785856}
+  - component: {fileID: 1687227557559407628}
   m_Layer: 0
   m_Name: playerCube
   m_TagString: Untagged
@@ -219,7 +219,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &185803081976785856
+--- !u!114 &1687227557559407628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,10 +228,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 185803081976785887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   target: {fileID: 185803081976785857}
@@ -243,10 +243,11 @@ MonoBehaviour:
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
   onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
+  onlySyncOnChangeCorrectionMultiplier: 2
   rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &185803082048302380
 GameObject:
   m_ObjectHideFlags: 0
