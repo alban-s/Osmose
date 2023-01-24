@@ -11,6 +11,7 @@ namespace TMPro
         public GameObject thisWindow;
         public AudioMixer audioMixer;
         public TMP_Dropdown resolutionDropdown;
+        public Camera camera;
 
 
         Resolution[] resolutions;
