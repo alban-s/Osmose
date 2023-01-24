@@ -4,31 +4,48 @@ using UnityEngine;
 
 
 namespace Osmose.Game {
-    public class Associate : MonoBehaviour {
+    public class Associate : MonoBehaviour
+    {
         // Start is called before the first frame update
         public ushort points_fusionned;
         public bool islink;
+        public int linked_player_id;
         void Start()
         {
-            
+
         }
 
         // Update is called once per frame
         void Update()
         {
-            if(!gameObject.GetComponent<Health>().IsActive){
-                SeDelier(joueur1,joueur2);
+            if (!gameObject.GetComponent<Health>().IsActive)
+            {
+                SeDelier();
             }
 
         }
-        void SeLier(GameObject joueur1, GameObject joueur2){
+        void SeLier(GameObject joueur2)
+        {
             islink = true;
-            points_fusionned = joueur1.CurrentPoints + joueur2.CurrentPoints;
+            points_fusionned = (ushort) (gameObject.GetComponent<Health>().CurrentPoints + joueur2.GetComponent<Health>().CurrentPoints);
         }
 
-        void SeDelier(GameObject joueur1, GameObject joueur){
+        void SeDelier()
+        {
+            if (!islink)
+            {
+                return;
+            }
             islink = false;
+            foreach (GameObject player in player_list)
+            {
+                if (player.GetComponent<Associate>().linked_player_id == this.GetComponent<Associate>().linked_player_id)
+                {
+                    player.GetComponent<Associate>().linked_player_id = -1;
+                    player.GetComponent<Associate>().SeDelier();
+                }
+            }
+
         }
     }
-
 }

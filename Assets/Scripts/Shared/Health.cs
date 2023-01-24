@@ -11,21 +11,25 @@ namespace Osmose.Game
         [Tooltip("Current amount of points")] public ushort CurrentPoints { get; set; }
 
         public bool isTest;
-        public UnityAction<ushort, GameObject> OnLoseMatch;
-        public UnityAction<ushort, GameObject> OnWinMatch;
+        public UnityAction<ushort> OnLoseMatch;
+        public UnityAction<ushort> OnWinMatch;
         public UnityAction OnDie;
+        public GameObject TeamController;
 
         public bool Invincible { get; set; }
-        public bool CanMatch { get; set; }
+        public bool IsActive { get; set; }
         public bool IsInBase { get; set; }
-        public float GetPoints() => CurrentPoints;
+        public ushort GetPoints() => CurrentPoints;
 
+        public int player_id;
         bool m_IsDead;
 
         void Start()
         {
             CurrentPoints = StartPoints;
-            CanMatch = true;
+            IsActive = true;
+            OnWinMatch += TeamController.GetComponent<Score>().IncreaseScore;
+            OnLoseMatch += TeamController.GetComponent<Score>().DecreaseScore;
         }
 
 
@@ -38,7 +42,7 @@ namespace Osmose.Game
             ushort trueWinAmount = (ushort) (CurrentPoints - tempPoints);
             if (trueWinAmount > 0)
             {
-                OnWinMatch?.Invoke(trueWinAmount, pointsSource);
+                OnWinMatch?.Invoke(trueWinAmount);
                 Debug.Log("+" + trueWinAmount);
             }
         }
@@ -56,7 +60,7 @@ namespace Osmose.Game
             ushort trueLoseAmount = (ushort) (tempPoints - CurrentPoints);
             if (trueLoseAmount > 0)
             {
-                OnLoseMatch?.Invoke(trueLoseAmount, damageSource);
+                OnLoseMatch?.Invoke(trueLoseAmount);
                 Debug.Log("-" + trueLoseAmount);
             }
 
@@ -68,7 +72,7 @@ namespace Osmose.Game
         {
             CurrentPoints = 0;
             //call OnLoseMatch action
-            OnLoseMatch?.Invoke(CurrentPoints, null);
+            OnLoseMatch?.Invoke(CurrentPoints);
             
             HandleDeath();
         }

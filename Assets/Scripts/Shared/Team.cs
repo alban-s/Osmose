@@ -16,6 +16,7 @@ namespace Osmose.Game
         void Start()
         {
             SetTeam(team);
+            ChoixEquipe();
         }
 
         // Update is called once per frame
@@ -37,6 +38,19 @@ namespace Osmose.Game
         public bool IsSameTeam(TeamColour team)
         {
             return this.team == team;
+        }
+
+        void ChoixEquipe()
+        {
+            if (team == TeamColour.Red)
+            {
+                GetComponent<Renderer>().material.color = Color.red;
+
+            }
+            if (team == TeamColour.Blue)
+            {
+                GetComponent<Renderer>().material.color = Color.blue;
+            }
         }
     }
 }

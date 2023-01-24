@@ -22,7 +22,7 @@ namespace Osmose.Gameplay
 
         }
 
-        //When Player is touching the base, set IsInBase to true, if they are !CanMatch, sets them to CanMatch
+        //When Player is touching the base, set IsInBase to true, if they are !IsActive, sets them to IsActive
         void OnTriggerEnter(Collider other)
         {
             //Debug.Log("hey");
@@ -31,31 +31,31 @@ namespace Osmose.Gameplay
             //Debug.Log(other.gameObject.GetComponent<Team>().GetTeam());
             if (other.gameObject.CompareTag("Base"))
             {
-                //if your base set IsInBase, and if !CanMatch, sets CanMatch to true, if enemy base and canMatch is true, get 10000 points
+                //if your base set IsInBase, and if !IsActive, sets IsActive to true, if enemy base and IsActive is true, get 10000 points
                 if (other.gameObject.GetComponent <Team>().GetTeam() == gameObject.GetComponent<Team>().GetTeam())
                 {
                     if (gameObject.GetComponent<Health>().IsInBase == false)
                     {
                         gameObject.GetComponent<Health>().IsInBase = true;
-                        if (gameObject.GetComponent<Health>().CanMatch == false)
+                        if (gameObject.GetComponent<Health>().IsActive == false)
                         {
-                            gameObject.GetComponent<Health>().CanMatch = true;
+                            gameObject.GetComponent<Health>().IsActive = true;
                         }
                         // set IsInBase
                         gameObject.GetComponent<Health>().IsInBase = true;
                     }
-                    Debug.Log(gameObject.GetComponent<Health>().CanMatch);
+                    Debug.Log(gameObject.GetComponent<Health>().IsActive);
                 }
                 else if (other.gameObject.GetComponent<Team>().GetTeam() != gameObject.GetComponent<Team>().GetTeam())
                 {
                     Debug.Log(HasReachedEnemyBase);
-                    Debug.Log(gameObject.GetComponent<Health>().CanMatch);
-                    if (gameObject.GetComponent<Health>().CanMatch == true && HasReachedEnemyBase == false)
+                    Debug.Log(gameObject.GetComponent<Health>().IsActive);
+                    if (gameObject.GetComponent<Health>().IsActive == true && HasReachedEnemyBase == false)
                     {
                         Debug.Log("hoy");
                         gameObject.GetComponent<Health>().IncreasePoints(10000, other.gameObject);
                         HasReachedEnemyBase = true;
-                        gameObject.GetComponent<Health>().CanMatch = false;
+                        gameObject.GetComponent<Health>().IsActive = false;
                     }
                 }
             }
