@@ -9455,9 +9455,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1483181871}
-        m_TargetAssemblyTypeName: JoinGame, Assembly-CSharp
-        m_MethodName: JoinServeur
+      - m_Target: {fileID: 637487692}
+        m_TargetAssemblyTypeName: CreateGame, Assembly-CSharp
+        m_MethodName: ReturnMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
