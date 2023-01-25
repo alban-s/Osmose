@@ -15,10 +15,12 @@ namespace Mirror
         public void JoinServeur()
         {
             print("ip serveur : " + adresseIP.text);
-            manager.networkAddress = adresseIP.text;
+            
             
             manager.StartClient();
-            
+
+            manager.networkAddress = adresseIP.text;
+
             thisWindow.SetActive(false);
             //persoSelectionWindow.SetActive(true);
         }
