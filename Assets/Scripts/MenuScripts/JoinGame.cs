@@ -7,11 +7,15 @@ namespace Mirror
 {
     public class JoinGame : MonoBehaviour
     {
-        public NetworkManager manager;
+        NetworkManager manager;
         public GameObject thisWindow;
         public GameObject persoSelectionWindow;
         public TextMeshProUGUI adresseIP;
 
+
+        void Awake(){
+            manager = GetComponent<NetworkManager>();
+        }
 
         public void JoinServeur()
         {
