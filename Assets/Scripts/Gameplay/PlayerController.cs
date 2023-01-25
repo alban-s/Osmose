@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+// using Mirror;
 
 [RequireComponent(typeof(PlayerMotor))]
-public class PlayerController : NetworkBehaviour
+public class PlayerController : MonoBehaviour
 {
     Animator animator;
     int isWalkingHash;
@@ -72,7 +72,7 @@ public class PlayerController : NetworkBehaviour
         isRunPressed = run != 0;
 
         handleAnimation();
-        if (!isLocalPlayer) return;
+        // if (!isLocalPlayer) return;
 
         Vector3 moveHorizontal = transform.right * xMov;
         Vector3 moveVertical = transform.forward * zMov;
