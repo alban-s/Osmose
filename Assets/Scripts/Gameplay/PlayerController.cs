@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using Mirror;
+using Mirror;
 
 [RequireComponent(typeof(PlayerMotor))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     Animator animator;
     int isWalkingHash;
     int isRunningHash;
     bool isMovementPressed;
     bool isRunPressed;
+
+    [SyncVar]
+    bool isWalking = false;
+    [SyncVar]
+    bool isRunning = false;
+    [SyncVar]
+    bool isStopping = false;
 
     // Pour voir sur unity dans l'inspector
     [SerializeField]
@@ -32,11 +39,20 @@ public class PlayerController : MonoBehaviour
         isRunningHash = Animator.StringToHash("isRunning");
     }
 
+    [Command]
+    private void update_anim(bool walking, bool running, bool stopping){
+        isRunning = running;
+        isWalking = walking;
+        isStopping = stopping;
+    }
+
     void handleAnimation()
     {
-        bool isWalking = animator.GetBool(isWalkingHash);
-        bool isRunning = animator.GetBool(isRunningHash);
-        bool isStopping = animator.GetBool("isStopping");
+        bool w = animator.GetBool(isWalkingHash);
+        bool r = animator.GetBool(isRunningHash);
+        bool s = animator.GetBool("isStopping");
+
+        update_anim(w,r,s);
 
         if(isMovementPressed && !isWalking)
         {
@@ -54,8 +70,11 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool(isRunningHash, false);
         }
+        
     }
 
+    
+    // [Client]
     private void Update()
     {
         
@@ -72,7 +91,8 @@ public class PlayerController : MonoBehaviour
         isRunPressed = run != 0;
 
         handleAnimation();
-        // if (!isLocalPlayer) return;
+
+        if (!isLocalPlayer) return;
 
         Vector3 moveHorizontal = transform.right * xMov;
         Vector3 moveVertical = transform.forward * zMov;

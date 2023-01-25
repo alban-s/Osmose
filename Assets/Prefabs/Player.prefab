@@ -253,6 +253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af2221269b43664ebe99a6f44f3b426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   speed: 3
   mouseSensitivityX: 10
   mouseSensitivityY: 10
@@ -443,7 +446,6 @@ MonoBehaviour:
   - {fileID: -944490804475347827}
   - {fileID: 4192861821446835322}
   - {fileID: 1559547285206217139}
-  - {fileID: 667742240836363126}
 --- !u!1001 &6413191979620491720
 PrefabInstance:
   m_ObjectHideFlags: 0
