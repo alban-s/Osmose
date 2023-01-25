@@ -36,7 +36,7 @@ public class PlayerController : NetworkBehaviour
         isRunningHash = Animator.StringToHash("isRunning");
     }
 
-    [ClineRpc]
+    [ClientRpc]
     private void update_anim_c(bool walking, bool running, bool stopping){
         isRunning = running;
         isWalking = walking;
@@ -48,7 +48,7 @@ public class PlayerController : NetworkBehaviour
         isRunning = running;
         isWalking = walking;
         isStopping = stopping;
-        update_anim_c(w,r,s);
+        update_anim_c(walking,running,stopping);
     }
 
     void handleAnimation()
