@@ -8,7 +8,7 @@ namespace Mirror
 {
     public class CreateGame : MonoBehaviour
     {
-        NetworkManager manager;
+        public NetworkManager manager;
 
         public GameObject thisWindow;
         public GameObject persoSelectionWindow;
@@ -17,10 +17,11 @@ namespace Mirror
         private int nbPtsPerTeam = 1000;
         private double gameTime = 2.0;
 
-        void Awake()
-        {
-            manager = GetComponent<NetworkManager>();
-        }
+        // void Awake()
+        // {
+        //     manager = GetComponent<NetworkManager>();
+        // }
+        
         public void InitNbPlayers(string value)
         {
             nbPlayers = int.Parse(value); // Conversion pas propre a reprendre
