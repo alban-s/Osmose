@@ -15,10 +15,10 @@ public class MainMenuGestion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Screen.fullScreen = true;
+        Screen.fullScreen = false;
         timeBegin = Time.time;
 
-        mainWindow.SetActive(false);
+        mainWindow.SetActive(true);
         settingWindow.SetActive(false);
         newGameWindow.SetActive(false);
         joinGameWindow.SetActive(false);
@@ -29,20 +29,22 @@ public class MainMenuGestion : MonoBehaviour
 
     void Update()
     {
-        if(Time.time - timeBegin > 2)
+        /*if(Time.time - timeBegin > 2)
         {
             mainWindow.SetActive(true);
-        }
+        }*/
     }
 
     public void StartNewGame()
     {
         newGameWindow.SetActive(true);
+        mainWindow.SetActive(false);
     }
 
     public void JoinGame()
     {
         joinGameWindow.SetActive(true);
+        mainWindow.SetActive(false);
     }
 
     public void Settings()
