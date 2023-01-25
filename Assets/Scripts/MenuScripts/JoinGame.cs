@@ -12,17 +12,21 @@ namespace Mirror
         public GameObject persoSelectionWindow;
         public TextMeshProUGUI adresseIP;
 
+
         public void JoinServeur()
         {
-            print("ip serveur : " + adresseIP.text);
+            if (!NetworkClient.active){
+                print("ip serveur : " + adresseIP.text);
             
             
-            manager.StartClient();
+                manager.StartClient();
 
-            manager.networkAddress = adresseIP.text;
+                manager.networkAddress = adresseIP.text;
 
-            thisWindow.SetActive(false);
+                thisWindow.SetActive(false);
             //persoSelectionWindow.SetActive(true);
+            }
+            
         }
 
         public void ReturnMenu()
