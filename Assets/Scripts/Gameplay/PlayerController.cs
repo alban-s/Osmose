@@ -45,9 +45,6 @@ public class PlayerController : NetworkBehaviour
 
     [Command]
     private void update_anim_s(bool walking, bool running, bool stopping){
-        isRunning = running;
-        isWalking = walking;
-        isStopping = stopping;
         update_anim_c(walking,running,stopping);
     }
 
