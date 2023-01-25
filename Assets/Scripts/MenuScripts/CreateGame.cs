@@ -8,7 +8,7 @@ namespace Mirror
 {
     public class CreateGame : MonoBehaviour
     {
-        public NetworkManager manager;
+        NetworkManager manager;
 
         public GameObject thisWindow;
         public GameObject persoSelectionWindow;
@@ -19,7 +19,7 @@ namespace Mirror
 
         void Awake()
         {
-            //manager = GetComponent<NetworkManager>();
+            manager = GetComponent<NetworkManager>();
         }
         public void InitNbPlayers(string value)
         {
@@ -40,13 +40,13 @@ namespace Mirror
         public void LaunchGame()
         {
             print("serveurToLink\n");
-            print("nb Joueurs =" + nbPlayers.ToString() + ", Points par équipes =" +
+            print("nb Joueurs =" + nbPlayers.ToString() + ", Points par ï¿½quipes =" +
                 nbPtsPerTeam.ToString() + " et gameTime =" + gameTime.ToString(".##"));
            
             manager.StartHost();
             string host = Dns.GetHostName();
-            Console.WriteLine("Le nom de l'hôte est :" + host);
-            // Récupérer l'adresse IP
+            Console.WriteLine("Le nom de l'hï¿½te est :" + host);
+            // Rï¿½cupï¿½rer l'adresse IP
             string ip = Dns.GetHostEntry(host).AddressList[1].ToString();
             print("Mon adresse IP est :" + ip);
             thisWindow.SetActive(false);
