@@ -9,12 +9,16 @@ public class PlayerController : NetworkBehaviour
     Animator animator;
     int isWalkingHash;
     int isRunningHash;
+    int isStoppingHash;
+
+    [SyncVar]
     bool isMovementPressed;
+    [SyncVar]
     bool isRunPressed;
 
-    bool isWalking = false;
-    bool isRunning = false;
-    bool isStopping = false;
+    bool isWalking;
+    bool isRunning;
+    bool isStopping;
 
     // Pour voir sur unity dans l'inspector
     [SerializeField]
@@ -34,27 +38,20 @@ public class PlayerController : NetworkBehaviour
         animator = GetComponentInChildren<Animator>();
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
-    }
-
-    [ClientRpc]
-    private void update_anim_c(bool walking, bool running, bool stopping){
-        isRunning = running;
-        isWalking = walking;
-        isStopping = stopping;
+        isStoppingHash = Animator.StringToHash("isStopping");
     }
 
     [Command]
-    private void update_anim_s(bool walking, bool running, bool stopping){
-        update_anim_c(walking,running,stopping);
+    private void update_inputs(bool move_pressed, bool run_pressed){
+        isMovementPressed = move_pressed;
+        isRunPressed = run_pressed;
     }
 
     void handleAnimation()
     {
-        bool w = animator.GetBool(isWalkingHash);
-        bool r = animator.GetBool(isRunningHash);
-        bool s = animator.GetBool("isStopping");
-
-        update_anim_s(w,r,s);
+        isWalking = animator.GetBool(isWalkingHash);
+        isRunning = animator.GetBool(isRunningHash);
+        isStopping = animator.GetBool(isStoppingHash);
 
         if(isMovementPressed && !isWalking)
         {
@@ -80,6 +77,10 @@ public class PlayerController : NetworkBehaviour
     private void Update()
     {
         
+        handleAnimation();
+
+        if (!isLocalPlayer) return;
+
         // Calculer la velocite du mouvement 
         // Axe hor -> gauche droite 
         float xMov = Input.GetAxisRaw("Horizontal");
@@ -89,12 +90,10 @@ public class PlayerController : NetworkBehaviour
         //Left shift ou clic droit
         float run = Input.GetAxisRaw("Fire3");
 
-        isMovementPressed = xMov != 0 || zMov != 0;
-        isRunPressed = run != 0;
-
-        handleAnimation();
-
-        if (!isLocalPlayer) return;
+        bool moving = xMov != 0 || zMov != 0;
+        bool running = run != 0;
+        update_inputs(moving,running);
+        
 
         Vector3 moveHorizontal = transform.right * xMov;
         Vector3 moveVertical = transform.forward * zMov;
