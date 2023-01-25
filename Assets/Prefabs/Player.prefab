@@ -440,7 +440,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   componentsToDisable:
-  - {fileID: 667742240836363126}
   - {fileID: -944490804475347827}
   - {fileID: 4192861821446835322}
   - {fileID: 1559547285206217139}

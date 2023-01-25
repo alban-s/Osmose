@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMotor))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     Animator animator;
     int isWalkingHash;
@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        
         // Calculer la velocite du mouvement 
         // Axe hor -> gauche droite 
         float xMov = Input.GetAxisRaw("Horizontal");
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
         isRunPressed = run != 0;
 
         handleAnimation();
+        if (!isLocalPlayer) return;
 
         Vector3 moveHorizontal = transform.right * xMov;
         Vector3 moveVertical = transform.forward * zMov;
