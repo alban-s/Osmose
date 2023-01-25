@@ -5,6 +5,7 @@ using TMPro;
 
 namespace Mirror
 {
+    [RequireComponent(typeof(NetworkManager))]
     public class JoinGame : MonoBehaviour
     {
         NetworkManager manager;

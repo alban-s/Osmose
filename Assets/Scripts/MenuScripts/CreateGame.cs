@@ -6,6 +6,7 @@ using System.Net;
 
 namespace Mirror
 {
+    [RequireComponent(typeof(NetworkManager))]
     public class CreateGame : MonoBehaviour
     {
         NetworkManager manager;
