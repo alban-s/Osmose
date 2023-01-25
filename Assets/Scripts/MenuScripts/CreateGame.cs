@@ -39,18 +39,20 @@ namespace Mirror
 
         public void LaunchGame()
         {
-            print("serveurToLink\n");
-            print("nb Joueurs =" + nbPlayers.ToString() + ", Points par équipes =" +
+            if (!NetworkClient.active){
+                print("serveurToLink\n");
+                print("nb Joueurs =" + nbPlayers.ToString() + ", Points par ï¿½quipes =" +
                 nbPtsPerTeam.ToString() + " et gameTime =" + gameTime.ToString(".##"));
            
-            manager.StartHost();
-            string host = Dns.GetHostName();
-            Console.WriteLine("Le nom de l'hôte est :" + host);
-            // Récupérer l'adresse IP
-            string ip = Dns.GetHostEntry(host).AddressList[1].ToString();
-            print("Mon adresse IP est :" + ip);
-            thisWindow.SetActive(false);
-            persoSelectionWindow.SetActive(true);
+                manager.StartHost();
+                string host = Dns.GetHostName();
+                Console.WriteLine("Le nom de l'hï¿½te est :" + host);
+                // Rï¿½cupï¿½rer l'adresse IP
+                string ip = Dns.GetHostEntry(host).AddressList[1].ToString();
+                print("Mon adresse IP est :" + ip);
+                thisWindow.SetActive(false);
+                persoSelectionWindow.SetActive(true);
+            }
         }
 
         public void ReturnMenu()
