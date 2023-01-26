@@ -50,7 +50,6 @@ public class MainMenuGestion : MonoBehaviour
     public void Settings()
     {
         settingWindow.SetActive(true);
-
     }
 
     public void QuitGame()
