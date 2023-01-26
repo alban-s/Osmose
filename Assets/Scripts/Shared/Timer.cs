@@ -32,6 +32,11 @@ public class Timer : MonoBehaviour {
         ResetTimer();
     }
 
+    public float GetTime()
+    {
+        return timer;
+    }
+
     private void ResetTimer() {
         if (countDown) {
             timer = timerDuration;

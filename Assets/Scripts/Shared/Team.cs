@@ -4,13 +4,16 @@ using UnityEngine;
 
 namespace Osmose.Game
 {
+    public enum TeamColour
+    {
+        Red,
+        Blue
+    }
+
+
     public class Team : MonoBehaviour
     {
-        public enum TeamColour
-        {
-            Red,
-            Blue
-        }
+        
         public TeamColour team;
         // Start is called before the first frame update
         void Start()
