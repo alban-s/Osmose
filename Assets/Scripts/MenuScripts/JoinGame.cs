@@ -27,7 +27,7 @@ namespace Mirror
 
                 manager.networkAddress = adresseIP.text;
 
-                thisWindow.SetActive(false);
+                /*thisWindow.SetActive(false);*/
                 persoSelectionWindow.SetActive(true);
             }
             
