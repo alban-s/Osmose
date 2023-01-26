@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Net;
+using Mirror;
 
-namespace Mirror
-{
     public class CreateGame : MonoBehaviour
     {
         public NetworkManager manager;
@@ -59,4 +58,3 @@ namespace Mirror
             thisWindow.SetActive(false);
         }
     }
-}
