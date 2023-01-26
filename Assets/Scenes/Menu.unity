@@ -2243,8 +2243,6 @@ GameObject:
   - component: {fileID: 367557592}
   - component: {fileID: 367557594}
   - component: {fileID: 367557593}
-  - component: {fileID: 367557596}
-  - component: {fileID: 367557595}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -2290,7 +2288,7 @@ MonoBehaviour:
   onlineScene: 
   transport: {fileID: 367557594}
   networkAddress: localhost
-  maxConnections: 10
+  maxConnections: 4
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 8969349479097794800, guid: fa8b3e987ad725a4882340230af319ba,
     type: 3}
@@ -2339,37 +2337,6 @@ MonoBehaviour:
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
---- !u!114 &367557595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367557589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b845fee979492a24c8d5b46def9c8556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 367557592}
-  thisWindow: {fileID: 637487688}
-  persoSelectionWindow: {fileID: 1654656395}
---- !u!114 &367557596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367557589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51001d8dc69cd8b46975c6ff72d89415, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 367557592}
-  thisWindow: {fileID: 1483181867}
-  persoSelectionWindow: {fileID: 1654656395}
-  adresseIP: {fileID: 2097738672}
 --- !u!1 &404603265
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,7 +2991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000014363902}
+  m_AnchoredPosition: {x: 0, y: 0.0006990912}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &547090492
@@ -3703,6 +3670,7 @@ GameObject:
   - component: {fileID: 637487689}
   - component: {fileID: 637487691}
   - component: {fileID: 637487690}
+  - component: {fileID: 637487692}
   m_Layer: 5
   m_Name: NewGamePanel
   m_TagString: Untagged
@@ -3777,6 +3745,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 637487688}
   m_CullTransparentMesh: 1
+--- !u!114 &637487692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637487688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b845fee979492a24c8d5b46def9c8556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 367557592}
+  thisWindow: {fileID: 637487688}
+  persoSelectionWindow: {fileID: 1654656395}
 --- !u!1 &639995975
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,9 +4087,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367557596}
-        m_TargetAssemblyTypeName: Mirror.JoinGame, Assembly-CSharp
-        m_MethodName: JoinServeur
+      - m_Target: {fileID: 1483181871}
+        m_TargetAssemblyTypeName: JoinGame, Assembly-CSharp
+        m_MethodName: ReturnMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6021,7 +6004,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 637487692}
         m_TargetAssemblyTypeName: CreateGame, Assembly-CSharp
         m_MethodName: ReturnMenu
         m_Mode: 1
@@ -6550,7 +6533,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 637487692}
         m_TargetAssemblyTypeName: CreateGame, Assembly-CSharp
         m_MethodName: InitNbPlayers
         m_Mode: 0
@@ -8608,7 +8591,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 637487692}
         m_TargetAssemblyTypeName: CreateGame, Assembly-CSharp
         m_MethodName: InitGameTime
         m_Mode: 0
@@ -8914,8 +8897,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367557596}
-        m_TargetAssemblyTypeName: Mirror.JoinGame, Assembly-CSharp
+      - m_Target: {fileID: 1483181871}
+        m_TargetAssemblyTypeName: JoinGame, Assembly-CSharp
         m_MethodName: JoinServeur
         m_Mode: 1
         m_Arguments:
@@ -10466,6 +10449,7 @@ GameObject:
   - component: {fileID: 1483181868}
   - component: {fileID: 1483181870}
   - component: {fileID: 1483181869}
+  - component: {fileID: 1483181871}
   m_Layer: 5
   m_Name: JoinGamePanel
   m_TagString: Untagged
@@ -10536,6 +10520,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483181867}
   m_CullTransparentMesh: 1
+--- !u!114 &1483181871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483181867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51001d8dc69cd8b46975c6ff72d89415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 367557592}
+  thisWindow: {fileID: 1483181867}
+  persoSelectionWindow: {fileID: 1654656395}
+  adresseIP: {fileID: 2097738672}
 --- !u!1 &1483665458
 GameObject:
   m_ObjectHideFlags: 0
@@ -10774,7 +10774,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 637487692}
         m_TargetAssemblyTypeName: CreateGame, Assembly-CSharp
         m_MethodName: InitPtsPerTeam
         m_Mode: 0
@@ -13156,7 +13156,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367557595}
+      - m_Target: {fileID: 637487692}
         m_TargetAssemblyTypeName: CreateGame, Assembly-CSharp
         m_MethodName: LaunchGame
         m_Mode: 1
@@ -14482,7 +14482,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1115874440}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.999978
+  m_Size: 0.9999965
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

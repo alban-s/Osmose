@@ -49,7 +49,7 @@ using Mirror;
             // R�cup�rer l'adresse IP
             string ip = Dns.GetHostEntry(host).AddressList[1].ToString();
             print("Mon adresse IP est :" + ip);
-            /*thisWindow.SetActive(false);*/
+            thisWindow.SetActive(false);
             persoSelectionWindow.SetActive(true);
         }
 
