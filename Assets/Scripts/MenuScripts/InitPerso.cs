@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 using TMPro;
+using Mirror;
 
 public class InitPerso : MonoBehaviour
 {
@@ -37,6 +37,8 @@ public class InitPerso : MonoBehaviour
     public void LaunchGame()
     {
         print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);
+        NetworkClient.AddPlayer();
+        thisWindow.SetActive(false);
     }
 
     public void SetTeam(int teamIdx)

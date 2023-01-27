@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 [RequireComponent(typeof(PlayerMotor))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     Animator animator;
     int isWalkingHash;
     int isRunningHash;
+    int isStoppingHash;
+
+    [SyncVar]
     bool isMovementPressed;
+    [SyncVar]
     bool isRunPressed;
+
+    bool isWalking;
+    bool isRunning;
+    bool isStopping;
 
     // Pour voir sur unity dans l'inspector
     [SerializeField]
@@ -29,13 +38,20 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
+        isStoppingHash = Animator.StringToHash("isStopping");
+    }
+
+    [Command]
+    private void update_inputs(bool move_pressed, bool run_pressed){
+        isMovementPressed = move_pressed;
+        isRunPressed = run_pressed;
     }
 
     void handleAnimation()
     {
-        bool isWalking = animator.GetBool(isWalkingHash);
-        bool isRunning = animator.GetBool(isRunningHash);
-        bool isStopping = animator.GetBool("isStopping");
+        isWalking = animator.GetBool(isWalkingHash);
+        isRunning = animator.GetBool(isRunningHash);
+        isStopping = animator.GetBool(isStoppingHash);
 
         if(isMovementPressed && !isWalking)
         {
@@ -53,10 +69,18 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool(isRunningHash, false);
         }
+        
     }
 
+    
+    // [Client]
     private void Update()
     {
+        
+        handleAnimation();
+
+        if (!isLocalPlayer) return;
+
         // Calculer la velocite du mouvement 
         // Axe hor -> gauche droite 
         float xMov = Input.GetAxisRaw("Horizontal");
@@ -66,10 +90,10 @@ public class PlayerController : MonoBehaviour
         //Left shift ou clic droit
         float run = Input.GetAxisRaw("Fire3");
 
-        isMovementPressed = xMov != 0 || zMov != 0;
-        isRunPressed = run != 0;
-
-        handleAnimation();
+        bool moving = xMov != 0 || zMov != 0;
+        bool running = run != 0;
+        update_inputs(moving,running);
+        
 
         Vector3 moveHorizontal = transform.right * xMov;
         Vector3 moveVertical = transform.forward * zMov;
