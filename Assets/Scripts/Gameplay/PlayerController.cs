@@ -8,34 +8,58 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     int isWalkingHash;
     int isRunningHash;
+    int isStoppingHash;
+    int isJumpingHash;
+    int isDeadHash;
+    int isOpeningChestHash;
+    int isChallengingHash;
+
     bool isMovementPressed;
     bool isRunPressed;
+    bool isJumpPressed;
 
     // Pour voir sur unity dans l'inspector
-    [SerializeField]
-    private float speed = 3f;
-    private float speedRun = 5f;
+    [SerializeField] float walkSpeed = 2.0f;
+    [SerializeField] float runSpeed = 6.0f;
 
-    [SerializeField]
-    private float mouseSensitivityX = 10f;
-    [SerializeField]
-    private float mouseSensitivityY = 10f;
+    [SerializeField] private float mouseSensitivity = 3.0f;
+    //[SerializeField] private float mouseSensitivityY = 3.0f;
+    [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
+    Vector2 currentDir = Vector2.zero;
+    Vector2 currentDirVelocity = Vector2.zero;
+
+    //[SerializeField] private float mouseSensitivityY = 10f;
 
     private PlayerMotor motor;
+
+    float cameraPitch = 0.0f;
+
+    float gravity = -13.0f;
+    float velocityY = 0.0f;
 
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
         animator = GetComponentInChildren<Animator>();
+
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
+        isStoppingHash = Animator.StringToHash("isStopping");
+        isJumpingHash = Animator.StringToHash("isJumping");
+        isDeadHash = Animator.StringToHash("isDead");
+        isOpeningChestHash = Animator.StringToHash("isOpeningChest");
+        isChallengingHash = Animator.StringToHash("isChallenging");
     }
 
     void handleAnimation()
     {
         bool isWalking = animator.GetBool(isWalkingHash);
         bool isRunning = animator.GetBool(isRunningHash);
-        bool isStopping = animator.GetBool("isStopping");
+        bool isStopping = animator.GetBool(isStoppingHash);
+        bool isJumping = animator.GetBool(isJumpingHash);
+        bool isOpeningChest = animator.GetBool(isOpeningChestHash);
+        bool isChallenging = animator.GetBool(isChallengingHash);
+        bool isDead = animator.GetBool(isDeadHash);
 
         if(isMovementPressed && !isWalking)
         {
@@ -53,43 +77,62 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool(isRunningHash, false);
         }
+        else if (isJumpPressed && !isJumping)
+        {
+            animator.SetBool(isJumpingHash, true);
+        }
+        else if (!isJumpPressed && isJumping)
+        {
+            animator.SetBool(isJumpingHash, false);
+        }
     }
 
     private void Update()
     {
-        // Calculer la velocite du mouvement 
-        // Axe hor -> gauche droite 
-        float xMov = Input.GetAxisRaw("Horizontal");
-        // Recupere -1 pour q et 1 pour d ou 0 pour pas de déplacement
-        float zMov = Input.GetAxisRaw("Vertical");
-
         //Left shift ou clic droit
         float run = Input.GetAxisRaw("Fire3");
+        //Touche espace
+        float jump = Input.GetAxisRaw("Jump");
 
-        isMovementPressed = xMov != 0 || zMov != 0;
-        isRunPressed = run != 0;
+        // Calculer le mouvement du joueur 
+        /*************************************/
+        Vector2 targetDir = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxis("Horizontal"));
+        targetDir.Normalize();
+        isMovementPressed = targetDir.x != 0 || targetDir.y != 0;
 
-        handleAnimation();
+        currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
 
-        Vector3 moveHorizontal = transform.right * xMov;
-        Vector3 moveVertical = transform.forward * zMov;
+        if (motor.controller.isGrounded) velocityY = 0.0f;
+        velocityY += gravity * Time.deltaTime;
 
-        Vector3 velocity = (moveHorizontal + moveVertical).normalized * (speed + speedRun * run);
+        Vector3 velocity = (transform.forward * currentDir.x + transform.right * currentDir.y) * (walkSpeed + runSpeed * run) + Vector3.up * velocityY;
         motor.Move(velocity);
+        /*************************************/
 
         // Calculer la rotation du joueur 
-        float yRot = Input.GetAxisRaw("Mouse X");
-
-        Vector3 rotation = new Vector3(0, yRot, 0) * mouseSensitivityX;
-
+        /*************************************/
+        Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        
+        Vector3 rotation = Vector3.up * mouseDelta.x * mouseSensitivity;
         motor.Rotate(rotation);
+        /*************************************/
 
         // Calculer la rotation de la camera 
-        float xRot = Input.GetAxisRaw("Mouse Y");
+        /*************************************/
+        cameraPitch -= mouseDelta.y * mouseSensitivity;
+        cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 65.0f);
+        motor.RotateCamera(Vector3.right * cameraPitch);
+        /*************************************/
 
-        Vector3 cameraRotation = new Vector3(xRot, 0, 0) * mouseSensitivityY;
-
-        motor.RotateCamera(cameraRotation);
+        // Saut
+        if (jump == 1)
+        {
+            motor.Jump();
+        }
+        
+        isJumpPressed = jump != 0;
+        isRunPressed = run != 0;
+        handleAnimation();
     }
 
 }
