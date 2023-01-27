@@ -28,8 +28,15 @@ namespace Osmose.Game
         {
             CurrentPoints = StartPoints;
             IsActive = true;
-            OnWinMatch += TeamController.GetComponent<Score>().IncreaseScore;
-            OnLoseMatch += TeamController.GetComponent<Score>().DecreaseScore;
+            if(TeamController.team == TeamColour.Red){
+                OnWinMatch += TeamController.GetComponent<Score>().IncreaseScoreRed;
+                OnLoseMatch += TeamController.GetComponent<Score>().DecreaseScoreRed;
+            }
+            if(TeamController.team == TeamColour.Blue){
+                OnWinMatch += TeamController.GetComponent<Score>().IncreaseScoreBlue;
+                OnLoseMatch += TeamController.GetComponent<Score>().DecreaseScoreBlue;
+            }
+            
         }
 
 

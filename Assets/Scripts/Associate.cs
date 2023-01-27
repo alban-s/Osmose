@@ -10,6 +10,7 @@ namespace Osmose.Game {
         public ushort points_fusionned;
         public bool islink;
         public int linked_player_id;
+        public GameObject [] player_list;
         void Start()
         {
 
