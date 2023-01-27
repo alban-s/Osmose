@@ -3,49 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace TMPro
+using TMPro;
+
+public class InitPerso : MonoBehaviour
 {
-    public class InitPerso : MonoBehaviour
+    public GameObject thisWindow;
+    public Scene GameScene;
+    public TMP_Dropdown equipeDropdown;
+
+    private int choseTeam = 0;
+    private string chosePseudo;
+    List<string> options;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        public GameObject thisWindow;
-        public Scene GameScene;
-        public TMP_Dropdown equipeDropdown;
+        options = new List<string>();
+        options.Add("Bleu");
+        options.Add("Rouge");
 
-        private int choseTeam = 0;
-        private int chosePerso = 0;
-        List<string> options;
+        equipeDropdown.ClearOptions();
+        equipeDropdown.AddOptions(options);
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            /*
-            equipeDropdown.ClearOptions();
-            options.Add("Bleu");
-            options.Add("Rouge");
+        chosePseudo = "pseudo";
+    }
 
-            equipeDropdown.AddOptions(options);
-            */
-        }
+    public void ReturnMenu()
+    {
+        print("lancer scene de jeu");
+        thisWindow.SetActive(false);
+    }
 
-        public void ReturnMenu()
-        {
-            print("lancer scene de jeu");
-            thisWindow.SetActive(false);
-        }
+    public void LaunchGame()
+    {
+        print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);
+    }
 
-        public void LaunchGame()
-        {
-            print("lancer scene de jeu avec perso id" + chosePerso + "et equipe " + options[choseTeam]);
-        }
+    public void SetTeam(int teamIdx)
+    {
+        choseTeam = teamIdx;
+        print("set team is " + teamIdx.ToString());
+/*        equipeDropdown.value = teamIdx;
+        equipeDropdown.RefreshShownValue();*/
+    }
 
-        public void SetTeam(int teamIdx)
-        {
-            choseTeam = teamIdx;
-        }
-
-        public void SetPerso(string PersoId)
-        {
-            chosePerso = int.Parse(PersoId);
-        }
+    public void SetPerso(string pseudo)
+    {
+        chosePseudo = pseudo;
     }
 }
+

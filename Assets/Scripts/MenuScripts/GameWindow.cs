@@ -9,7 +9,7 @@ using TMPro;
 public class GameWindow : MonoBehaviour
 {
     public GameObject joueur;
-    public GameObject timer;
+    public GameObject data;
 
     public TextMeshProUGUI gamerTeam;
     public TextMeshProUGUI oppositTeam;
@@ -28,6 +28,7 @@ public class GameWindow : MonoBehaviour
     {
         teamBlue = new Color32(255, 0, 0, 255);
         teamRed = new Color32(255, 255, 0, 0);
+        Update();
     }
 
     // Update is called once per frame
@@ -53,14 +54,20 @@ public class GameWindow : MonoBehaviour
             gamerTeam.color = teamBlue;
         }
 
+        int curGamerTeamScore = data.GetComponent<Score>().GetScoreEquipe();
+        gamerTeamScore.SetText(curGamerTeamScore.ToString());
+
+        int curOppositTeamScore = data.GetComponent<Score>().GetScoreEquipe();
+        oppositTeamScore.SetText(curGamerTeamScore.ToString());
+
         // Display gamer score
         int curScore = joueur.GetComponent<Health>().GetPoints();
-        gamerScore.SetText("{0} points", curScore);
+        gamerScore.SetText(curScore.ToString());
+     
 
         // Display time
-        float curTime = timer.GetComponent<Timer>().GetTime();
-        gameTime.SetText(".##", curTime);
-
+        float curTime = data.GetComponent<Timer>().GetTime();
+        gameTime.SetText(curTime.ToString(".##"));
 
     }
 }

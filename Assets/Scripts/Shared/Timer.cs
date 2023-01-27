@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour {
     private bool countDown = true;
 
     private float timer;
-    [SerializeField]
+/*    [SerializeField]
     private TextMeshProUGUI firstMinute;
     [SerializeField]
     private TextMeshProUGUI secondMinute;
@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour {
     [SerializeField]
     private TextMeshProUGUI firstSecond;
     [SerializeField]
-    private TextMeshProUGUI secondSecond;
+    private TextMeshProUGUI secondSecond;*/
 
     //Use this for a single text object
     //[SerializeField]
@@ -43,7 +43,7 @@ public class Timer : MonoBehaviour {
         } else {
             timer = 0;
         }
-        SetTextDisplay(true);
+        //SetTextDisplay(true);
     }
 
     void Update() {
@@ -73,20 +73,20 @@ public class Timer : MonoBehaviour {
         float seconds = Mathf.FloorToInt(time % 60);
 
         string currentTime = string.Format("{00:00}{01:00}", minutes, seconds);
-        firstMinute.text = currentTime[0].ToString();
+/*        firstMinute.text = currentTime[0].ToString();
         secondMinute.text = currentTime[1].ToString();
         firstSecond.text = currentTime[2].ToString();
-        secondSecond.text = currentTime[3].ToString();
+        secondSecond.text = currentTime[3].ToString();*/
 
         //Use this for a single text object
         //timerText.text = currentTime.ToString();
     }
 
     private void ErrorDisplay() {
-        firstMinute.text = "8";
+/*        firstMinute.text = "8";
         secondMinute.text = "8";
         firstSecond.text = "8";
-        secondSecond.text = "8";
+        secondSecond.text = "8";*/
 
 
         //Use this for a single text object
@@ -108,14 +108,15 @@ public class Timer : MonoBehaviour {
             flashTimer = flashDuration;
         } else if (flashTimer <= flashDuration / 2) {
             flashTimer -= Time.deltaTime;
-            SetTextDisplay(true);
+            //SetTextDisplay(true);
         } else {
             flashTimer -= Time.deltaTime;
-            SetTextDisplay(false);
+            //SetTextDisplay(false);
         }
     }
 
-    private void SetTextDisplay(bool enabled) {
+/*    private void SetTextDisplay(bool enabled)
+    {
         firstMinute.enabled = enabled;
         secondMinute.enabled = enabled;
         separator.enabled = enabled;
@@ -124,5 +125,5 @@ public class Timer : MonoBehaviour {
 
         //Use this for a single text object
         //timerText.enabled = enabled;
-    }
+    }*/
 }

@@ -44,7 +44,7 @@ namespace Osmose.Game{
             score_equipe -= score;
         }
 
-        ushort GetScoreEquipe()
+        public ushort GetScoreEquipe()
         {
             return score_equipe;
         }
