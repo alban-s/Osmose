@@ -31,7 +31,16 @@ public class PlayerSetup : NetworkBehaviour
 
     }
 
-      private void DisableComponents()
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        string netId = GetComponent<NetworkIdentity>().netId.ToString();
+
+        GameManager.RegisterPlayer(netId, gameObject);
+    }
+
+    private void DisableComponents()
     {
         // On va boucler sur les diff�rents composants renseign�s et les d�sactiver si ce joueur n'est pas le notre
         for (int i = 0; i < componentsToDisable.Length; i++)
@@ -43,11 +52,11 @@ public class PlayerSetup : NetworkBehaviour
 
     private void OnDisable()
     {
-
         if (sceneCamera != null)
         {
             sceneCamera.gameObject.SetActive(true);
         }
 
+        GameManager.UnregisterPlayer(transform.name);
     }
 }
