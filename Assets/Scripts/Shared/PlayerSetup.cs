@@ -7,6 +7,8 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     Behaviour[] componentsToDisable;
 
+    public GameObject initValueGUI;
+
     [SerializeField]
     private GameObject GameWindowPrefab;
     private GameObject GameWindowInstance;
@@ -44,10 +46,13 @@ public class PlayerSetup : NetworkBehaviour
         {
             GetComponent<NetworkTransformReliable>().syncDirection = SyncDirection.ClientToServer;
         }
-
-
     }
 
+    [Command]
+    public void InitClientValues()
+    {
+        /*scene.GetComponent<Team>().team;*/
+    }
     public override void OnStartClient()
     {
         base.OnStartClient();

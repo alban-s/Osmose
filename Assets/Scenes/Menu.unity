@@ -10417,6 +10417,8 @@ MonoBehaviour:
   GameScene:
     m_Handle: 0
   equipeDropdown: {fileID: 937467659}
+  choseTeam: 0
+  chosePseudo: 
 --- !u!1 &1656626187
 GameObject:
   m_ObjectHideFlags: 0
@@ -11633,7 +11635,7 @@ MonoBehaviour:
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 8969349479097794800, guid: fa8b3e987ad725a4882340230af319ba,
     type: 3}
-  autoCreatePlayer: 0
+  autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs: []
   timeInterpolationGui: 0
