@@ -1,10 +1,15 @@
 using UnityEngine;
 using Mirror;
+using Osmose.Game;
 
 public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
     Behaviour[] componentsToDisable;
+
+    [SerializeField]
+    private GameObject GameWindowPrefab;
+    private GameObject GameWindowInstance;
 
     Camera sceneCamera;
      private void Start()
@@ -22,6 +27,18 @@ public class PlayerSetup : NetworkBehaviour
                 sceneCamera.gameObject.SetActive(false);
             }
 
+            GameWindowInstance = Instantiate(GameWindowPrefab);
+
+            GameWindow ui = GameWindowInstance.GetComponent<GameWindow>();
+
+            if(ui == null)
+            {
+                Debug.LogError("Pas de gamewindow sur gamewindowinstance");
+            }
+            else
+            {
+                ui.SetPlayer(gameObject);
+            }
         }
         if (!isServer)
         {
@@ -52,6 +69,8 @@ public class PlayerSetup : NetworkBehaviour
 
     private void OnDisable()
     {
+        Destroy(GameWindowInstance);
+
         if (sceneCamera != null)
         {
             sceneCamera.gameObject.SetActive(true);

@@ -8,8 +8,7 @@ using TMPro;
 
 public class GameWindow : MonoBehaviour
 {
-    public GameObject joueur;
-    public GameObject data;
+    public GameObject GameManager;
 
     public TextMeshProUGUI gamerTeam;
     public TextMeshProUGUI oppositTeam;
@@ -18,6 +17,7 @@ public class GameWindow : MonoBehaviour
     public TextMeshProUGUI gamerScore;
     public TextMeshProUGUI gameTime;
 
+    private GameObject player;
     private Color32 teamBlue;
     private Color32 teamRed;
 
@@ -31,16 +31,21 @@ public class GameWindow : MonoBehaviour
         Update();
     }
 
+    public void SetPlayer(GameObject _player)
+    {
+        player = _player;
+    }
+
     // Update is called once per frame
     void Update()
     {
         // Display the teams and there scores
-        TeamColour curTeam = joueur.GetComponent<Team>().GetTeam();
+        TeamColour curTeam = player.GetComponent<Team>().GetTeam();
 
         if(curTeam == TeamColour.Red)
         {
             gamerTeam.SetText("Rouge");
-            gamerTeam.color = teamBlue;
+            gamerTeam.color = teamRed;
 
             oppositTeam.SetText("Bleu");
             oppositTeam.color = teamBlue;
@@ -51,22 +56,22 @@ public class GameWindow : MonoBehaviour
             oppositTeam.color = teamBlue;
 
             gamerTeam.SetText("Bleu");
-            gamerTeam.color = teamBlue;
+            gamerTeam.color = teamRed;
         }
 
-        int curGamerTeamScore = data.GetComponent<Score>().GetScoreEquipe();
+        int curGamerTeamScore = GameManager.GetComponent<Score>().GetTeamRedScore();
         gamerTeamScore.SetText(curGamerTeamScore.ToString());
 
-        int curOppositTeamScore = data.GetComponent<Score>().GetScoreEquipe();
-        oppositTeamScore.SetText(curGamerTeamScore.ToString());
+        int curOppositTeamScore = GameManager.GetComponent<Score>().GetTeamBlueScore();
+        oppositTeamScore.SetText(curOppositTeamScore.ToString());
 
         // Display gamer score
-        int curScore = joueur.GetComponent<Health>().GetPoints();
+        int curScore = player.GetComponent<Health>().GetPoints();
         gamerScore.SetText(curScore.ToString());
      
 
         // Display time
-        float curTime = data.GetComponent<Timer>().GetTime();
+        float curTime = GameManager.GetComponent<Timer>().GetTime();
         gameTime.SetText(curTime.ToString(".##"));
 
     }
