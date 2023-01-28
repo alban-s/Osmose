@@ -9,6 +9,7 @@ public class WindowControl : MonoBehaviour
     public GameObject thisWindow;
     public GameObject settingWindow;
     public GameObject endGameWindow;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -19,15 +20,25 @@ public class WindowControl : MonoBehaviour
         
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))  SettingButton();
+
+    }
+
     public void SettingButton()
     {
         if (settingWindow.activeSelf)
         {
             settingWindow.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
             settingWindow.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
