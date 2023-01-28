@@ -22,6 +22,7 @@ namespace TMPro
             resolutionDropdown.ClearOptions();
             resolutions = Screen.resolutions;
             List<string> options = new List<string>();
+            
 
             int curResolutionIdx = 0;
             for (int i = 0; i < resolutions.Length; i++)

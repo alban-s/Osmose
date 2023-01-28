@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4707,6 +4707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058042428}
   - component: {fileID: 1058042430}
+  - component: {fileID: 1058042431}
   - component: {fileID: 1058042429}
   m_Layer: 5
   m_Name: volume
@@ -4833,6 +4834,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058042427}
   m_CullTransparentMesh: 1
+--- !u!114 &1058042431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058042427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df799a02bcf8cee4280c8dff7e0d1347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisWindow: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 4c72527fb2fc9e9428434f87323a6a21, type: 2}
+  resolutionDropdown: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!1 &1058710000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4934,7 +4951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisWindow: {fileID: 1058710000}
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 4c72527fb2fc9e9428434f87323a6a21, type: 2}
   resolutionDropdown: {fileID: 1805516312}
   camera: {fileID: 0}
 --- !u!1 &1062233110
