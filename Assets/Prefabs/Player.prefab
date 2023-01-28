@@ -297,7 +297,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626601dae8526424584e60b2f8107254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   StartPoints: 10000
+  CurrentPoints: 0
   isTest: 0
   GameManager: {fileID: 0}
   player_id: 0
@@ -321,7 +325,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8969349479097794800}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a50116f10bd2a34caeda2e9d7421ce1, type: 3}
   m_Name: 

@@ -2,21 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 using Osmose.Game;
 
 
-public class Score : MonoBehaviour
+public class Score : NetworkBehaviour
 {
     public int nb_equipe = 2;
     public ushort team_max_score = 10000;
-    public ushort team_red_score = 0;
-    public ushort team_blue_score = 0;
     public ushort min_score_player = 100;
-    public ushort remaining_score;
-    public ushort[] players_score_blue;
-    public ushort[] players_score_red;
+
     public GameObject[] player_list_blue;
     public GameObject[] player_list_red;
+
+    [SyncVar]
+    public ushort team_red_score = 0;
+    [SyncVar]
+    public ushort team_blue_score = 0;
+    [SyncVar]
+    public ushort remaining_score;
+/*    [SyncVar]
+    public ushort[] players_score_blue;
+    [SyncVar]
+    public ushort[] players_score_red;*/
 
     // Start is called before the first frame update
     void Start()
@@ -40,20 +48,22 @@ public class Score : MonoBehaviour
         }
     }
 
+    [Command]
     public void IncreaseScoreBlue(ushort score)
     {
         team_blue_score += score;
     }
+    [Command]
     public void IncreaseScoreRed(ushort score)
     {
         team_red_score += score;
     }
-
+    [Command]
     public void DecreaseScoreBlue(ushort score)
     {
         team_blue_score -= score;
     }
-
+    [Command]
     public void DecreaseScoreRed(ushort score)
     {
         team_red_score -= score;
@@ -68,27 +78,18 @@ public class Score : MonoBehaviour
         return team_red_score;
     }
 
-    GameObject[] GetPlayerListBlue()
-    {
-        return player_list_blue;
-    }
-
-    GameObject[] GetPlayerListRed()
-    {
-        return player_list_red;
-    }
-
+    [Command]
     void SetScoreRestant(ushort score)
     {
-        team_max_score -= score;
+        remaining_score -= score;
     }
 
     ushort GetScoreRestant()
     {
-        return team_max_score;
+        return remaining_score;
     }
 
-    void SetScorePlayerEquipeBlue()
+/*    void SetScorePlayerEquipeBlue()
     {
         for (int i = 0; i < player_list_blue.Length; i++)
         {
@@ -102,6 +103,6 @@ public class Score : MonoBehaviour
         {
             players_score_red[i] = player_list_red[i].GetComponent<Health>().GetPoints();
         }
-    }
+    }*/
 }
 

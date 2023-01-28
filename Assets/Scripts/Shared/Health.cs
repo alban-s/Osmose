@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Mirror;
 using Osmose.Game;
 
-public class Health : MonoBehaviour
+public class Health : NetworkBehaviour
 {
     [Tooltip("Starting amount of points")] public ushort StartPoints = 10000;
-    [Tooltip("Current amount of points")] public ushort CurrentPoints { get; set; }
+
+    [SyncVar]
+    [Tooltip("Current amount of points")] public ushort CurrentPoints;
 
     public bool isTest;
     public UnityAction<ushort> OnLoseMatch;
@@ -44,6 +47,7 @@ public class Health : MonoBehaviour
         StartPoints = startPoints;
     }
 
+    [Command]
     public void IncreasePoints(ushort increaseAmount, GameObject pointsSource)
     {
         ushort tempPoints = CurrentPoints;
@@ -57,8 +61,7 @@ public class Health : MonoBehaviour
             Debug.Log("+" + trueWinAmount);
         }
     }
-
-
+    [Command]
     public void DecreasePoints(ushort damage, GameObject damageSource)
     {
         if (Invincible)
