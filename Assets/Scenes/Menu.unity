@@ -8503,12 +8503,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nb_equipe: 2
-  score_equipe_max: 10000
-  score_min: 100
-  score_equipe: 0
-  nb_joueur_totale: 0
-  nb_joueur_equipe: 0
-  player_list: []
+  team_max_score: 10000
+  team_red_score: 0
+  team_blue_score: 0
+  min_score_player: 100
+  remaining_score: 0
+  players_score_blue: 
+  players_score_red: 
+  player_list_blue: []
+  player_list_red: []
 --- !u!114 &1351107395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11552,7 +11555,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860074869}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
@@ -11571,7 +11574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Port: 7777
+  Port: 60981
   DualMode: 1
   NoDelay: 1
   Interval: 10
