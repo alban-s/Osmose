@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-    //[SerializeField] private Camera cam;
     [SerializeField] private Transform playerCamera = null;
 
     private Vector3 velocity;
@@ -15,7 +14,7 @@ public class PlayerMotor : MonoBehaviour
     public CharacterController controller = null;
 
     [SerializeField] private AnimationCurve jumpFallOff;
-    [SerializeField] private float jumpMultiplier = 5.0f;
+    [SerializeField] private float jumpMultiplier = 8.0f;
     private bool isJumping;
 
 
@@ -24,25 +23,25 @@ public class PlayerMotor : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-    // Appel� par PlayerController quand on appuie sur "Horizontal" ou "Vertical"
+    // Appele par PlayerController quand on appuie sur "Horizontal" ou "Vertical"
     public void Move(Vector3 _velocity)
     {
         velocity = _velocity;
     }
 
-    // Appel� par PlayerController quand on bouge la souris droite-gauche 
+    // Appele par PlayerController quand on bouge la souris droite-gauche 
     public void Rotate(Vector3 _rotation)
     {
         rotation = _rotation;
     }
 
-    // Appel� par PlayerController quand on bouge la souris haut-bas  
+    // Appele par PlayerController quand on bouge la souris haut-bas  
     public void RotateCamera(Vector3 _cameraRotation)
     {
         cameraRotation = _cameraRotation;
     }
 
-    // Appel� par PlayerController quand on appuie sur "Jump"
+    // Appele par PlayerController quand on appuie sur "Jump"
     public void Jump()
     {
         if (!isJumping)
@@ -52,29 +51,29 @@ public class PlayerMotor : MonoBehaviour
         }
     }
 
-
     private void FixedUpdate()
     {
         PerformMovement();
         PerformRotation();
     }
 
-    // Mouvements li�s � la souris, rotation haut-bas droite-gauche
+    // Mouvements lies a la souris, rotation haut-bas droite-gauche
     private void PerformRotation()
     {
         transform.Rotate(rotation);
         playerCamera.localEulerAngles = cameraRotation;
     }
 
-    // Mouvements li�s au clavier, d�placement devant-derri�re droite-gauche
+    // Mouvements lies au clavier, deplacement devant-derriere droite-gauche
     private void PerformMovement()
     {
         if (velocity != Vector3.zero)
         {
-            controller.Move(velocity * Time.deltaTime);        
+            controller.Move(velocity * Time.deltaTime);
         }
     }
 
+    // Controle du saut
     IEnumerator JumpEvent()
     {
         controller.slopeLimit = 90.0f;
