@@ -2283,7 +2283,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.68
+      value: 28.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.000000043744212
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: m_RootOrder
@@ -2303,35 +2311,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7173935
+      value: 0.7165603
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6962922
+      value: -0.69724786
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.022776525
+      value: -0.018569132
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0021927543
+      value: -0.006476182
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -87.351
+      value: -88.154
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -50.633
+      value: -33.069
       objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 48.965
+      value: 31.039
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.2
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
@@ -2705,6 +2713,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireWorks (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565666598223589719, guid: 2dd09feca64572642afdd3a2b9ea757d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4565666598540817955, guid: 2dd09feca64572642afdd3a2b9ea757d,
         type: 3}
@@ -10132,6 +10145,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireWorks (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4565666598223589719, guid: 2dd09feca64572642afdd3a2b9ea757d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4565666598540817955, guid: 2dd09feca64572642afdd3a2b9ea757d,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
@@ -12250,6 +12268,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireWorks (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4565666598223589719, guid: 2dd09feca64572642afdd3a2b9ea757d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4565666598540817955, guid: 2dd09feca64572642afdd3a2b9ea757d,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -13728,6 +13751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireWorks (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565666598223589719, guid: 2dd09feca64572642afdd3a2b9ea757d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4565666598540817955, guid: 2dd09feca64572642afdd3a2b9ea757d,
         type: 3}
@@ -22550,6 +22578,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireWorks (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4565666598223589719, guid: 2dd09feca64572642afdd3a2b9ea757d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4565666598540817955, guid: 2dd09feca64572642afdd3a2b9ea757d,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -24088,6 +24121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireWorks (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565666598223589719, guid: 2dd09feca64572642afdd3a2b9ea757d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4565666598540817955, guid: 2dd09feca64572642afdd3a2b9ea757d,
         type: 3}
@@ -35042,6 +35080,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireWorks (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565666598223589719, guid: 2dd09feca64572642afdd3a2b9ea757d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4565666598540817955, guid: 2dd09feca64572642afdd3a2b9ea757d,
         type: 3}
@@ -48002,6 +48045,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireWorks
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565666598223589719, guid: 2dd09feca64572642afdd3a2b9ea757d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4565666598540817955, guid: 2dd09feca64572642afdd3a2b9ea757d,
         type: 3}
