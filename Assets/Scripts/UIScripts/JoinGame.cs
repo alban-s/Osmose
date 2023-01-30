@@ -7,7 +7,6 @@ namespace Mirror
 {
     public class JoinGame : MonoBehaviour
     {
-        public NetworkManager manager;
         public GameObject thisWindow;
         public GameObject persoSelectionWindow;
         public TextMeshProUGUI adresseIP;
@@ -28,8 +27,8 @@ namespace Mirror
             if (!NetworkClient.active){
                 print("ip serveur : " + adresseIP.text);
             
-                manager.networkAddress = adresseIP.text;
-                manager.StartClient();
+                NetworkManager.singleton.networkAddress = adresseIP.text;
+                NetworkManager.singleton.StartClient();
 
                 StartCoroutine(wait_and_close());
                 persoSelectionWindow.SetActive(true);
