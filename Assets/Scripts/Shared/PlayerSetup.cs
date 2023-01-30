@@ -7,7 +7,7 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     Behaviour[] componentsToDisable;
 
-    public GameObject initValueGUI;
+    GameObject initValueGUI;
 
     [SerializeField]
     private GameObject GameWindowPrefab;
@@ -16,6 +16,10 @@ public class PlayerSetup : NetworkBehaviour
     Camera sceneCamera;
      private void Start()
     {
+        initValueGUI = GameObject.Find("InitPersoPanel");
+        //Debug.LogError(initValueGUI.name);
+        InitClientValues();
+        
         if (!isLocalPlayer)
         {
             DisableComponents();
@@ -46,12 +50,20 @@ public class PlayerSetup : NetworkBehaviour
         {
             GetComponent<NetworkTransformReliable>().syncDirection = SyncDirection.ClientToServer;
         }
+
+        
     }
 
     [Command]
     public void InitClientValues()
     {
-        /*scene.GetComponent<Team>().team;*/
+        if (initValueGUI != null){
+            InitPerso ip = initValueGUI.GetComponent<InitPerso>();
+            if (ip != null){
+                gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
+                gameObject.transform.name = ip.chosePseudo;
+            }
+        }
     }
     public override void OnStartClient()
     {

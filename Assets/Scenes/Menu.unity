@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029143, g: 0.22572419, b: 0.30693057, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1872,7 +1872,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: Entrer pseudo
+  m_Text: nom joueur
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -6688,7 +6688,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Entrer pseudo\u200B"
+  m_text: "nom joueur\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42568931d1ccfaf41b8d12c7e0f62611, type: 2}
   m_sharedMaterial: {fileID: -818552399142504263, guid: 42568931d1ccfaf41b8d12c7e0f62611,
@@ -10418,6 +10418,8 @@ MonoBehaviour:
     m_Handle: 0
   equipeDropdown: {fileID: 937467659}
   pseudo: {fileID: 1104874199}
+  choseTeam: 0
+  chosePseudo: 
 --- !u!1 &1656626187
 GameObject:
   m_ObjectHideFlags: 0
@@ -11634,7 +11636,7 @@ MonoBehaviour:
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 8969349479097794800, guid: fa8b3e987ad725a4882340230af319ba,
     type: 3}
-  autoCreatePlayer: 1
+  autoCreatePlayer: 0
   playerSpawnMethod: 1
   spawnPrefabs: []
   timeInterpolationGui: 0

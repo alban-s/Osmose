@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     {
         string playerId = playerIdPrefix + netID;
         players.Add(playerId, player);
-        player.transform.name = playerId;
+        //player.transform.name = playerId;
     }
 
     public static void UnregisterPlayer(string playerId)
