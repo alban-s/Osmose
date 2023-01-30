@@ -10,7 +10,7 @@ public class InitPerso : MonoBehaviour
 {
     IEnumerator wait_and_close()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5);
         thisWindow.SetActive(false);
     }
     public GameObject thisWindow;

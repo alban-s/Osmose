@@ -12,6 +12,12 @@ namespace Mirror
         public GameObject persoSelectionWindow;
         public TextMeshProUGUI adresseIP;
 
+        IEnumerator wait_and_close()
+    {
+        yield return new WaitForSeconds(0.5);
+        thisWindow.SetActive(false);
+    }
+
         // void Awake()
         // {
         //     manager = GetComponent<NetworkManager>();
@@ -22,12 +28,10 @@ namespace Mirror
             if (!NetworkClient.active){
                 print("ip serveur : " + adresseIP.text);
             
-            
+                manager.networkAddress = adresseIP.text;
                 manager.StartClient();
 
-                manager.networkAddress = adresseIP.text;
-
-                thisWindow.SetActive(false);
+                StartCoroutine(wait_and_close());
                 persoSelectionWindow.SetActive(true);
             }
             
