@@ -38,13 +38,11 @@ public class MainMenuGestion : MonoBehaviour
     public void StartNewGame()
     {
         newGameWindow.SetActive(true);
-        mainWindow.SetActive(false);
     }
 
     public void JoinGame()
     {
         joinGameWindow.SetActive(true);
-        mainWindow.SetActive(false);
     }
 
     public void Settings()

@@ -55,6 +55,8 @@ using Mirror;
 
         public void ReturnMenu()
         {
+            if (NetworkServer.active && NetworkClient.isConnected)
+                manager.StopHost();
             thisWindow.SetActive(false);
         }
     }

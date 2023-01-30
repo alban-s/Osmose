@@ -27,8 +27,9 @@ namespace Mirror
             if (!NetworkClient.active){
                 print("ip serveur : " + adresseIP.text);
             
-                NetworkManager.singleton.networkAddress = adresseIP.text;
+                
                 NetworkManager.singleton.StartClient();
+                NetworkManager.singleton.networkAddress = adresseIP.text;
 
                 StartCoroutine(wait_and_close());
                 persoSelectionWindow.SetActive(true);
@@ -38,6 +39,8 @@ namespace Mirror
 
         public void ReturnMenu()
         {
+            if (NetworkClient.isConnected)
+                NetworkManager.singleton.StopClient();
             thisWindow.SetActive(false);
         }
     }
