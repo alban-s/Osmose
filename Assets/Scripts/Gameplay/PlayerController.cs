@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
         bool isChallenging = animator.GetBool(isChallengingHash);
         bool isDead = animator.GetBool(isDeadHash);
 
+        Debug.Log(isWalking);
+
         if (isMovementPressed && !isWalking)
         {
             animator.SetBool(isWalkingHash, true);
@@ -111,48 +113,46 @@ public class PlayerController : MonoBehaviour
     {
         float run = Input.GetAxisRaw("Fire3");
         float jump = Input.GetAxisRaw("Jump");
-        //float openChest = Input.GetKeyDown(KeyCode.F);
-        //float fight = Input.GetKeyDown(KeyCode.F);
+        float openChest = Input.GetAxisRaw("OpenChest");
+        float attack = Input.GetAxisRaw("Attack");
+        float attackBase = Input.GetAxisRaw("AttackBase");
 
-        //if (Input.GetAxis("mouse 0") == 1) Debug.Log("hi!!!");
+        if (!motor.isJumping && openChest == 1)
+        {
+            //Permet de lancer une animation sans devoir changer les bool�ens
+            animator.Play("Base Layer.OpenChest");
+        }
+
 
         isJumpPressed = jump != 0;
         isRunPressed = run != 0;
 
-        // Calculer le mouvement du joueur 
-        Vector2 targetDir = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxis("Horizontal"));
-        targetDir.Normalize();
-
-        isMovementPressed = targetDir.x != 0 || targetDir.y != 0;
-
-        currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
-
-        if (motor.controller.isGrounded) velocityY = 0.0f;
-        velocityY += gravity * Time.deltaTime;
-
-        Vector3 velocity = (transform.forward * currentDir.x + transform.right * currentDir.y) * (walkSpeed + runSpeed * run) + Vector3.up * velocityY;
-
-
-        motor.Move(velocity);
-
-        // Calculer le saut du joueur 
-        if (jump == 1)
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
         {
-            motor.Jump();
+            // Calculer le mouvement du joueur 
+            Vector2 targetDir = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxis("Horizontal"));
+            targetDir.Normalize();
+
+            isMovementPressed = targetDir.x != 0 || targetDir.y != 0;
+
+            currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
+
+            if (motor.controller.isGrounded) velocityY = 0.0f;
+            velocityY += gravity * Time.deltaTime;
+
+            Vector3 velocity = (transform.forward * currentDir.x + transform.right * currentDir.y) * (walkSpeed + runSpeed * run) + Vector3.up * velocityY;
+
+            motor.Move(velocity);
+
+            // Calculer le saut du joueur 
+            if (jump == 1)
+            {
+                motor.Jump();
+            }
         }
+        else motor.Move(Vector3.zero);
 
-        // 
-        /*if (Input.GetKeyDown(KeyCode.F))
-        {
-            animator.SetBool(isOpeningChest, true);
-            animator.SetBool(isOpeningChest, false);
-        }
 
-        // 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-
-        }*/
     }
 
     void mouseUpdate()

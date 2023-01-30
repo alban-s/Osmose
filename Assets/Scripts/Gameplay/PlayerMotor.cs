@@ -15,7 +15,7 @@ public class PlayerMotor : MonoBehaviour
 
     [SerializeField] private AnimationCurve jumpFallOff;
     [SerializeField] private float jumpMultiplier = 8.0f;
-    private bool isJumping;
+    public bool isJumping;
 
 
     private void Start()
