@@ -19,6 +19,7 @@ public class PlayerSetup : NetworkBehaviour
         initValueGUI = GameObject.Find("InitPersoPanel");
         //Debug.LogError(initValueGUI.name);
         InitClientValues();
+        InitClientLocalValues();
         
         if (!isLocalPlayer)
         {
@@ -65,11 +66,23 @@ public class PlayerSetup : NetworkBehaviour
             }
         }
     }
+
+    public void InitClientLocalValues(){
+        if (initValueGUI != null){
+            InitPerso ip = initValueGUI.GetComponent<InitPerso>();
+            if (ip != null){
+                gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
+                gameObject.transform.name = ip.chosePseudo;
+            }
+        }
+    }
     public override void OnStartClient()
     {
         base.OnStartClient();
 
         string netId = GetComponent<NetworkIdentity>().netId.ToString();
+        InitClientValues();
+        InitClientLocalValues();
 
         GameManager.RegisterPlayer(netId, gameObject);
     }
