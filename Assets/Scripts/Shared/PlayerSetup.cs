@@ -18,8 +18,6 @@ public class PlayerSetup : NetworkBehaviour
     {
         initValueGUI = GameObject.Find("InitPersoPanel");
         //Debug.LogError(initValueGUI.name);
-        InitClientValues();
-        InitClientLocalValues();
         
         if (!isLocalPlayer)
         {
@@ -28,6 +26,9 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
+            InitClientValues();
+            InitClientLocalValues();
+
             sceneCamera = Camera.main;
             if (sceneCamera != null)
             {
@@ -81,8 +82,6 @@ public class PlayerSetup : NetworkBehaviour
         base.OnStartClient();
 
         string netId = GetComponent<NetworkIdentity>().netId.ToString();
-        InitClientValues();
-        InitClientLocalValues();
 
         GameManager.RegisterPlayer(netId, gameObject);
     }
