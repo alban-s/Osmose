@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Mirror;
-using UnityEngine.SceneManagement;
 
 public class InitPerso : MonoBehaviour
 {

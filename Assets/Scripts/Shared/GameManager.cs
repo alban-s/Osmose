@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
 
     public static void RegisterPlayer(string netID, GameObject player)
     {
-        string playerId = playerIdPrefix + netID;
-        players.Add(playerId, player);
-        //player.transform.name = playerId;
+        //string playerId = playerIdPrefix + netID;
+        players.Add(netID, player);
+        player.transform.name = netID;
     }
 
     public static void UnregisterPlayer(string playerId)

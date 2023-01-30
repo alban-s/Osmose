@@ -27,7 +27,6 @@ public class PlayerSetup : NetworkBehaviour
         else
         {
             InitClientValues();
-            InitClientLocalValues();
 
             sceneCamera = Camera.main;
             if (sceneCamera != null)
@@ -66,8 +65,10 @@ public class PlayerSetup : NetworkBehaviour
                 gameObject.transform.name = ip.chosePseudo;
             }
         }
+        InitClientLocalValues();
     }
 
+    [ClientRpc]
     public void InitClientLocalValues(){
         if (initValueGUI != null){
             InitPerso ip = initValueGUI.GetComponent<InitPerso>();
@@ -83,7 +84,18 @@ public class PlayerSetup : NetworkBehaviour
 
         string netId = GetComponent<NetworkIdentity>().netId.ToString();
 
-        GameManager.RegisterPlayer(netId, gameObject);
+        if (initValueGUI != null)
+        {
+            InitPerso ip = initValueGUI.GetComponent<InitPerso>();
+            if (ip != null)
+            {
+                GameManager.RegisterPlayer(ip.chosePseudo, gameObject);
+               /* gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
+                gameObject.transform.name = ip.chosePseudo;*/
+            }
+        }
+
+       
     }
 
     private void DisableComponents()
