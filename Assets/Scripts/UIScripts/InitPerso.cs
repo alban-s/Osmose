@@ -26,8 +26,8 @@ public class InitPerso : MonoBehaviour
     void Start()
     {
         options = new List<string>();
+        options.Add("Jaune");
         options.Add("Rouge");
-        options.Add("Bleu");
 
         equipeDropdown.ClearOptions();
         equipeDropdown.AddOptions(options);
