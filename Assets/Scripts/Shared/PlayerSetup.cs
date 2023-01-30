@@ -7,7 +7,7 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     Behaviour[] componentsToDisable;
 
-    public GameObject initValueGUI;
+    GameObject initValueGUI;
 
     [SerializeField]
     private GameObject GameWindowPrefab;
@@ -16,6 +16,11 @@ public class PlayerSetup : NetworkBehaviour
     Camera sceneCamera;
      private void Start()
     {
+        initValueGUI = GameObject.Find("InitPersoPanel");
+        //Debug.LogError(initValueGUI.name);
+        InitClientValues();
+        InitClientLocalValues();
+        
         if (!isLocalPlayer)
         {
             DisableComponents();
@@ -46,18 +51,38 @@ public class PlayerSetup : NetworkBehaviour
         {
             GetComponent<NetworkTransformReliable>().syncDirection = SyncDirection.ClientToServer;
         }
+
+        
     }
 
     [Command]
     public void InitClientValues()
     {
-        /*scene.GetComponent<Team>().team;*/
+        if (initValueGUI != null){
+            InitPerso ip = initValueGUI.GetComponent<InitPerso>();
+            if (ip != null){
+                gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
+                gameObject.transform.name = ip.chosePseudo;
+            }
+        }
+    }
+
+    public void InitClientLocalValues(){
+        if (initValueGUI != null){
+            InitPerso ip = initValueGUI.GetComponent<InitPerso>();
+            if (ip != null){
+                gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
+                gameObject.transform.name = ip.chosePseudo;
+            }
+        }
     }
     public override void OnStartClient()
     {
         base.OnStartClient();
 
         string netId = GetComponent<NetworkIdentity>().netId.ToString();
+        InitClientValues();
+        InitClientLocalValues();
 
         GameManager.RegisterPlayer(netId, gameObject);
     }
