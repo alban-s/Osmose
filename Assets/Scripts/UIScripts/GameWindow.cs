@@ -18,7 +18,7 @@ public class GameWindow : MonoBehaviour
     public TextMeshProUGUI gameTime;
 
     private GameObject player;
-    private Color32 teamBlue;
+    private Color32 teamYellow;
     private Color32 teamRed;
 
 
@@ -26,7 +26,7 @@ public class GameWindow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        teamBlue = new Color32(255, 0, 0, 255);
+        teamYellow = new Color32(255, 255, 255, 0);
         teamRed = new Color32(255, 255, 0, 0);
         Update();
     }
@@ -47,16 +47,16 @@ public class GameWindow : MonoBehaviour
             gamerTeam.SetText("Rouge");
             gamerTeam.color = teamRed;
 
-            oppositTeam.SetText("Bleu");
-            oppositTeam.color = teamBlue;
+            oppositTeam.SetText("Jaune");
+            oppositTeam.color = teamYellow;
         }
         else
         {
             oppositTeam.SetText("Rouge");
-            oppositTeam.color = teamBlue;
+            oppositTeam.color = teamRed;
 
-            gamerTeam.SetText("Bleu");
-            gamerTeam.color = teamRed;
+            gamerTeam.SetText("Jaune");
+            gamerTeam.color = teamYellow;
         }
 
         int curGamerTeamScore = GameManager.GetComponent<Score>().GetTeamRedScore();

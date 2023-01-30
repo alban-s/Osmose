@@ -20,7 +20,7 @@ public class InitPerso : MonoBehaviour
     void Start()
     {
         options = new List<string>();
-        options.Add("Bleu");
+        options.Add("Jaune");
         options.Add("Rouge");
 
         equipeDropdown.ClearOptions();
@@ -46,8 +46,6 @@ public class InitPerso : MonoBehaviour
     {
         choseTeam = teamIdx;
         print("set team is " + teamIdx.ToString());
-/*        equipeDropdown.value = teamIdx;
-        equipeDropdown.RefreshShownValue();*/
     }
 
     public void SetPerso(string pseudo)
