@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Mirror;
-
+using UnityEngine.SceneManagement;
 
 public class InitPerso : MonoBehaviour
 {
@@ -49,6 +49,7 @@ public class InitPerso : MonoBehaviour
         print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);
         NetworkClient.AddPlayer();
 
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);
         StartCoroutine(wait_and_close());
     }
 }

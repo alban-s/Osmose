@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029143, g: 0.22572419, b: 0.30693057, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10418,6 +10418,8 @@ MonoBehaviour:
     m_Handle: 0
   equipeDropdown: {fileID: 937467659}
   pseudo: {fileID: 1104874199}
+  choseTeam: 0
+  chosePseudo: 
 --- !u!1 &1656626187
 GameObject:
   m_ObjectHideFlags: 0
@@ -11634,7 +11636,7 @@ MonoBehaviour:
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 8969349479097794800, guid: fa8b3e987ad725a4882340230af319ba,
     type: 3}
-  autoCreatePlayer: 1
+  autoCreatePlayer: 0
   playerSpawnMethod: 1
   spawnPrefabs: []
   timeInterpolationGui: 0
