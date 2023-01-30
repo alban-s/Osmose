@@ -10,6 +10,7 @@ public class InitPerso : MonoBehaviour
     public GameObject thisWindow;
     public Scene GameScene;
     public TMP_Dropdown equipeDropdown;
+    public TextMeshProUGUI pseudo;
 
     private int choseTeam = 0;
     private string chosePseudo;

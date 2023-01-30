@@ -10417,8 +10417,7 @@ MonoBehaviour:
   GameScene:
     m_Handle: 0
   equipeDropdown: {fileID: 937467659}
-  choseTeam: 0
-  chosePseudo: 
+  pseudo: {fileID: 1104874199}
 --- !u!1 &1656626187
 GameObject:
   m_ObjectHideFlags: 0
