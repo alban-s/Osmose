@@ -7117,7 +7117,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c5947a15405d59b4e9e5c1a82c9ba351,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.64
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5947a15405d59b4e9e5c1a82c9ba351,
         type: 3}
@@ -7127,7 +7127,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c5947a15405d59b4e9e5c1a82c9ba351,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 27.68
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5947a15405d59b4e9e5c1a82c9ba351,
         type: 3}
@@ -39864,7 +39864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1026949273}
-  controller: {fileID: 0}
+  walkSpeed: 4
+  runSpeed: 7
   jumpFallOff:
     serializedVersion: 2
     m_Curve: []
@@ -39872,7 +39873,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   jumpMultiplier: 8
-  isJumping: 0
+  animator: {fileID: 0}
 --- !u!114 &1239529010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39885,11 +39886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af2221269b43664ebe99a6f44f3b426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 4
-  runSpeed: 7
   mouseSensitivityX: 2
   mouseSensitivityY: 2
-  moveSmoothTime: 0.2
 --- !u!114 &1239529011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39903,7 +39901,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1026949273}
-  controller: {fileID: 0}
+  walkSpeed: 4
+  runSpeed: 7
   jumpFallOff:
     serializedVersion: 2
     m_Curve: []
@@ -39911,7 +39910,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   jumpMultiplier: 8
-  isJumping: 0
+  animator: {fileID: 0}
 --- !u!1001 &1249530818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40966,11 +40965,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af2221269b43664ebe99a6f44f3b426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
-  runSpeed: 7
   mouseSensitivityX: 1
   mouseSensitivityY: 1
-  moveSmoothTime: 0.3
 --- !u!114 &1271191394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40984,7 +40980,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 40689316}
-  controller: {fileID: 0}
+  walkSpeed: 4
+  runSpeed: 7
   jumpFallOff:
     serializedVersion: 2
     m_Curve:
@@ -41010,7 +41007,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   jumpMultiplier: 7
-  isJumping: 0
+  animator: {fileID: 0}
 --- !u!65 &1271191395
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41031,8 +41028,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271191391}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.58, y: 0, z: -84.68}
+  m_LocalRotation: {x: -0, y: 0.13216104, z: -0, w: 0.9912283}
+  m_LocalPosition: {x: 4.8222504, y: 0, z: -84.64909}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41040,7 +41037,7 @@ Transform:
   - {fileID: 40689316}
   m_Father: {fileID: 1740156608}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 15.189, z: 0}
 --- !u!1001 &1272020181
 PrefabInstance:
   m_ObjectHideFlags: 0

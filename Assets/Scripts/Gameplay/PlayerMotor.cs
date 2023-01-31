@@ -102,10 +102,11 @@ public class PlayerMotor : MonoBehaviour
     // Appele par PlayerController quand on appuie sur "Horizontal" ou "Vertical"
     public void Move(Vector2 _direction, float _isRunning)
     {
-        // Si il n'est pas bloqué par une animation ouverture coffre, combats... 
+        // Si il n'est pas bloquï¿½ par une animation ouverture coffre, combats... 
         // Il peut bouger donc on calcule sa velocite
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
-            && !animator.GetCurrentAnimatorStateInfo(0).IsName("isChallenging"))
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Run To Stop"))
         {
             // Affectation des variables
             isMovementPressed = _direction.x != 0 || _direction.y != 0;
