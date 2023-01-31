@@ -11,102 +11,30 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
 {
-    // Animations 
-    Animator animator;
-    int isWalkingHash;
-    int isRunningHash;
-    int isStoppingHash;
-    int isJumpingHash;
-    int isDeadHash;
-    int isOpeningChestHash;
-    int isChallengingHash;
-
-    bool isMovementPressed;
-    bool isRunPressed;
-    bool isJumpPressed;
-
-    // Reglages vitesse
-    [SerializeField] float walkSpeed = 4.0f;
-    [SerializeField] float runSpeed = 7.0f;
-
     // Reglages sensibilite souris 
     [SerializeField] private float mouseSensitivityX = 1.0f;
     [SerializeField] private float mouseSensitivityY = 1.0f;
+    float cameraPitch = 0.0f;
 
+    /*
     // Variables deplacement fluide
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.2f;
+    Vector2 currentDirVelocity = Vector2.zero;*/
     Vector2 currentDir = Vector2.zero;
-    Vector2 currentDirVelocity = Vector2.zero;
 
     // Dependance playerMotor
     private PlayerMotor motor;
 
-    float cameraPitch = 0.0f;
-
-    // Variables gestion gravite
-    float gravity = -13.0f;
-    float velocityY = 0.0f;
 
     private void Start()
     {
         motor = GetComponent<PlayerMotor>();
-        animator = GetComponentInChildren<Animator>();
-
-        isWalkingHash = Animator.StringToHash("isWalking");
-        isRunningHash = Animator.StringToHash("isRunning");
-        isStoppingHash = Animator.StringToHash("isStopping");
-        isJumpingHash = Animator.StringToHash("isJumping");
-        isDeadHash = Animator.StringToHash("isDead");
-        isOpeningChestHash = Animator.StringToHash("isOpeningChest");
-        isChallengingHash = Animator.StringToHash("isChallenging");
-    }
-
-    void handleAnimation()
-    {
-        bool isWalking = animator.GetBool(isWalkingHash);
-        bool isRunning = animator.GetBool(isRunningHash);
-        bool isStopping = animator.GetBool(isStoppingHash);
-        bool isJumping = animator.GetBool(isJumpingHash);
-        bool isOpeningChest = animator.GetBool(isOpeningChestHash);
-        bool isChallenging = animator.GetBool(isChallengingHash);
-        bool isDead = animator.GetBool(isDeadHash);
-
-        Debug.Log(isWalking);
-
-        if (isMovementPressed && !isWalking)
-        {
-            animator.SetBool(isWalkingHash, true);
-        }
-        else if (!isMovementPressed && isWalking)
-        {
-            animator.SetBool(isWalkingHash, false);
-        }
-        else if ((isMovementPressed && isRunPressed) && !isRunning)
-        {
-            animator.SetBool(isRunningHash, true);
-        }
-        else if ((!isMovementPressed || !isRunPressed) && isRunning)
-        {
-            animator.SetBool(isRunningHash, false);
-            animator.SetBool(isStoppingHash, true);
-            animator.SetBool(isStoppingHash, false);
-        }
-        else if (isJumpPressed && !isJumping)
-        {
-            animator.SetBool(isJumpingHash, true);
-        }
-        else if (!isJumpPressed && isJumping)
-        {
-            animator.SetBool(isJumpingHash, false);
-        }
-
     }
 
     private void Update()
     {
         keyboardUpdate();
         mouseUpdate();
-        handleAnimation();
     }
 
     void keyboardUpdate()
@@ -116,42 +44,28 @@ public class PlayerController : MonoBehaviour
         float openChest = Input.GetAxisRaw("OpenChest");
         float attack = Input.GetAxisRaw("Attack");
         float attackBase = Input.GetAxisRaw("AttackBase");
+        float associate = Input.GetAxisRaw("Associate");
 
-        if (!motor.isJumping && openChest == 1)
-        {
-            //Permet de lancer une animation sans devoir changer les bool�ens
-            animator.Play("Base Layer.OpenChest");
-        }
+        if (openChest == 1) motor.OpenChest();
+        else if (attack == 1) motor.Attack();
+        else if (attackBase == 1) motor.AttackBase();
+        else if(associate == 1) motor.Associate();
 
+        /*
+        // Appliquer une fluidite au mouvement
+        Vector2 targetDir = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxis("Horizontal"));
+        targetDir.Normalize();
 
-        isJumpPressed = jump != 0;
-        isRunPressed = run != 0;
+        currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
+        */
+        // Calculer le mouvement du joueur 
+        currentDir = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxis("Horizontal"));
+        currentDir.Normalize();
 
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
-        {
-            // Calculer le mouvement du joueur 
-            Vector2 targetDir = new Vector2(Input.GetAxisRaw("Vertical"), Input.GetAxis("Horizontal"));
-            targetDir.Normalize();
+        motor.Move(currentDir, run);
 
-            isMovementPressed = targetDir.x != 0 || targetDir.y != 0;
-
-            currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
-
-            if (motor.controller.isGrounded) velocityY = 0.0f;
-            velocityY += gravity * Time.deltaTime;
-
-            Vector3 velocity = (transform.forward * currentDir.x + transform.right * currentDir.y) * (walkSpeed + runSpeed * run) + Vector3.up * velocityY;
-
-            motor.Move(velocity);
-
-            // Calculer le saut du joueur 
-            if (jump == 1)
-            {
-                motor.Jump();
-            }
-        }
-        else motor.Move(Vector3.zero);
-
+        // Calculer le saut du joueur 
+        if (jump == 1) motor.Jump();
 
     }
 
