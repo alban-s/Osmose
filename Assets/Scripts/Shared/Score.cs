@@ -20,7 +20,8 @@ public class Score : NetworkBehaviour
     [SyncVar]
     public ushort team_blue_score = 0;
     [SyncVar]
-    public ushort remaining_score;
+    public ushort remaining_score_blue;
+    public ushort remaining_score_red;
 /*    [SyncVar]
     public ushort[] players_score_blue;
     [SyncVar]
@@ -29,7 +30,8 @@ public class Score : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        remaining_score = team_max_score;
+        remaining_score_blue = team_max_score;
+        remaining_score_red = team_max_score;
         ComputeScoreEquipe(team_blue_score, player_list_blue);
         ComputeScoreEquipe(team_red_score, player_list_red);
     }
@@ -79,14 +81,24 @@ public class Score : NetworkBehaviour
     }
 
     [Command]
-    void SetScoreRestant(ushort score)
+    void SetScoreRestantBlue(ushort score)
     {
-        remaining_score -= score;
+        remaining_score_blue -= score;
     }
 
-    public ushort GetScoreRestant()
+    public ushort GetScoreRestantBlue()
     {
-        return remaining_score;
+        return remaining_score_blue;
+    }
+
+    void SetScoreRestantRed(ushort score)
+    {
+        remaining_score_red -= score;
+    }
+
+    public ushort GetScoreRestantRed()
+    {
+        return remaining_score_red;
     }
 
 /*    void SetScorePlayerEquipeBlue()
