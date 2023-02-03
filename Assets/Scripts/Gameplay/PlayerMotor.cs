@@ -83,10 +83,15 @@ public class PlayerMotor : MonoBehaviour
             animator.SetBool(isRunningHash, true);
         }
         // S'arrete de courir : mouvement et courir pas appuye, avant il courrait
-        else if ((!isMovementPressed || !isRunPressed) && isRunning)
+        else if (!isMovementPressed && !isRunPressed && isRunning)
         {
             animator.SetBool(isRunningHash, false);
-            animator.Play("Base Layer.Run To Stop");
+            animator.Play("Base Layer.Run To Stop"); 
+        }
+        // S'arrete de courir, commence a marcher : mouvement appuye et courir pas appuye, avant il courrait
+        else if (!isRunPressed && isRunning)
+        {
+            animator.SetBool(isRunningHash, false);
         }
 
     }
@@ -144,11 +149,18 @@ public class PlayerMotor : MonoBehaviour
     {
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
         {
-            if (!isJumping && timeBfJumping <= 0)
+            if (isMovementPressed && !isJumping && timeBfJumping <= 0)
             {
                 isJumping = true;
                 animator.Play("Base Layer.Jump");
                 animator.SetBool(isJumpingHash, true);
+                StartCoroutine(JumpEvent());
+            }
+            else if (!isMovementPressed && !isJumping && timeBfJumping <= 0)
+            {
+                isJumping = true;
+                animator.Play("Base Layer.Jump Still");
+                //animator.SetBool(isJumpingHash, true);
                 StartCoroutine(JumpEvent());
             }
         }
