@@ -84,7 +84,7 @@ public class Score : NetworkBehaviour
         remaining_score -= score;
     }
 
-    ushort GetScoreRestant()
+    public ushort GetScoreRestant()
     {
         return remaining_score;
     }
