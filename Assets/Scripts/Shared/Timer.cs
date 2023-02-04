@@ -1,13 +1,14 @@
 using UnityEngine;
 using TMPro;
-
-public class Timer : MonoBehaviour {
+using Mirror;
+public class Timer : NetworkBehaviour {
     [SerializeField]
     private float timerDuration = 3f * 60f; //Duration of the timer in seconds
 
     [SerializeField]
     private bool countDown = true;
 
+    [SyncVar]
     private float timer;
 /*    [SerializeField]
     private TextMeshProUGUI firstMinute;
@@ -46,6 +47,7 @@ public class Timer : MonoBehaviour {
         //SetTextDisplay(true);
     }
 
+    [Server]
     void Update() {
         if (countDown && timer > 0) {
             timer -= Time.deltaTime;

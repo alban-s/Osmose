@@ -73,7 +73,7 @@ public class GameWindow : MonoBehaviour
 
         // Display time
         float curTime = GameManager.GetComponent<Timer>().GetTime();
-        gameTime.SetText(curTime.ToString(".##"));
+        gameTime.SetText(curTime.ToString("."));
 
     }
 }
