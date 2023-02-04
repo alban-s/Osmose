@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
         return players[playerId];
     }
 
+    public static void SetPlayer(GameObject player)
+    {
+        players[player.transform.name] = player;
+    }
+
     public static Dictionary<string, GameObject> GetPlayerList()
     {
         return players;
