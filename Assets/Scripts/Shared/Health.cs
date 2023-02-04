@@ -16,7 +16,7 @@ public class Health : NetworkBehaviour
     public UnityAction<ushort> OnLoseMatch;
     public UnityAction<ushort> OnWinMatch;
     public UnityAction OnDie;
-    public GameObject GameManager;
+    private GameObject GameManager;
 
     public bool Invincible { get; set; }
     public bool IsActive { get; set; }
@@ -28,6 +28,7 @@ public class Health : NetworkBehaviour
 
     void Start()
     {
+        GameManager = GameObject.Find("GameManager");
         CurrentPoints = StartPoints;
         IsActive = true;
         if (GetComponent<Team>().team == TeamColour.Red)

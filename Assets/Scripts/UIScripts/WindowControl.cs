@@ -13,7 +13,7 @@ public class WindowControl : MonoBehaviour
     public GameObject settingWindow;
     public GameObject endGameWindow;
 
-    public GameObject manager;
+    private GameObject manager;
 
     private bool gameOn;
     private bool gameStart;
@@ -22,6 +22,7 @@ public class WindowControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameObject.Find("GameManager");
         Screen.fullScreen = true;
         choseScoreWindow.SetActive(true);
         gameWindow.SetActive(false);

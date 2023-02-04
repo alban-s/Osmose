@@ -36,7 +36,7 @@ public class PlayerSetup : NetworkBehaviour
 
             GameWindowInstance = Instantiate(GameWindowPrefab);
 
-            GameWindow ui = GameWindowInstance.GetComponent<GameWindow>();
+            GameWindow ui = GameWindowInstance.transform.GetChild(0).gameObject.GetComponent<GameWindow>();
 
             if(ui == null)
             {
@@ -44,6 +44,7 @@ public class PlayerSetup : NetworkBehaviour
             }
             else
             {
+                Debug.Log("SETPLAYER");
                 ui.SetPlayer(gameObject);
             }
         }

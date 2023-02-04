@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18029143, g: 0.22572419, b: 0.30693057, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6359,7 +6359,6 @@ MonoBehaviour:
   thisWindow: {fileID: 1058710000}
   audioMixer: {fileID: 24100000, guid: 4c72527fb2fc9e9428434f87323a6a21, type: 2}
   resolutionDropdown: {fileID: 1805516312}
-  data: {fileID: 1351107391}
 --- !u!1 &1062233110
 GameObject:
   m_ObjectHideFlags: 0
@@ -8513,7 +8512,8 @@ MonoBehaviour:
   player_list_red: []
   team_red_score: 0
   team_blue_score: 0
-  remaining_score: 0
+  remaining_score_blue: 0
+  remaining_score_red: 0
 --- !u!114 &1351107395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9237,7 +9237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51001d8dc69cd8b46975c6ff72d89415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1860074872}
   thisWindow: {fileID: 1483181867}
   persoSelectionWindow: {fileID: 1654656395}
   adresseIP: {fileID: 2097738672}
@@ -10413,6 +10412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81df18caffda1bd4d87ff4855824fc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainWindow: {fileID: 856022879}
   thisWindow: {fileID: 1654656395}
   GameScene:
     m_Handle: 0

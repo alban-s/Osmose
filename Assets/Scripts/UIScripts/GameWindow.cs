@@ -8,7 +8,7 @@ using TMPro;
 
 public class GameWindow : MonoBehaviour
 {
-    public GameObject GameManager;
+    private GameObject GameManager;
 
     public TextMeshProUGUI gamerTeam;
     public TextMeshProUGUI oppositTeam;
@@ -26,6 +26,7 @@ public class GameWindow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager = GameObject.Find("GameManager");
         teamYellow = new Color32(255, 255, 255, 0);
         teamRed = new Color32(255, 255, 0, 0);
         Update();

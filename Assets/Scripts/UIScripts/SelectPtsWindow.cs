@@ -9,8 +9,8 @@ using TMPro;
 public class SelectPtsWindow : MonoBehaviour
 {
     public GameObject thisWindow;
-    public GameObject data;
-    public GameObject player;
+    private GameObject manager;
+    private GameObject player;
     public TextMeshProUGUI displayTotalTeamPoints;
     public TextMeshProUGUI displayCurTeamPoints;
     public GameObject selectedPts;
@@ -25,17 +25,18 @@ public class SelectPtsWindow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameObject.Find("GameManager");
         playerPts = 100;
         playerTeam = player.GetComponent<Team>().GetTeam();
         
         if(playerTeam == TeamColour.Blue)
         {
-            teamPoints = data.GetComponent<Score>().GetTeamBlueScore();
+            teamPoints = manager.GetComponent<Score>().GetTeamBlueScore();
             displayTotalTeamPoints.SetText(teamPoints.ToString());
         }
         else
         {
-            teamPoints = data.GetComponent<Score>().GetTeamRedScore();
+            teamPoints = manager.GetComponent<Score>().GetTeamRedScore();
             displayTotalTeamPoints.SetText(teamPoints.ToString());
         }
 
@@ -52,12 +53,12 @@ public class SelectPtsWindow : MonoBehaviour
     {
         if(playerTeam == TeamColour.Blue)
         {
-            curTeamPoints = data.GetComponent<Score>().GetScoreRestantBlue();
+            curTeamPoints = manager.GetComponent<Score>().GetScoreRestantBlue();
             displayCurTeamPoints.SetText(curTeamPoints.ToString());
         }
         else
         {
-            curTeamPoints = data.GetComponent<Score>().GetScoreRestantRed();
+            curTeamPoints = manager.GetComponent<Score>().GetScoreRestantRed();
             displayCurTeamPoints.SetText(curTeamPoints.ToString());
         }
     }

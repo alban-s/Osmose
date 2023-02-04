@@ -10,7 +10,7 @@ public class SettingsControl : MonoBehaviour
     public GameObject thisWindow;
     public AudioMixer audioMixer;
     public TMP_Dropdown resolutionDropdown;
-    public GameObject data;
+    private GameObject manager;
 
 
     Resolution[] resolutions;
@@ -18,6 +18,7 @@ public class SettingsControl : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        manager = GameObject.Find("GameManager");
         resolutionDropdown.ClearOptions();
         resolutions = Screen.resolutions;
         List<string> options = new List<string>();
@@ -53,12 +54,12 @@ public class SettingsControl : MonoBehaviour
 
     public void SetCamSentibilityX(float sentibility)
     {
-        data.GetComponent<CameraData>().setCamX(sentibility);
+        manager.GetComponent<CameraData>().setCamX(sentibility);
     }
 
     public void SetCamSentibilityY(float sentibility)
     {
-        data.GetComponent<CameraData>().setCamY(sentibility);
+        manager.GetComponent<CameraData>().setCamY(sentibility);
     }
 
     public void ReturnMenu()

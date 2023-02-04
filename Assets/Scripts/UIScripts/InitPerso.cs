@@ -12,6 +12,7 @@ public class InitPerso : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         thisWindow.SetActive(false);
     }
+    public GameObject mainWindow;
     public GameObject thisWindow;
     public Scene GameScene;
     public TMP_Dropdown equipeDropdown;
@@ -48,7 +49,8 @@ public class InitPerso : MonoBehaviour
         print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);
         NetworkClient.AddPlayer();
 
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);
+        mainWindow.SetActive(false);
+        //SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);
         StartCoroutine(wait_and_close());
     }
 }
