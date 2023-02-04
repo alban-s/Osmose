@@ -33,11 +33,15 @@ public class SelectPtsWindow : MonoBehaviour
         {
             teamPoints = manager.GetComponent<Score>().GetTeamBlueScore();
             displayTotalTeamPoints.SetText(teamPoints.ToString());
+            curTeamPoints = manager.GetComponent<Score>().GetScoreRestantBlue();
+            displayCurTeamPoints.SetText(curTeamPoints.ToString());
         }
         else
         {
             teamPoints = manager.GetComponent<Score>().GetTeamRedScore();
             displayTotalTeamPoints.SetText(teamPoints.ToString());
+            curTeamPoints = manager.GetComponent<Score>().GetScoreRestantRed();
+            displayCurTeamPoints.SetText(curTeamPoints.ToString());
         }
 
         Update();
@@ -51,13 +55,18 @@ public class SelectPtsWindow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log(manager.GetComponent<Score>().GetScoreRestantRed());
         if(playerTeam == TeamColour.Blue)
         {
+            teamPoints = manager.GetComponent<Score>().GetTeamBlueScore();
+            displayTotalTeamPoints.SetText(teamPoints.ToString());
             curTeamPoints = manager.GetComponent<Score>().GetScoreRestantBlue();
             displayCurTeamPoints.SetText(curTeamPoints.ToString());
         }
         else
         {
+            teamPoints = manager.GetComponent<Score>().GetTeamRedScore();
+            displayTotalTeamPoints.SetText(teamPoints.ToString());
             curTeamPoints = manager.GetComponent<Score>().GetScoreRestantRed();
             displayCurTeamPoints.SetText(curTeamPoints.ToString());
         }
@@ -65,7 +74,7 @@ public class SelectPtsWindow : MonoBehaviour
 
     public void OnSelectClicked()
     {
-        Debug.Log("baé"+selectedPts.text+"alors");
+        Debug.Log("baï¿½"+selectedPts.text+"alors");
         ushort score = 0;
         try
         {
@@ -80,7 +89,7 @@ public class SelectPtsWindow : MonoBehaviour
         /*        if (ushort.TryParse(selectedPts.text, out score))
                     System.Console.WriteLine(score);*/
         //ushort.TryParse(selectedPts.text, out score);
-        thisWindow.SetActive(false);
+        
         if (playerTeam == TeamColour.Blue)
         {
             manager.GetComponent<Score>().SetScoreRestantBlue(score);
@@ -91,7 +100,8 @@ public class SelectPtsWindow : MonoBehaviour
             manager.GetComponent<Score>().SetScoreRestantRed(score);
             manager.GetComponent<Score>().IncreaseScoreRed(score);
         }
-        player.GetComponent<Team>().GetTeam();
+
+        thisWindow.SetActive(false);
     }
 
 
