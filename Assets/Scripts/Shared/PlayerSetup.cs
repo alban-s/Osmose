@@ -37,15 +37,16 @@ public class PlayerSetup : NetworkBehaviour
             GameWindowInstance = Instantiate(GameWindowPrefab);
 
             GameWindow ui = GameWindowInstance.transform.GetChild(0).gameObject.GetComponent<GameWindow>();
+            SelectPtsWindow uiSelect = GameWindowInstance.transform.GetChild(4).gameObject.GetComponent<SelectPtsWindow>();
 
-            if(ui == null)
+            if (ui == null)
             {
                 Debug.LogError("Pas de gamewindow sur gamewindowinstance");
             }
             else
             {
-                Debug.Log("SETPLAYER");
                 ui.SetPlayer(gameObject);
+                uiSelect.SetPlayer(gameObject);
             }
         }
         if (!isServer)

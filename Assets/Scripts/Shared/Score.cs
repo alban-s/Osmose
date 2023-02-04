@@ -21,6 +21,7 @@ public class Score : NetworkBehaviour
     public ushort team_blue_score = 0;
     [SyncVar]
     public ushort remaining_score_blue;
+    [SyncVar]
     public ushort remaining_score_red;
 /*    [SyncVar]
     public ushort[] players_score_blue;
@@ -91,6 +92,7 @@ public class Score : NetworkBehaviour
         return remaining_score_blue;
     }
 
+    [Command]
     public void SetScoreRestantRed(ushort score)
     {
         remaining_score_red -= score;

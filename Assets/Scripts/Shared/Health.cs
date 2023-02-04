@@ -7,7 +7,7 @@ using Osmose.Game;
 
 public class Health : NetworkBehaviour
 {
-    [Tooltip("Starting amount of points")] public ushort StartPoints = 10000;
+    [Tooltip("Starting amount of points")] public ushort StartPoints = 0;
 
     [SyncVar]
     [Tooltip("Current amount of points")] public ushort CurrentPoints;

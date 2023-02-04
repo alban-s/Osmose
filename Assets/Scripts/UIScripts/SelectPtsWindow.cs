@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 using Osmose.Game;
 using TMPro;
@@ -28,7 +29,6 @@ public class SelectPtsWindow : MonoBehaviour
         manager = GameObject.Find("GameManager");
         playerPts = 100;
         playerTeam = player.GetComponent<Team>().GetTeam();
-        
         if(playerTeam == TeamColour.Blue)
         {
             teamPoints = manager.GetComponent<Score>().GetTeamBlueScore();
@@ -65,7 +65,21 @@ public class SelectPtsWindow : MonoBehaviour
 
     public void OnSelectClicked()
     {
-        ushort score = ushort.Parse(selectedPts.text);
+        Debug.Log("baé"+selectedPts.text+"alors");
+        ushort score = 0;
+        try
+        {
+            score = ushort.Parse(selectedPts.text);
+            Debug.Log(score);
+        }
+        catch (FormatException)
+        {
+            score = 100;
+            Debug.Log($"Unable to parse '{selectedPts.text}'");
+        }
+        /*        if (ushort.TryParse(selectedPts.text, out score))
+                    System.Console.WriteLine(score);*/
+        //ushort.TryParse(selectedPts.text, out score);
         thisWindow.SetActive(false);
         if (playerTeam == TeamColour.Blue)
         {
@@ -77,6 +91,7 @@ public class SelectPtsWindow : MonoBehaviour
             manager.GetComponent<Score>().SetScoreRestantRed(score);
             manager.GetComponent<Score>().IncreaseScoreRed(score);
         }
+        player.GetComponent<Team>().GetTeam();
     }
 
 
