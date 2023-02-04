@@ -5,64 +5,58 @@ using System;
 using System.Net;
 using Mirror;
 
-public class CreateGame : NetworkBehaviour
-{
-    public NetworkManager manager;
-    public GameObject GameManagerPrefab;
+    public class CreateGame : MonoBehaviour
+    {
+        public NetworkManager manager;
 
-    public GameObject thisWindow;
-    public GameObject persoSelectionWindow;
+        public GameObject thisWindow;
+        public GameObject persoSelectionWindow;
 
-    private int nbPlayers = 4;
-    private int nbPtsPerTeam = 1000;
-    private double gameTime = 2.0;
+        private int nbPlayers = 4;
+        private int nbPtsPerTeam = 1000;
+        private double gameTime = 2.0;
 
-    // void Awake()
-    // {
-    //     manager = GetComponent<NetworkManager>();
-    // }
+        // void Awake()
+        // {
+        //     manager = GetComponent<NetworkManager>();
+        // }
         
-    public void InitNbPlayers(string value)
-    {
-        nbPlayers = int.Parse(value); // Conversion pas propre a reprendre
-    }
+        public void InitNbPlayers(string value)
+        {
+            nbPlayers = int.Parse(value); // Conversion pas propre a reprendre
+        }
 
-    public void InitPtsPerTeam(string value)
-    {
-        nbPtsPerTeam = int.Parse(value); // Conversion pas propre a reprendre
-    }
+        public void InitPtsPerTeam(string value)
+        {
+            nbPtsPerTeam = int.Parse(value); // Conversion pas propre a reprendre
+        }
 
-    public void InitGameTime(string value)
-    {
-        gameTime = double.Parse(value);// Conversion pas propre a reprendre
-    }
+        public void InitGameTime(string value)
+        {
+            gameTime = double.Parse(value);// Conversion pas propre a reprendre
+        }
 
 
-    public void LaunchGame()
-    {
-        print("serveurToLink\n");
-        print("nb Joueurs =" + nbPlayers.ToString() + ", Points par �quipes =" +
-            nbPtsPerTeam.ToString() + " et gameTime =" + gameTime.ToString(".##"));
+        public void LaunchGame()
+        {
+            print("serveurToLink\n");
+            print("nb Joueurs =" + nbPlayers.ToString() + ", Points par �quipes =" +
+                nbPtsPerTeam.ToString() + " et gameTime =" + gameTime.ToString(".##"));
            
-        manager.StartHost();
-        string host = Dns.GetHostName();
-        Console.WriteLine("Le nom de l'h�te est :" + host);
-        // R�cup�rer l'adresse IP
-        string ip = Dns.GetHostEntry(host).AddressList[1].ToString();
-        print("Mon adresse IP est :" + ip);
+            manager.StartHost();
+            string host = Dns.GetHostName();
+            Console.WriteLine("Le nom de l'h�te est :" + host);
+            // R�cup�rer l'adresse IP
+            string ip = Dns.GetHostEntry(host).AddressList[1].ToString();
+            print("Mon adresse IP est :" + ip);
+            thisWindow.SetActive(false);
+            persoSelectionWindow.SetActive(true);
+        }
 
-        GameObject go = Instantiate(GameManagerPrefab);
-        go.transform.name = "GameManager";
-        NetworkServer.Spawn(go, connectionToClient);
-
-        thisWindow.SetActive(false);
-        persoSelectionWindow.SetActive(true);
+        public void ReturnMenu()
+        {
+            if (NetworkServer.active && NetworkClient.isConnected)
+                manager.StopHost();
+            thisWindow.SetActive(false);
+        }
     }
-
-    public void ReturnMenu()
-    {
-        if (NetworkServer.active && NetworkClient.isConnected)
-            manager.StopHost();
-        thisWindow.SetActive(false);
-    }
-}

@@ -31,7 +31,6 @@ public class Score : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
         remaining_score_blue = team_max_score;
         remaining_score_red = team_max_score;
         ComputeScoreEquipe(team_blue_score, player_list_blue);
