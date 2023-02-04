@@ -13,8 +13,10 @@ public class WindowControl : MonoBehaviour
     public GameObject settingWindow;
     public GameObject endGameWindow;
 
+    public GameObject manager;
 
-    bool gameOn = true;
+    private bool gameOn;
+    private bool gameStart;
 
 
     // Start is called before the first frame update
@@ -25,12 +27,29 @@ public class WindowControl : MonoBehaviour
         gameWindow.SetActive(false);
         endGameWindow.SetActive(false);
         settingWindow.SetActive(false);
+        gameOn = false;
+        gameStart = false;
 
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) SettingButton();
+
+        gameOn = manager.GetComponent<Timer>().GameOn();
+
+
+        // Lancement de la fenetre de jeu quand partie lancé
+        if (gameOn)
+        {
+            gameWindow.SetActive(true);
+            gameStart = true;
+        } // Lancement de la fenetre de fin de jeu quand la partie finie
+        else if(!gameOn && gameStart)
+        {
+            gameWindow.SetActive(false);
+            endGameWindow.SetActive(true);
+        }
     }
 
     public void SettingButton()

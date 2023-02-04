@@ -101,20 +101,30 @@ public class Score : NetworkBehaviour
         return remaining_score_red;
     }
 
-/*    void SetScorePlayerEquipeBlue()
+    public GameObject[] GetPlayersBlue()
     {
-        for (int i = 0; i < player_list_blue.Length; i++)
-        {
-            players_score_blue[i] = player_list_blue[i].GetComponent<Health>().GetPoints();
-        }
+        return player_list_blue;
     }
 
-    void SetScorePlayerEquipeRed()
+    public GameObject[] GetPlayersRed()
     {
-        for (int i = 0; i < player_list_red.Length; i++)
+        return player_list_red;
+    }
+
+    /*    void SetScorePlayerEquipeBlue()
         {
-            players_score_red[i] = player_list_red[i].GetComponent<Health>().GetPoints();
+            for (int i = 0; i < player_list_blue.Length; i++)
+            {
+                players_score_blue[i] = player_list_blue[i].GetComponent<Health>().GetPoints();
+            }
         }
-    }*/
+
+        void SetScorePlayerEquipeRed()
+        {
+            for (int i = 0; i < player_list_red.Length; i++)
+            {
+                players_score_red[i] = player_list_red[i].GetComponent<Health>().GetPoints();
+            }
+        }*/
 }
 

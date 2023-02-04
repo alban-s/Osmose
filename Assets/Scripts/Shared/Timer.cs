@@ -115,6 +115,11 @@ public class Timer : MonoBehaviour {
         }
     }
 
+    public bool GameOn()
+    {
+        return timer != 0;
+    }
+
 /*    private void SetTextDisplay(bool enabled)
     {
         firstMinute.enabled = enabled;
