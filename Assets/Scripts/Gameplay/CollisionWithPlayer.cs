@@ -22,12 +22,12 @@ namespace Osmose.Gameplay
         public void HitPlayer(GameObject other)
         {
             
-            if (gameObject.GetComponent<Health>().CanMatch)
+            if (gameObject.GetComponent<Health>().IsActive)
             {
                 if (other.gameObject.CompareTag("Player"))
                 {
                     Debug.Log("collision");
-                    if (other.gameObject.GetComponent<Health>().CanMatch && !gameObject.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
+                    if (other.gameObject.GetComponent<Health>().IsActive && !gameObject.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
                     {
                         //if player IsInBase, wins match
                         if (gameObject.GetComponent<Health>().IsInBase == true)
@@ -62,9 +62,9 @@ namespace Osmose.Gameplay
                             //other.gameObject.GetComponent<Health>().winText.text = "Draw!";
                             //gameObject.GetComponent<Health>().winText.text = "Draw!";
                         }
-                        //set both players to !CanMatch
-                        if (!other.gameObject.GetComponent<Health>().isTest) other.gameObject.GetComponent<Health>().CanMatch = false;
-                        if (!gameObject.GetComponent<Health>().isTest) gameObject.GetComponent<Health>().CanMatch = false;
+                        //set both players to !IsActive
+                        if (!other.gameObject.GetComponent<Health>().isTest) other.gameObject.GetComponent<Health>().IsActive = false;
+                        if (!gameObject.GetComponent<Health>().isTest) gameObject.GetComponent<Health>().IsActive = false;
                     }
                 }
             }

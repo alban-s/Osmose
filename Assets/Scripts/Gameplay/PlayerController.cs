@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 /* TODO :   Edit > Project Settings > Input Manager
  *          Use Physical Keys -> check
@@ -9,7 +10,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(PlayerMotor))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     // Reglages sensibilite souris 
     [SerializeField] private float mouseSensitivityX = 1.0f;
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
         motor = GetComponent<PlayerMotor>();
     }
 
+    
+    // [Client]
     private void Update()
     {
         keyboardUpdate();
