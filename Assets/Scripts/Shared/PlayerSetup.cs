@@ -57,25 +57,21 @@ public class PlayerSetup : NetworkBehaviour
     }
 
     [Command]
+    public void SendClientValues(TeamColour teamColor, string name)
+    {
+        gameObject.GetComponent<Team>().team = teamColor;
+        gameObject.transform.name = name;
+    }
     public void InitClientValues()
     {
-        if (initValueGUI != null){
+        if (initValueGUI != null)
+        {
             InitPerso ip = initValueGUI.GetComponent<InitPerso>();
-            if (ip != null){
+            if (ip != null)
+            {
                 gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
                 gameObject.transform.name = ip.chosePseudo;
-            }
-        }
-        InitClientLocalValues();
-    }
-
-    [ClientRpc]
-    public void InitClientLocalValues(){
-        if (initValueGUI != null){
-            InitPerso ip = initValueGUI.GetComponent<InitPerso>();
-            if (ip != null){
-                gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
-                gameObject.transform.name = ip.chosePseudo;
+                SendClientValues((TeamColour)ip.choseTeam, ip.chosePseudo);
             }
         }
     }

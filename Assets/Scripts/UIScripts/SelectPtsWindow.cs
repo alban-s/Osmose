@@ -13,7 +13,7 @@ public class SelectPtsWindow : MonoBehaviour
     private GameObject player;
     public TextMeshProUGUI displayTotalTeamPoints;
     public TextMeshProUGUI displayCurTeamPoints;
-    public GameObject selectedPts;
+    public TextMeshProUGUI selectedPts;
 
     private TeamColour playerTeam;
     private int teamPoints;
@@ -65,8 +65,18 @@ public class SelectPtsWindow : MonoBehaviour
 
     public void OnSelectClicked()
     {
-        //// Blah blah blah ce que vous voulez
+        ushort score = ushort.Parse(selectedPts.text);
         thisWindow.SetActive(false);
+        if (playerTeam == TeamColour.Blue)
+        {
+            manager.GetComponent<Score>().SetScoreRestantBlue(score);
+            manager.GetComponent<Score>().IncreaseScoreBlue(score);
+        }
+        else
+        {
+            manager.GetComponent<Score>().SetScoreRestantRed(score);
+            manager.GetComponent<Score>().IncreaseScoreRed(score);
+        }
     }
 
 

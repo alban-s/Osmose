@@ -81,7 +81,7 @@ public class Score : NetworkBehaviour
     }
 
     [Command]
-    void SetScoreRestantBlue(ushort score)
+    public void SetScoreRestantBlue(ushort score)
     {
         remaining_score_blue -= score;
     }
@@ -91,7 +91,7 @@ public class Score : NetworkBehaviour
         return remaining_score_blue;
     }
 
-    void SetScoreRestantRed(ushort score)
+    public void SetScoreRestantRed(ushort score)
     {
         remaining_score_red -= score;
     }

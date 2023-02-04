@@ -3020,7 +3020,6 @@ MonoBehaviour:
   thisWindow: {fileID: 5555650353254894874}
   audioMixer: {fileID: 24100000, guid: 4c72527fb2fc9e9428434f87323a6a21, type: 2}
   resolutionDropdown: {fileID: 5555650352659103218}
-  data: {fileID: 0}
 --- !u!1 &5555650353283772352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3195,11 +3194,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisWindow: {fileID: 5555650353288227224}
-  data: {fileID: 0}
-  player: {fileID: 0}
   displayTotalTeamPoints: {fileID: 5555650353707199984}
   displayCurTeamPoints: {fileID: 5555650353123355232}
-  selectedPts: {fileID: 5555650353928682420}
+  selectedPts: {fileID: 5555650353440977380}
 --- !u!1 &5555650353297302123
 GameObject:
   m_ObjectHideFlags: 0
@@ -3743,7 +3740,6 @@ MonoBehaviour:
   gameWindow: {fileID: 5555650352991958149}
   settingWindow: {fileID: 5555650353254894874}
   endGameWindow: {fileID: 5555650353167398937}
-  manager: {fileID: 0}
 --- !u!1 &5555650353435472538
 GameObject:
   m_ObjectHideFlags: 0
