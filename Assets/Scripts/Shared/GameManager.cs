@@ -1,3 +1,4 @@
+using Osmose.Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,14 +26,19 @@ public class GameManager : MonoBehaviour
         return players[playerId];
     }
 
-/*    private void OnGUI()
+    public static Dictionary<string, GameObject> GetPlayerList()
+    {
+        return players;
+    }
+
+    /*private void OnGUI()
     {
         GUILayout.BeginArea(new Rect(200, 200, 200, 500));
         GUILayout.BeginVertical();
 
-        foreach(string playerId in players.Keys)
+        foreach (string playerId in players.Keys)
         {
-            GUILayout.Label(playerId + " - " + players[playerId].transform.name);
+            GUILayout.Label(playerId + " - " + players[playerId].GetComponent<Team>().team);
         }
 
         GUILayout.EndVertical();
