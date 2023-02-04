@@ -51,22 +51,22 @@ public class Score : NetworkBehaviour
         }
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void IncreaseScoreBlue(ushort score)
     {
         team_blue_score += score;
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void IncreaseScoreRed(ushort score)
     {
         team_red_score += score;
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void DecreaseScoreBlue(ushort score)
     {
         team_blue_score -= score;
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void DecreaseScoreRed(ushort score)
     {
         team_red_score -= score;
@@ -81,7 +81,7 @@ public class Score : NetworkBehaviour
         return team_red_score;
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void SetScoreRestantBlue(ushort score)
     {
         remaining_score_blue -= score;
@@ -92,7 +92,7 @@ public class Score : NetworkBehaviour
         return remaining_score_blue;
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void SetScoreRestantRed(ushort score)
     {
         remaining_score_red -= score;
