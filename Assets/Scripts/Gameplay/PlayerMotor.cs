@@ -183,7 +183,7 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "Attack" (clic gauche)
         public void Attack()
         {
-            if (!isJumping
+            if (controller.isGrounded
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise"))
             {
@@ -195,7 +195,7 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "AttackBase" (e)
         public void AttackBase()
         {
-            if (!isJumping
+            if (controller.isGrounded
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise"))
             {
@@ -204,17 +204,22 @@ namespace Osmose.Gameplay
             }
         }
 
-        // Appele par PlayerController quand on appuie sur "Associate"
+        // Appele par PlayerController quand on appuie sur "Associate" (a)
         public void Associate()
         {
-            Debug.Log("a");
-            GetComponent<AttackHitboxHandler>().OnAssociate();
+            if (controller.isGrounded
+                && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
+                && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")
+                && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise"))
+            {
+                GetComponent<AttackHitboxHandler>().OnAssociate();
+            }
         }
 
         // Appele par PlayerController quand on appuie sur "Praise"
         public void Praise()
         {
-            if (!isJumping
+            if (controller.isGrounded
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
             {
