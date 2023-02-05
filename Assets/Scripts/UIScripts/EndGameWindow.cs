@@ -24,7 +24,7 @@ public class EndGameWindow : MonoBehaviour
     void Start()
     {
         GameManager = GameObject.Find("GameManager");
-        // On récupère tous les scores (Equipes + joueurs)
+        // On rï¿½cupï¿½re tous les scores (Equipes + joueurs)
         int redScore = GameManager.GetComponent<Score>().GetTeamRedScore();
         int blueScore = GameManager.GetComponent<Score>().GetTeamBlueScore();
 
@@ -40,7 +40,7 @@ public class EndGameWindow : MonoBehaviour
             int score = objet.GetComponent<Health>().GetPoints();
             teamRedScore += " : ";
             teamRedScore += score.ToString();
-            teamRedScore += "\\n";
+            teamRedScore += "\n";
         }
 
         foreach (GameObject objet in players_blue)
@@ -49,11 +49,11 @@ public class EndGameWindow : MonoBehaviour
             int score = objet.GetComponent<Health>().GetPoints();
             teamBlueScore += " : ";
             teamBlueScore += score.ToString();
-            teamBlueScore += "\\n";
+            teamBlueScore += "\n";
         }
 
 
-        // On les display selon l'équipe gagnante
+        // On les display selon l'ï¿½quipe gagnante
         if (redScore > blueScore)
         {
             displayWinnerTeam.SetText("Equipe Rouge");

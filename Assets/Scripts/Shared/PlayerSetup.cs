@@ -76,25 +76,6 @@ public class PlayerSetup : NetworkBehaviour
             }
         }
     }
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-
-        string netId = GetComponent<NetworkIdentity>().netId.ToString();
-
-        if (initValueGUI != null)
-        {
-            InitPerso ip = initValueGUI.GetComponent<InitPerso>();
-            if (ip != null)
-            {
-                GameManager.RegisterPlayer(ip.chosePseudo, gameObject);
-               /* gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
-                gameObject.transform.name = ip.chosePseudo;*/
-            }
-        }
-
-       
-    }
 
     private void DisableComponents()
     {
@@ -114,7 +95,5 @@ public class PlayerSetup : NetworkBehaviour
         {
             sceneCamera.gameObject.SetActive(true);
         }
-
-        GameManager.UnregisterPlayer(transform.name);
     }
 }
