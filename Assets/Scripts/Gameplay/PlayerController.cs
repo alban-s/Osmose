@@ -43,8 +43,11 @@ public class PlayerController : NetworkBehaviour
     [Client]
     private void Update()
     {
-        keyboardUpdate();
-        mouseUpdate();
+        if (isLocalPlayer){
+            keyboardUpdate();
+            mouseUpdate();
+        }
+        
     }
 
     [Command]
