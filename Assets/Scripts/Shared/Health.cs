@@ -43,9 +43,11 @@ public class Health : NetworkBehaviour
         }
     }
 
+    [Command]
     public void SetStartPoints(ushort startPoints)
     {
         StartPoints = startPoints;
+        CurrentPoints = StartPoints;
     }
 
     [Command]

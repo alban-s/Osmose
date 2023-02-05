@@ -100,6 +100,7 @@ public class SelectPtsWindow : MonoBehaviour
             manager.GetComponent<Score>().SetScoreRestantRed(score);
             manager.GetComponent<Score>().IncreaseScoreRed(score);
         }
+        player.GetComponent<Health>().SetStartPoints(score);
 
         thisWindow.SetActive(false);
     }
