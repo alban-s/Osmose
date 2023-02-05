@@ -77,6 +77,16 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void update_player_name(){
+        update_player_name_clients(gameObject.transform.name);
+    }
+
+    [ClientRpc]
+    public void update_player_name_clients(string name){
+        gameObject.transform.name = name;
+    }
+
     private void DisableComponents()
     {
         // On va boucler sur les diff�rents composants renseign�s et les d�sactiver si ce joueur n'est pas le notre
