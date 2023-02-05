@@ -377,6 +377,8 @@ MonoBehaviour:
   StartPoints: 10000
   CurrentPoints: 0
   isTest: 0
+  animator: {fileID: 0}
+  laser: {fileID: 100042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
   player_id: 0
 --- !u!114 &1693245659322226216
 MonoBehaviour:

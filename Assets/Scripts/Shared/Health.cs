@@ -17,6 +17,10 @@ public class Health : NetworkBehaviour
     public UnityAction<ushort> OnWinMatch;
     public UnityAction OnDie;
     private GameObject GameManager;
+    public Animator animator;
+    public GameObject laser;
+    public GameObject instance;
+    
 
     public bool Invincible { get; set; }
     public bool IsActive { get; set; }
@@ -28,6 +32,7 @@ public class Health : NetworkBehaviour
 
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         GameManager = GameObject.Find("GameManager");
         CurrentPoints = StartPoints;
         IsActive = true;
@@ -41,6 +46,11 @@ public class Health : NetworkBehaviour
             OnWinMatch += GameManager.GetComponent<Score>().IncreaseScoreBlue;
             OnLoseMatch += GameManager.GetComponent<Score>().DecreaseScoreBlue;
         }
+        // m_IsDead = true;
+        // if(m_IsDead){
+        //     dead();
+        //     StartCoroutine(wait());
+        // }
     }
 
     public void SetStartPoints(ushort startPoints)
@@ -100,7 +110,9 @@ public class Health : NetworkBehaviour
         if (CurrentPoints <= 0)
         {
             m_IsDead = true;
-            gameObject.SetActive(false);
+            dead();
+            StartCoroutine(wait());
+            // gameObject.SetActive(false);
             OnDie?.Invoke();
         }
     }
@@ -108,8 +120,32 @@ public class Health : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      
     }
+
+    void dead(){
+        animator.Play("Base Layer.Death");
+        Vector3 position = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y, gameObject.transform.position.z);
+        Quaternion rotation = new Quaternion((float) -0.697247863, (float) -0.0185691323, (float) -0.00647618202, (float) 0.716560304);
+        instance = Instantiate(laser);
+        instance.transform.position = position;
+        instance.transform.rotation = rotation;
+        instance.SetActive(true);
+        gameObject.GetComponent<PlayerMotor>().enabled = false;
+        gameObject.GetComponent<PlayerController>().enabled = false;
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(5f);
+        gameObject.SetActive(false);
+        // laser.SetActive(false);
+        instance.SetActive(false);
+        
+    }
+
+    
+   
 }
 
 
