@@ -20,7 +20,8 @@ namespace Osmose.Game
         public bool Invincible { get; set; }
         public bool CanMatch { get; set; }
         public bool IsInBase { get; set; }
-        public float GetPoints() => CurrentPoints;
+        public float GetPoints() => (!transform.GetChild(2).gameObject.GetComponent<Associate>().isAssociated)? CurrentPoints :
+            transform.GetChild(2).gameObject.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().CurrentPoints + CurrentPoints;
 
         bool m_IsDead;
 
