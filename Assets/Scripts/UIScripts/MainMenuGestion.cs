@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Mirror;
 
 public class MainMenuGestion : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class MainMenuGestion : MonoBehaviour
     public GameObject initPersoWindow;
     public GameObject cinematicWindow;
     private double timeBegin;
+    private GameObject netHUD;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        netHUD = GameObject.Find("NetworkManager");
+        netHUD.SetActive(true);
         Screen.fullScreen = false;
         timeBegin = Time.time;
 
@@ -33,6 +37,7 @@ public class MainMenuGestion : MonoBehaviour
         {
             cinematicWindow.SetActive(false);
             mainWindow.SetActive(true);
+            netHUD.SetActive(true);
         }
     }
 
