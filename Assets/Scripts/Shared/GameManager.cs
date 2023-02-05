@@ -30,9 +30,10 @@ public class GameManager : NetworkBehaviour
         return redPlayer;
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void update_names(){
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
+        // Debug.Log("size "+players.Count);
         foreach (GameObject player in players)
         {
             string name = player.transform.name;
