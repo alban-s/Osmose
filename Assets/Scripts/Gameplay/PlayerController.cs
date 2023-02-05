@@ -45,11 +45,13 @@ public class PlayerController : MonoBehaviour
         float attack = Input.GetAxisRaw("Attack");
         float attackBase = Input.GetAxisRaw("AttackBase");
         float associate = Input.GetAxisRaw("Associate");
+        float praise = Input.GetAxisRaw("Praise");
 
         if (openChest == 1) motor.OpenChest();
         else if (attack == 1) motor.Attack();
         else if (attackBase == 1) motor.AttackBase();
         else if(associate == 1) motor.Associate();
+        else if (praise == 1) motor.Praise();
 
         /*
         // Appliquer une fluidite au mouvement

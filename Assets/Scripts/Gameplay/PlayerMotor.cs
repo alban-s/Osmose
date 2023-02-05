@@ -169,32 +169,50 @@ public class PlayerMotor : MonoBehaviour
     // Appele par PlayerController quand on appuie sur "OpenChest" (f)
     public void OpenChest()
     {
-        if(controller.isGrounded) animator.Play("Base Layer.OpenChest");
+        if(controller.isGrounded 
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise")
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")) 
+        { 
+            animator.Play("Base Layer.OpenChest"); 
+        }
     }
 
     // Appele par PlayerController quand on appuie sur "Attack" (clic gauche)
     public void Attack()
     {
-        if (!isJumping && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
+        if (!isJumping 
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise"))
         {
             animator.Play("Base Layer.Challenge");
-            //animator.SetBool(isChallengingHash, true);
         }
     }
 
     // Appele par PlayerController quand on appuie sur "AttackBase" (e)
     public void AttackBase()
     {
-        if (!isJumping && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
+        if (!isJumping
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise"))
         {
             animator.Play("Base Layer.Challenge");
-            //animator.SetBool(isChallengingHash, true);
         }
     }
 
     // Appele par PlayerController quand on appuie sur "Associate"
     public void Associate()
     {
+    }
+
+    // Appele par PlayerController quand on appuie sur "Praise"
+    public void Praise()
+    {
+        if (!isJumping 
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
+        {
+            animator.Play("Base Layer.Praise");
+        }
     }
 
     // Update physique ?
