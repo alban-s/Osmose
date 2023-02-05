@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: -6563790980180982816}
   - component: {fileID: 5651658211646591347}
   - component: {fileID: 65920933306561810}
+  - component: {fileID: 4632041501341011891}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -465,6 +466,35 @@ MonoBehaviour:
   - {fileID: 4192861821446835322}
   GameWindowPrefab: {fileID: 5555650353382435081, guid: 941347363926dce478a2a8b4e2f033ae,
     type: 3}
+--- !u!114 &4632041501341011891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969349479097794800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1558792372541830537}
+  clientAuthority: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1001 &8349514019941262445
 PrefabInstance:
   m_ObjectHideFlags: 0
