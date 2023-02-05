@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+using Osmose.Gameplay;
+
 namespace Osmose.Game
 {
     public class Health : MonoBehaviour
@@ -18,7 +20,8 @@ namespace Osmose.Game
         public bool Invincible { get; set; }
         public bool CanMatch { get; set; }
         public bool IsInBase { get; set; }
-        public float GetPoints() => CurrentPoints;
+        public float GetPoints() => (!transform.GetChild(2).gameObject.GetComponent<Associate>().isAssociated)? CurrentPoints :
+            transform.GetChild(2).gameObject.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().CurrentPoints + CurrentPoints;
 
         bool m_IsDead;
 
@@ -29,31 +32,51 @@ namespace Osmose.Game
         }
 
 
-        public void IncreasePoints(ushort increaseAmount, GameObject pointsSource)
+        public void IncreasePoints(ushort increaseAmount, GameObject pointsSource, bool associated = false)
         {
             ushort tempPoints = CurrentPoints;
-            CurrentPoints += increaseAmount;
+            // if the player is associated with another, both gain half the points otherwise the player gains all the points
+            GameObject attackHitbox = transform.GetChild(2).gameObject;
+            if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && !associated)
+            {
+                CurrentPoints += (ushort)(increaseAmount / 2);
+                attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((ushort)(increaseAmount / 2), pointsSource, true);
+            }
+            else
+            {
+                CurrentPoints += increaseAmount;
+            }
+
+            //CurrentPoints += increaseAmount;
 
             //call OnWinMatch action
-            ushort trueWinAmount = (ushort) (CurrentPoints - tempPoints);
+            ushort trueWinAmount = (ushort)(CurrentPoints - tempPoints);
             if (trueWinAmount > 0)
             {
                 OnWinMatch?.Invoke(trueWinAmount, pointsSource);
                 Debug.Log("+" + trueWinAmount);
             }
         }
-
-
-        public void DecreasePoints(ushort damage, GameObject damageSource)
+        public void DecreasePoints(ushort damage, GameObject damageSource, bool associated = false)
         {
             if (Invincible)
                 return;
 
             ushort tempPoints = CurrentPoints;
-            CurrentPoints -= damage;
+            GameObject attackHitbox = transform.GetChild(2).gameObject;
+            if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && !associated)
+            {
+                CurrentPoints -= (ushort)(damage / 2);
+                attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((ushort)(damage / 2), damageSource, true);
+            }
+            else
+            {
+                CurrentPoints += damage;
+            }
+            //CurrentPoints -= damage;
 
             //call OnLoseMatch action
-            ushort trueLoseAmount = (ushort) (tempPoints - CurrentPoints);
+            ushort trueLoseAmount = (ushort)(tempPoints - CurrentPoints);
             if (trueLoseAmount > 0)
             {
                 OnLoseMatch?.Invoke(trueLoseAmount, damageSource);
@@ -62,8 +85,8 @@ namespace Osmose.Game
 
             HandleDeath();
         }
-        
-        
+
+
         public void Kill()
         {
             CurrentPoints = 0;

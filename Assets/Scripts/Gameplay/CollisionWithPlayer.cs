@@ -7,10 +7,15 @@ namespace Osmose.Gameplay
 {
     public class CollisionWithPlayer : MonoBehaviour
     {
+        GameObject player;
+        public bool isActive;
         // Start is called before the first frame update
         void Start()
         {
             Debug.Log("start");
+            isActive = false;
+            // get the parent of the object
+            player = transform.parent.gameObject;
         }
 
         // Update is called once per frame
@@ -22,39 +27,40 @@ namespace Osmose.Gameplay
         public void HitPlayer(GameObject other)
         {
             
-            if (gameObject.GetComponent<Health>().CanMatch)
+            if (player.GetComponent<Health>().CanMatch)
             {
                 if (other.gameObject.CompareTag("Player"))
                 {
+                    GameObject otherPlayer = other.gameObject;
                     Debug.Log("collision");
-                    if (other.gameObject.GetComponent<Health>().CanMatch && !gameObject.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
+                    if (otherPlayer.GetComponent<Health>().CanMatch && !gameObject.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
                     {
                         //if player IsInBase, wins match
-                        if (gameObject.GetComponent<Health>().IsInBase == true)
+                        if (player.GetComponent<Health>().IsInBase == true)
                         {
-                            gameObject.GetComponent<Health>().IncreasePoints(500, other.gameObject);
-                            other.gameObject.GetComponent<Health>().DecreasePoints(500, gameObject);
+                            player.GetComponent<Health>().IncreasePoints(500, other.gameObject);
+                            otherPlayer.GetComponent<Health>().DecreasePoints(500, gameObject);
                         }
                         // if other player IsInBase, loses match
-                        else if (other.gameObject.GetComponent<Health>().IsInBase == true)
+                        else if (otherPlayer.GetComponent<Health>().IsInBase == true)
                         {
-                            other.gameObject.GetComponent<Health>().IncreasePoints(500, gameObject);
-                            gameObject.GetComponent<Health>().DecreasePoints(500, other.gameObject);
+                            otherPlayer.GetComponent<Health>().IncreasePoints(500, gameObject);
+                            player.GetComponent<Health>().DecreasePoints(500, other.gameObject);
                         }
                         // if neither player is in base, compare points
-                        else if (other.gameObject.GetComponent<Health>().CurrentPoints > gameObject.GetComponent<Health>().CurrentPoints)
+                        else if (otherPlayer.GetComponent<Health>().GetPoints() > gameObject.GetComponent<Health>().GetPoints())
                         {
                             //winning player steals 500 points from losing player
-                            other.gameObject.GetComponent<Health>().IncreasePoints(500, gameObject);
-                            gameObject.GetComponent<Health>().DecreasePoints(500, other.gameObject);
-                            Debug.Log("You Lose : " + gameObject.GetComponent<Health>().GetPoints());
+                            otherPlayer.GetComponent<Health>().IncreasePoints(500, gameObject);
+                            player.GetComponent<Health>().DecreasePoints(500, other.gameObject);
+                            Debug.Log("You Lose : " + player.GetComponent<Health>().GetPoints());
                         }
-                        else if (other.gameObject.GetComponent<Health>().CurrentPoints < gameObject.GetComponent<Health>().CurrentPoints)
+                        else if (otherPlayer.GetComponent<Health>().GetPoints() < gameObject.GetComponent<Health>().GetPoints())
                         {
                             //winning player steals 500 points from losing player
-                            other.gameObject.GetComponent<Health>().DecreasePoints(500, gameObject);
-                            gameObject.GetComponent<Health>().IncreasePoints(500, other.gameObject);
-                            Debug.Log("You Win : " + gameObject.GetComponent<Health>().GetPoints());
+                            otherPlayer.GetComponent<Health>().DecreasePoints(500, gameObject);
+                            player.GetComponent<Health>().IncreasePoints(500, other.gameObject);
+                            Debug.Log("You Win : " + player.GetComponent<Health>().GetPoints());
                             // other.gameObject.GetComponent<Health>().winText.text = "You Lose!";
                         }
                         else
@@ -63,8 +69,8 @@ namespace Osmose.Gameplay
                             //gameObject.GetComponent<Health>().winText.text = "Draw!";
                         }
                         //set both players to !CanMatch
-                        if (!other.gameObject.GetComponent<Health>().isTest) other.gameObject.GetComponent<Health>().CanMatch = false;
-                        if (!gameObject.GetComponent<Health>().isTest) gameObject.GetComponent<Health>().CanMatch = false;
+                        if (!otherPlayer.GetComponent<Health>().isTest) other.gameObject.GetComponent<Health>().CanMatch = false;
+                        if (!player.GetComponent<Health>().isTest) gameObject.GetComponent<Health>().CanMatch = false;
                     }
                 }
             }
@@ -72,7 +78,7 @@ namespace Osmose.Gameplay
         //When colliding with another player, checks the difference of points between them
         void OnCollisionEnter(Collision other)
         {
-            HitPlayer(other.gameObject);
+            if (isActive) HitPlayer(other.gameObject);
         }
     }
 }

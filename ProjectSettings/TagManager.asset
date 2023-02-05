@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Base
   - Chest
+  - AttackHitbox
   layers:
   - Default
   - TransparentFX
