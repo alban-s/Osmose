@@ -8,9 +8,7 @@ using Osmose.Game;
 public class Health : NetworkBehaviour
 {
     [Tooltip("Starting amount of points")] public ushort StartPoints;
-
-    [SyncVar]
-    [Tooltip("Current amount of points")] public ushort CurrentPoints;
+    [Tooltip("Current amount of points")]public ushort CurrentPoints;
 
     public bool isTest;
     public UnityAction<ushort> OnLoseMatch;
@@ -54,11 +52,22 @@ public class Health : NetworkBehaviour
         }*/
     }
 
+    [ClientRpc]
+    void update_score_clients(ushort score){
+        List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
+        // Debug.Log("size "+players.Count);
+        foreach (GameObject player in players)
+        {
+            player.GetComponent<Health>().CurrentPoints = score;
+        }
+    }
+
     [Command]
     public void SetStartPoints(ushort startPoints)
     {
         StartPoints = startPoints;
         CurrentPoints = StartPoints;
+        update_score_clients(CurrentPoints);
     }
 
     [Command]
@@ -66,6 +75,7 @@ public class Health : NetworkBehaviour
     {
         ushort tempPoints = CurrentPoints;
         CurrentPoints += increaseAmount;
+        update_score_clients(CurrentPoints);
 
         //call OnWinMatch action
         ushort trueWinAmount = (ushort) (CurrentPoints - tempPoints);
@@ -83,6 +93,7 @@ public class Health : NetworkBehaviour
 
         ushort tempPoints = CurrentPoints;
         CurrentPoints -= damage;
+        update_score_clients(CurrentPoints);
 
         //call OnLoseMatch action
         ushort trueLoseAmount = (ushort) (tempPoints - CurrentPoints);
@@ -98,6 +109,7 @@ public class Health : NetworkBehaviour
     public void Kill()
     {
         CurrentPoints = 0;
+        update_score_clients(CurrentPoints);
         //call OnLoseMatch action
         OnLoseMatch?.Invoke(CurrentPoints);
             
