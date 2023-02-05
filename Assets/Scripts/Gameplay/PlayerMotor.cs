@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-
-public class PlayerMotor : MonoBehaviour
+public class PlayerMotor : NetworkBehaviour
 {
     [SerializeField] private Transform playerCamera = null;
     CharacterController controller = null;
@@ -39,7 +39,9 @@ public class PlayerMotor : MonoBehaviour
     int isChallengingHash;
     ///////////////////////////////////////////////////////
 
+    [SyncVar]
     bool isMovementPressed;
+    [SyncVar]
     bool isRunPressed;
 
 
@@ -58,6 +60,12 @@ public class PlayerMotor : MonoBehaviour
         isOpeningChestHash = Animator.StringToHash("isOpeningChest");
         isChallengingHash = Animator.StringToHash("isChallenging");
         ///////////////////////////////////////////////////////
+    }
+
+        [Command]
+    private void update_inputs(bool move_pressed, bool run_pressed){
+        isMovementPressed = move_pressed;
+        isRunPressed = run_pressed;
     }
 
 
@@ -114,8 +122,10 @@ public class PlayerMotor : MonoBehaviour
             && !animator.GetCurrentAnimatorStateInfo(0).IsName("Run To Stop"))
         {
             // Affectation des variables
-            isMovementPressed = _direction.x != 0 || _direction.y != 0;
-            isRunPressed = _isRunning == 1;
+            bool moving = _direction.x != 0 || _direction.y != 0;
+            bool running = _isRunning == 1;
+
+            update_inputs(moving,running);
 
             if (isRunPressed) animator.SetBool(isRunningHash, true);
 
