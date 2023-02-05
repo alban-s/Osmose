@@ -40,13 +40,11 @@ public class PlayerController : NetworkBehaviour
     }
 
     
-    [Client]
     private void Update()
     {
-        if (isLocalPlayer){
-            keyboardUpdate();
-            mouseUpdate();
-        }
+        keyboardUpdate();
+        if (isLocalPlayer) mouseUpdate();
+        
         
     }
 
@@ -67,17 +65,19 @@ public class PlayerController : NetworkBehaviour
         this.associate = associate;
     }
 
-    [Client]
     void keyboardUpdate()
     {
-        run = Input.GetAxisRaw("Fire3");
-        jump = Input.GetAxisRaw("Jump");
-        openChest = Input.GetAxisRaw("OpenChest");
-        attack = Input.GetAxisRaw("Attack");
-        attackBase = Input.GetAxisRaw("AttackBase");
-        associate = Input.GetAxisRaw("Associate");
+        if (isLocalPlayer){
+            run = Input.GetAxisRaw("Fire3");
+            jump = Input.GetAxisRaw("Jump");
+            openChest = Input.GetAxisRaw("OpenChest");
+            attack = Input.GetAxisRaw("Attack");
+            attackBase = Input.GetAxisRaw("AttackBase");
+            associate = Input.GetAxisRaw("Associate");
 
-        update_inputs(run,jump,openChest,attack,attackBase,associate);
+            update_inputs(run,jump,openChest,attack,attackBase,associate);
+        }
+        
 
         if (openChest == 1) motor.OpenChest();
         else if (attack == 1) motor.Attack();
@@ -102,7 +102,6 @@ public class PlayerController : NetworkBehaviour
 
     }
 
-    [Client]
     void mouseUpdate()
     {
         // Calculer la rotation du joueur 
