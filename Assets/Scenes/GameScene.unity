@@ -359,8 +359,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisWindow: {fileID: 22470635}
-  data: {fileID: 79905930}
-  player: {fileID: 1473356390}
   displayTotalTeamPoints: {fileID: 1773132675}
   displayCurTeamPoints: {fileID: 258120723}
   selectedPts: {fileID: 2137214407}
@@ -791,6 +789,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efca96fb3963604ea42549ea9f05438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   timerDuration: 180
   countDown: 1
   flashDuration: 1
@@ -1116,7 +1117,6 @@ MonoBehaviour:
   thisWindow: {fileID: 123370345}
   audioMixer: {fileID: 24100000, guid: 4c72527fb2fc9e9428434f87323a6a21, type: 2}
   resolutionDropdown: {fileID: 735480705}
-  data: {fileID: 79905930}
 --- !u!114 &123370348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1737,7 +1737,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Fleches : D\xE9placement\nsouris : cam\xE9ra\n"
+  m_Text: "f : ouvrir coffre\r\na : s'associer\r\nclic gauche : attaquer \r\nclic
+    droit + shift : courir\r\nespace : sauter\r\ne : attaquer la base ennemie\r\nq
+    / fl\xE8che gauche : d\xE9placement \n\xE0 gauche\r\nd / fl\xE8che droite : d\xE9placement
+    \n\xE0 droite\r\na / fl\xE8che haut : d\xE9placement en\n haut\r\ns / fl\xE8che
+    bas : d\xE9placement en\nbas\n"
 --- !u!222 &267463143
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4534,7 +4538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ba736c685dc9b4fa166b28de645bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 79905930}
   gamerTeam: {fileID: 2019489464}
   oppositTeam: {fileID: 1983688282}
   gamerTeamScore: {fileID: 1539592065}
@@ -6292,12 +6295,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa8b3e987ad725a4882340230af319ba, type: 3}
---- !u!1 &1473356390 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8969349479097794800, guid: fa8b3e987ad725a4882340230af319ba,
-    type: 3}
-  m_PrefabInstance: {fileID: 1473356389}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1492550886
 GameObject:
   m_ObjectHideFlags: 0
