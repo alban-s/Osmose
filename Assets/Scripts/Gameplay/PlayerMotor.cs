@@ -60,15 +60,15 @@ public class PlayerMotor : NetworkBehaviour
         ///////////////////////////////////////////////////////
     }
 
-    [Command(requiresAuthority = false)]
+    [Command]
     private void update_inputs(bool move_pressed, bool run_pressed){
         update_inputs_clients(move_pressed,run_pressed);
     }
 
     [ClientRpc]
     private void update_inputs_clients(bool move_pressed, bool run_pressed){
-        isMovementPressed = move_pressed;
-        isRunPressed = run_pressed;
+        this.isMovementPressed = move_pressed;
+        this.isRunPressed = run_pressed;
     }
 
 
