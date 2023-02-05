@@ -345,6 +345,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af2221269b43664ebe99a6f44f3b426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   mouseSensitivityX: 3
   mouseSensitivityY: 3
 --- !u!114 &3616597630541641054
@@ -461,7 +464,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   componentsToDisable:
-  - {fileID: 667742240836363126}
   - {fileID: 1559547285206217139}
   - {fileID: 4192861821446835322}
   GameWindowPrefab: {fileID: 5555650353382435081, guid: 941347363926dce478a2a8b4e2f033ae,

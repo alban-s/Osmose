@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 
 /* TODO :   Edit > Project Settings > Input Manager
@@ -10,8 +11,14 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(PlayerMotor))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
+    float run;
+    float jump;
+    float openChest;
+    float attack;
+    float attackBase;
+    float associate;
     // Reglages sensibilite souris 
     [SerializeField] private float mouseSensitivityX = 1.0f;
     [SerializeField] private float mouseSensitivityY = 1.0f;
@@ -33,21 +40,41 @@ public class PlayerController : MonoBehaviour
     }
 
     
-    // [Client]
+    [Client]
     private void Update()
     {
         keyboardUpdate();
         mouseUpdate();
     }
 
+    [Command]
+    private void update_inputs(float run, float jump, float openChest, 
+    float attack, float attackBase, float associate){
+        update_inputs_clients(run,jump,openChest,attack,attackBase,associate);
+    }
+
+    [ClientRpc]
+    private void update_inputs_clients(float run, float jump, float openChest, 
+    float attack, float attackBase, float associate){
+        this.run = run;
+        this.jump = jump;
+        this.openChest = openChest;
+        this.attack = attack;
+        this.attackBase = attackBase;
+        this.associate = associate;
+    }
+
+    [Client]
     void keyboardUpdate()
     {
-        float run = Input.GetAxisRaw("Fire3");
-        float jump = Input.GetAxisRaw("Jump");
-        float openChest = Input.GetAxisRaw("OpenChest");
-        float attack = Input.GetAxisRaw("Attack");
-        float attackBase = Input.GetAxisRaw("AttackBase");
-        float associate = Input.GetAxisRaw("Associate");
+        run = Input.GetAxisRaw("Fire3");
+        jump = Input.GetAxisRaw("Jump");
+        openChest = Input.GetAxisRaw("OpenChest");
+        attack = Input.GetAxisRaw("Attack");
+        attackBase = Input.GetAxisRaw("AttackBase");
+        associate = Input.GetAxisRaw("Associate");
+
+        update_inputs(run,jump,openChest,attack,attackBase,associate);
 
         if (openChest == 1) motor.OpenChest();
         else if (attack == 1) motor.Attack();
@@ -72,6 +99,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    [Client]
     void mouseUpdate()
     {
         // Calculer la rotation du joueur 
