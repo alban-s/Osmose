@@ -9,6 +9,7 @@ public class MainMenuGestion : MonoBehaviour
     public GameObject newGameWindow;
     public GameObject joinGameWindow;
     public GameObject initPersoWindow;
+    public GameObject cinematicWindow;
     private double timeBegin;
 
 
@@ -23,16 +24,16 @@ public class MainMenuGestion : MonoBehaviour
         newGameWindow.SetActive(false);
         joinGameWindow.SetActive(false);
         initPersoWindow.SetActive(false);
-
-
+        cinematicWindow.SetActive(false);
 }
 
     void Update()
     {
-        /*if(Time.time - timeBegin > 2)
+        if(Time.time - timeBegin >= 32.5 && Time.time - timeBegin < 35)
         {
+            cinematicWindow.SetActive(false);
             mainWindow.SetActive(true);
-        }*/
+        }
     }
 
     public void StartNewGame()
