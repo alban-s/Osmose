@@ -9,7 +9,7 @@ namespace Osmose.Gameplay
     public class AttackHitboxHandler : MonoBehaviour
     {
 
-        private Collider AttackHitbox;
+        private CapsuleCollider AttackHitbox;
 
         private bool isActivated;
         private int timer;
@@ -46,7 +46,9 @@ namespace Osmose.Gameplay
         void Start()
         {
             timer = 0;
-            CapsuleCollider AttackHitbox = transform.GetChild(2).gameObject.GetComponent<CapsuleCollider>();
+            AttackHitbox = transform.GetChild(2).gameObject.GetComponent<CapsuleCollider>();
+            // Debug
+            Debug.Log(AttackHitbox.enabled);
         }
 
         // Update is called once per frame

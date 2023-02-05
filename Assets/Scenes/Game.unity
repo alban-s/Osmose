@@ -2148,6 +2148,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300008, guid: a4cabfc647d3e0641a915c6ca627a680, type: 3}
+--- !u!1 &102662834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3699474224078931408, guid: fa8b3e987ad725a4882340230af319ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1317779468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &102662840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102662834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4f643bd03ba9d4aa8fcadf4bd7187a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAssociated: 0
 --- !u!1001 &105619857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24602,10 +24621,20 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3699474224078931408, guid: fa8b3e987ad725a4882340230af319ba,
+        type: 3}
+      propertyPath: m_TagString
+      value: AttackHitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 4303916673591307779, guid: fa8b3e987ad725a4882340230af319ba,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303916673591307779, guid: fa8b3e987ad725a4882340230af319ba,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4743732820738983294, guid: fa8b3e987ad725a4882340230af319ba,
         type: 3}
@@ -24627,7 +24656,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1376199576405138354, guid: fa8b3e987ad725a4882340230af319ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fa8b3e987ad725a4882340230af319ba, type: 3}
 --- !u!1001 &1318502262
 PrefabInstance:

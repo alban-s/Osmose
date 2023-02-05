@@ -32,7 +32,7 @@ public class Associate : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("AttackHitbox"))
         {
             otherPlayer = other.transform.parent.gameObject;
             isAssociated = true;
