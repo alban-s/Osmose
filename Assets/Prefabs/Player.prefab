@@ -254,7 +254,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.001
@@ -366,7 +366,6 @@ MonoBehaviour:
   CurrentPoints: 0
   isTest: 0
   laser: {fileID: 100042, guid: be1daa597866a894fa1a18231c89d8d8, type: 3}
-  player_id: 0
 --- !u!114 &1693245659322226216
 MonoBehaviour:
   m_ObjectHideFlags: 0

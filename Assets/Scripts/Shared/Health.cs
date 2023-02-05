@@ -46,11 +46,11 @@ public class Health : NetworkBehaviour
             OnWinMatch += GameManager.GetComponent<Score>().IncreaseScoreBlue;
             OnLoseMatch += GameManager.GetComponent<Score>().DecreaseScoreBlue;
         }
-        m_IsDead = true;
+        /*m_IsDead = true;
         if(m_IsDead){
             dead();
             StartCoroutine(wait());
-        }
+        }*/
     }
 
     [Command]
