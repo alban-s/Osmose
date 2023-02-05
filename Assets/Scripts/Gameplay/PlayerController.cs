@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float mouseSensitivityY = 1.0f;
     float cameraPitch = 0.0f;
 
+    
     /*
     // Variables deplacement fluide
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.2f;

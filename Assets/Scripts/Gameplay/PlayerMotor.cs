@@ -33,6 +33,13 @@ public class PlayerMotor : MonoBehaviour
     int isStoppingHash;
     int isJumpingHash;
 
+    //Audios
+    [SerializeField] private AudioClip audioJump = null;
+    [SerializeField] private AudioClip audioRun = null;
+    [SerializeField] private AudioClip audioWalk = null;
+    private AudioSource controller_AudioSource;
+
+
     // A commenter car utilisation de animator.Play("...");
     int isDeadHash;
     int isOpeningChestHash;
@@ -47,6 +54,7 @@ public class PlayerMotor : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        controller_AudioSource = GetComponent<AudioSource>();
 
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
@@ -71,11 +79,16 @@ public class PlayerMotor : MonoBehaviour
         if (isMovementPressed && !isWalking)
         {
             animator.SetBool(isWalkingHash, true);
+            controller_AudioSource.Stop();
+            controller_AudioSource.clip = audioWalk;
+            controller_AudioSource.Play();
+
         }
         // S'arrete de marcher : mouvement pas appuye, avant il marchait
         else if (!isMovementPressed && isWalking)
         {
             animator.SetBool(isWalkingHash, false);
+            controller_AudioSource.Stop();
         }
         // Commence a courir : mouvement et courir appuye, avant il ne courrait pas
         else if ((isMovementPressed && isRunPressed) && !isRunning)
@@ -86,12 +99,16 @@ public class PlayerMotor : MonoBehaviour
         else if (!isMovementPressed && !isRunPressed && isRunning)
         {
             animator.SetBool(isRunningHash, false);
-            animator.Play("Base Layer.Run To Stop"); 
+            animator.Play("Base Layer.Run To Stop");
+
         }
         // S'arrete de courir, commence a marcher : mouvement appuye et courir pas appuye, avant il courrait
         else if (!isRunPressed && isRunning)
         {
             animator.SetBool(isRunningHash, false);
+            controller_AudioSource.Stop();
+            controller_AudioSource.clip = audioWalk;
+            controller_AudioSource.Play();
         }
 
     }
@@ -117,7 +134,19 @@ public class PlayerMotor : MonoBehaviour
             isMovementPressed = _direction.x != 0 || _direction.y != 0;
             isRunPressed = _isRunning == 1;
 
-            if (isRunPressed) animator.SetBool(isRunningHash, true);
+            if (isRunPressed)
+            {
+                animator.SetBool(isRunningHash, true);
+                
+                if(controller_AudioSource.clip != audioRun)
+                {
+                    controller_AudioSource.Stop();
+                    controller_AudioSource.clip = audioRun;
+                    controller_AudioSource.Play();
+                }
+                
+
+            }
 
             // Application de la gravite
             if (controller.isGrounded) velocityY = 0.0f;
@@ -154,12 +183,15 @@ public class PlayerMotor : MonoBehaviour
                 isJumping = true;
                 animator.Play("Base Layer.Jump");
                 animator.SetBool(isJumpingHash, true);
+                controller_AudioSource.PlayOneShot(audioJump);
                 StartCoroutine(JumpEvent());
+                
             }
             else if (!isMovementPressed && !isJumping && timeBfJumping <= 0)
             {
                 isJumping = true;
                 animator.Play("Base Layer.Jump Still");
+                controller_AudioSource.PlayOneShot(audioJump);
                 //animator.SetBool(isJumpingHash, true);
                 StartCoroutine(JumpEvent());
             }
@@ -258,6 +290,7 @@ public class PlayerMotor : MonoBehaviour
         {
             float jumpForce = jumpFallOff.Evaluate(timeInAir);
             controller.Move(Vector3.up * jumpForce * jumpMultiplier * Time.deltaTime);
+            
             timeInAir += Time.deltaTime;
             yield return null;
         } while (!controller.isGrounded && controller.collisionFlags != CollisionFlags.Above);
@@ -265,6 +298,7 @@ public class PlayerMotor : MonoBehaviour
         controller.slopeLimit = 45.0f;
         isJumping = false;
         animator.SetBool(isJumpingHash, false);
+        
 
         timeBfJumping = 0.3f;
     }
