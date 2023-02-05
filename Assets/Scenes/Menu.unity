@@ -33170,7 +33170,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  timerDuration: 3
+  timerDuration: 180
   countDown: 1
   flashDuration: 1
 --- !u!4 &1351107396
