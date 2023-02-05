@@ -10,7 +10,8 @@ namespace Osmose.Gameplay
     {
 
         private CapsuleCollider AttackHitbox;
-
+        private GameObject HitboxObject;
+        
         private bool isActivated;
         private int timer;
         // Start is called before the first frame update
@@ -18,12 +19,14 @@ namespace Osmose.Gameplay
         public void OnAttack()
         {
             isActivated = true;
+            HitboxObject.GetComponent<CollisionWithPlayer>().enabled = true;
             timer = 83;
         }
 
         public void OnOpenChest()
         {
             isActivated = true;
+            HitboxObject.GetComponent<CollisionWithChest>().enabled = true;
             timer = 30;
         }
 
@@ -46,7 +49,10 @@ namespace Osmose.Gameplay
         void Start()
         {
             timer = 0;
-            AttackHitbox = transform.GetChild(2).gameObject.GetComponent<CapsuleCollider>();
+            HitboxObject = transform.GetChild(2).gameObject;
+            AttackHitbox = HitboxObject.GetComponent<CapsuleCollider>();
+            //AttackHitbox = transform.GetChild(2).gameObject.GetComponent<CapsuleCollider>();
+            
             Physics.IgnoreCollision(AttackHitbox, gameObject.GetComponent<CapsuleCollider>());
             Physics.IgnoreCollision(AttackHitbox, gameObject.GetComponent<CharacterController>());
             // Debug
@@ -62,6 +68,9 @@ namespace Osmose.Gameplay
                 if (timer <= 0)
                 {
                     isActivated = false;
+                    HitboxObject.GetComponent<CollisionWithPlayer>().enabled = false;
+                    HitboxObject.GetComponent<CollisionWithChest>().enabled = false;
+                    
                 }
             }
             AttackHitbox.enabled = isActivated;
