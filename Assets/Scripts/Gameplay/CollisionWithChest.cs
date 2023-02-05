@@ -18,7 +18,10 @@ namespace Osmose.Gameplay
         {
 
             // get the parent of the object
-            GameObject player = transform.parent.gameObject;
+            player = transform.parent.gameObject;
+            Debug.Log(player);
+            Debug.Log(player.tag);
+            Debug.Log(player.GetComponent<Health>().GetPoints());
         }
 
         // Update is called once per frame
@@ -29,9 +32,13 @@ namespace Osmose.Gameplay
 
         void OnTriggerEnter(Collider other)
         {
+            // Debug show tag of other
+            Debug.Log(other.gameObject.tag);
             if (other.gameObject.CompareTag("Chest"))
             {
+                Debug.Log("Collision with chest");
                 PointsAmount = other.gameObject.GetComponent<ChestController>().GetPoints();
+                Debug.Log(PointsAmount);
                 player.GetComponent<Health>().IncreasePoints(PointsAmount, other.gameObject);
                 other.gameObject.SetActive(false);
                 //other.gameObject.GetComponent<ChestController>().PickedUp();

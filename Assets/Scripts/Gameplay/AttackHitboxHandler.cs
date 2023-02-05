@@ -47,6 +47,8 @@ namespace Osmose.Gameplay
         {
             timer = 0;
             AttackHitbox = transform.GetChild(2).gameObject.GetComponent<CapsuleCollider>();
+            Physics.IgnoreCollision(AttackHitbox, gameObject.GetComponent<CapsuleCollider>());
+            Physics.IgnoreCollision(AttackHitbox, gameObject.GetComponent<CharacterController>());
             // Debug
             Debug.Log(AttackHitbox.enabled);
         }
