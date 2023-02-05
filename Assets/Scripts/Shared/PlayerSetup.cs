@@ -1,7 +1,7 @@
 using UnityEngine;
 using Mirror;
 using Osmose.Game;
-
+using System.Collections.Generic;
 public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
@@ -78,8 +78,15 @@ public class PlayerSetup : NetworkBehaviour
     }
 
     [Command]
-    public void update_player_name(){
-        update_player_name_clients(gameObject.transform.name);
+    public void gather_names(){
+        List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
+        Debug.Log("size "+players.Count);
+        foreach (GameObject player in players)
+        {
+            string name = player.transform.name;
+            player.GetComponent<PlayerSetup>().update_player_name_clients(name);
+            Debug.Log(" name player : " + player.transform.name);
+        }
     }
 
     [ClientRpc]

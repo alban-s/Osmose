@@ -30,18 +30,18 @@ public class GameManager : NetworkBehaviour
         return redPlayer;
     }
 
-    [Command(requiresAuthority = false)]
-    public void update_names(){
-        List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
-        // Debug.Log("size "+players.Count);
-        foreach (GameObject player in players)
-        {
-            string name = player.transform.name;
-            player.GetComponent<PlayerSetup>().update_player_name_clients(name);
-            Debug.Log(" name player : " + player.transform.name);
-        }
+    // [Command(requiresAuthority = false)]
+    // public void update_names(){
+    //     List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
+    //     Debug.Log("size "+players.Count);
+    //     foreach (GameObject player in players)
+    //     {
+    //         string name = player.transform.name;
+    //         player.GetComponent<PlayerSetup>().update_player_name_clients(name);
+    //         Debug.Log(" name player : " + player.transform.name);
+    //     }
 
-    }
+    // }
     /*private void OnGUI()
     {
         GUILayout.BeginArea(new Rect(200, 200, 200, 500));
