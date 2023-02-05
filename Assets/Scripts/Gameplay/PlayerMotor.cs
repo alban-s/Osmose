@@ -143,6 +143,7 @@ namespace Osmose.Gameplay
             {
                 if (isMovementPressed && !isJumping && timeBfJumping <= 0)
                 {
+                    jumpMultiplier = 8.0f;
                     isJumping = true;
                     animator.Play("Base Layer.Jump");
                     animator.SetBool(isJumpingHash, true);
@@ -151,8 +152,17 @@ namespace Osmose.Gameplay
                 else if (!isMovementPressed && !isJumping && timeBfJumping <= 0)
                 {
                     isJumping = true;
-                    //int jumpRand = Random.Range(1, 6);
-                    animator.Play("Base Layer.Jump Still");
+                    int jumpRand = Random.Range(0, 10);
+                    if (jumpRand == 3)
+                    {
+                        jumpMultiplier = 2.0f;
+                        animator.Play("Base Layer.Still Jump");
+                    }
+                    else
+                    {
+                        jumpMultiplier = 5.0f; 
+                        animator.Play("Base Layer.Jump Still");
+                    }
                     StartCoroutine(JumpEvent());
                 }
             }
