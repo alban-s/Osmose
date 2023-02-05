@@ -53,6 +53,7 @@ public class PlayerSetup : NetworkBehaviour
         {
             GetComponent<NetworkTransformReliable>().syncDirection = SyncDirection.ClientToServer;
         }
+        gather_names();
 
         
     }
