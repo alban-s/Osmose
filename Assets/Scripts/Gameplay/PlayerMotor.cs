@@ -60,7 +60,7 @@ public class PlayerMotor : NetworkBehaviour
         ///////////////////////////////////////////////////////
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     private void update_inputs(bool move_pressed, bool run_pressed){
         update_inputs_clients(move_pressed,run_pressed);
     }

@@ -14,12 +14,12 @@ public class SelectPtsWindow : MonoBehaviour
     private GameObject player;
     public TextMeshProUGUI displayTotalTeamPoints;
     public TextMeshProUGUI displayCurTeamPoints;
-    public TextMeshProUGUI selectedPts;
+    public InputField selectedPts;
 
     private TeamColour playerTeam;
-    private int teamPoints;
-    private int curTeamPoints;
-    private int playerPts;
+    private ushort teamPoints;
+    private ushort curTeamPoints;
+    private ushort playerPts;
 
 
 
@@ -27,7 +27,6 @@ public class SelectPtsWindow : MonoBehaviour
     void Start()
     {
         manager = GameObject.Find("GameManager");
-        playerPts = 100;
         playerTeam = player.GetComponent<Team>().GetTeam();
         if(playerTeam == TeamColour.Blue)
         {
@@ -74,46 +73,33 @@ public class SelectPtsWindow : MonoBehaviour
 
     public void OnSelectClicked()
     {
-        Debug.Log("ba�"+selectedPts.text+"alors");
-        ushort score = 0;
-        try
-        {
-            score = ushort.Parse(selectedPts.text);
-            Debug.Log(score);
-        }
-        catch (FormatException)
-        {
-            score = 100;
-            Debug.Log($"Unable to parse '{selectedPts.text}'");
-        }
-        /*        if (ushort.TryParse(selectedPts.text, out score))
-                    System.Console.WriteLine(score);*/
-        //ushort.TryParse(selectedPts.text, out score);
+        PointsSelected();
         
         if (playerTeam == TeamColour.Blue)
         {
-            manager.GetComponent<Score>().SetScoreRestantBlue(score);
-            manager.GetComponent<Score>().IncreaseScoreBlue(score);
+            manager.GetComponent<Score>().SetScoreRestantBlue(playerPts);
+            manager.GetComponent<Score>().IncreaseScoreBlue(playerPts);
         }
         else
         {
-            manager.GetComponent<Score>().SetScoreRestantRed(score);
-            manager.GetComponent<Score>().IncreaseScoreRed(score);
+            manager.GetComponent<Score>().SetScoreRestantRed(playerPts);
+            manager.GetComponent<Score>().IncreaseScoreRed(playerPts);
         }
-        player.GetComponent<Health>().SetStartPoints(score);
+        player.GetComponent<Health>().SetStartPoints(playerPts);
 
         thisWindow.SetActive(false);
     }
 
 
-    public void PointsSelected(string point)
+    public void PointsSelected()
     {
-        int selected = int.Parse(point);
+        ushort.TryParse(selectedPts.text, out ushort selected);
 
         if (selected < 100)
         {
             playerPts = 100;
-        }else if(selected > curTeamPoints)
+        }
+        else if(selected > curTeamPoints)
         {
             playerPts = curTeamPoints;
         }
