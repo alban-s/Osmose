@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17615692, g: 0.2204639, b: 0.30279124, a: 1}
+  m_IndirectSpecularColor: {r: 0.17615631, g: 0.22046342, b: 0.30278984, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3693,8 +3693,8 @@ Transform:
   - {fileID: 945581725}
   - {fileID: 894200667}
   - {fileID: 282483945}
-  - {fileID: 100609360}
   - {fileID: 1741795678}
+  - {fileID: 100609360}
   m_Father: {fileID: 1797495307}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -31831,6 +31831,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: building1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340161701197833241, guid: 1385af4bcc5e39d4a913cea30e005476,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.39
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1385af4bcc5e39d4a913cea30e005476, type: 3}
