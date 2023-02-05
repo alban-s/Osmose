@@ -7,7 +7,7 @@ using Osmose.Game;
 
 public class Health : NetworkBehaviour
 {
-    [Tooltip("Starting amount of points")] public ushort StartPoints = 0;
+    [Tooltip("Starting amount of points")] public ushort StartPoints;
 
     [SyncVar]
     [Tooltip("Current amount of points")] public ushort CurrentPoints;
@@ -32,6 +32,7 @@ public class Health : NetworkBehaviour
 
     void Start()
     {
+        StartPoints = 0;
         animator = GetComponentInChildren<Animator>();
         GameManager = GameObject.Find("GameManager");
         CurrentPoints = StartPoints;
