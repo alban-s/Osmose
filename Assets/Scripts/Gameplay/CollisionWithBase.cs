@@ -55,7 +55,6 @@ namespace Osmose.Gameplay
                     }
                     else if (other.gameObject.GetComponent<Team>().GetTeam() != gameObject.GetComponent<Team>().GetTeam())
                     {
-                        Debug.Log(HasReachedEnemyBase);
                         Debug.Log(player.GetComponent<Health>().CanMatch);
                         if (gameObject.GetComponent<Health>().CanMatch == true)// && HasReachedEnemyBase == false)
                         {
