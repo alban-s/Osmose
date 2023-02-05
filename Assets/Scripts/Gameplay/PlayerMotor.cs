@@ -39,9 +39,7 @@ public class PlayerMotor : NetworkBehaviour
     int isChallengingHash;
     ///////////////////////////////////////////////////////
 
-    [SyncVar]
     bool isMovementPressed;
-    [SyncVar]
     bool isRunPressed;
 
 
@@ -62,11 +60,17 @@ public class PlayerMotor : NetworkBehaviour
         ///////////////////////////////////////////////////////
     }
 
-        [Command]
+    [Command]
     private void update_inputs(bool move_pressed, bool run_pressed){
+        update_inputs_clients(move_pressed,run_pressed);
+    }
+
+    [ClientRpc]
+    private void update_inputs_clients(bool move_pressed, bool run_pressed){
         isMovementPressed = move_pressed;
         isRunPressed = run_pressed;
     }
+
 
 
     void handleAnimation()
