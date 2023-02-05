@@ -199,7 +199,7 @@ namespace Osmose.Gameplay
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise"))
             {
-                GetComponent<AttackHitboxHandler>().OnAttack();
+                GetComponent<AttackHitboxHandler>().OnAttackBase();
                 animator.Play("Base Layer.Challenge");
             }
         }
@@ -207,6 +207,8 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "Associate"
         public void Associate()
         {
+            Debug.Log("a");
+            GetComponent<AttackHitboxHandler>().OnAssociate();
         }
 
         // Appele par PlayerController quand on appuie sur "Praise"

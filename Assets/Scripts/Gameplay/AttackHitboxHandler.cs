@@ -23,6 +23,13 @@ namespace Osmose.Gameplay
             timer = 83;
         }
 
+        public void OnAttackBase()
+        {
+            isActivated = true;
+            HitboxObject.GetComponent<CollisionWithBase>().enabled = true;
+            timer = 83;
+        }
+
         public void OnOpenChest()
         {
             isActivated = true;
@@ -70,7 +77,7 @@ namespace Osmose.Gameplay
                     isActivated = false;
                     HitboxObject.GetComponent<CollisionWithPlayer>().enabled = false;
                     HitboxObject.GetComponent<CollisionWithChest>().enabled = false;
-                    
+                    HitboxObject.GetComponent<CollisionWithBase>().enabled = false;
                 }
             }
             AttackHitbox.enabled = isActivated;
