@@ -129,7 +129,7 @@ public class PlayerMotor : NetworkBehaviour
             bool moving = _direction.x != 0 || _direction.y != 0;
             bool running = _isRunning == 1;
 
-            update_inputs(moving,running);
+            if(isLocalPlayer) update_inputs(moving,running);
 
             if (isRunPressed) animator.SetBool(isRunningHash, true);
 
