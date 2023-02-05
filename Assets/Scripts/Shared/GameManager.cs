@@ -36,6 +36,27 @@ public class GameManager : MonoBehaviour
         return players;
     }
 
+    public List<GameObject> GetPlayerBlueList()
+    {
+        List<GameObject> bluePlayer = new List<GameObject>();
+        foreach (KeyValuePair<string, GameObject> player in players)
+        {
+            if (player.Value.GetComponent<Team>().GetTeam() == TeamColour.Blue)
+                bluePlayer.Add(player.Value);
+        }
+        return bluePlayer;
+    }
+
+    public List<GameObject> GetPlayerRedList()
+    {
+        List<GameObject> redPlayer = new List<GameObject>();
+        foreach (KeyValuePair<string, GameObject> player in players){
+            if (player.Value.GetComponent<Team>().GetTeam() == TeamColour.Red)
+                redPlayer.Add(player.Value);
+        }
+        return redPlayer;
+    }
+
     /*private void OnGUI()
     {
         GUILayout.BeginArea(new Rect(200, 200, 200, 500));

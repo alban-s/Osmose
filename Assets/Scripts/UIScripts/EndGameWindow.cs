@@ -8,7 +8,7 @@ using TMPro;
 
 public class EndGameWindow : MonoBehaviour
 {
-    public GameObject data;
+    private GameObject GameManager;
     public Scene GameScene;
 
     public TextMeshProUGUI displayWinnerTeam;
@@ -18,15 +18,18 @@ public class EndGameWindow : MonoBehaviour
     public TextMeshProUGUI displayWinnerGamersPoints;
     public TextMeshProUGUI displayLosersGamersPoints;
 
+    private List<GameObject> players_red, players_blue;
+
     // Start is called before the first frame update
     void Start()
     {
+        GameManager = GameObject.Find("GameManager");
         // On récupère tous les scores (Equipes + joueurs)
-        int redScore = data.GetComponent<Score>().GetTeamRedScore();
-        int blueScore = data.GetComponent<Score>().GetTeamBlueScore();
+        int redScore = GameManager.GetComponent<Score>().GetTeamRedScore();
+        int blueScore = GameManager.GetComponent<Score>().GetTeamBlueScore();
 
-        GameObject[] players_red = data.GetComponent<Score>().GetPlayersRed();
-        GameObject[] players_blue = data.GetComponent<Score>().GetPlayersBlue();
+        players_red = GameManager.GetComponent<GameManager>().GetPlayerRedList();
+        players_blue = GameManager.GetComponent<GameManager>().GetPlayerBlueList();
 
         string teamBlueScore = "";
         string teamRedScore = "";
