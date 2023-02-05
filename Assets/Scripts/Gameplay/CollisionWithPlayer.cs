@@ -8,10 +8,12 @@ namespace Osmose.Gameplay
     public class CollisionWithPlayer : MonoBehaviour
     {
         GameObject player;
+        public bool isActive;
         // Start is called before the first frame update
         void Start()
         {
             Debug.Log("start");
+            isActive = false;
             // get the parent of the object
             player = transform.parent.gameObject;
         }
@@ -24,7 +26,7 @@ namespace Osmose.Gameplay
 
         public void HitPlayer(GameObject other)
         {
-
+            
             if (player.GetComponent<Health>().CanMatch)
             {
                 if (other.gameObject.CompareTag("Player"))
@@ -76,7 +78,7 @@ namespace Osmose.Gameplay
         //When colliding with another player, checks the difference of points between them
         void OnCollisionEnter(Collision other)
         {
-            HitPlayer(other.gameObject);
+            if (isActive) HitPlayer(other.gameObject);
         }
     }
 }
