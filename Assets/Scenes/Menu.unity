@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18029143, g: 0.22572419, b: 0.30693057, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8513,7 +8513,8 @@ MonoBehaviour:
   player_list_red: []
   team_red_score: 0
   team_blue_score: 0
-  remaining_score: 0
+  remaining_score_blue: 0
+  remaining_score_red: 0
 --- !u!114 &1351107395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9237,7 +9238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51001d8dc69cd8b46975c6ff72d89415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1860074872}
   thisWindow: {fileID: 1483181867}
   persoSelectionWindow: {fileID: 1654656395}
   adresseIP: {fileID: 2097738672}
@@ -12144,7 +12144,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Fleches : D\xE9placement\nsouris : cam\xE9ra\n"
+  m_Text: "f : ouvrir coffre\r\na : s'associer\r\nclic gauche : attaquer \r\nclic
+    droit + shift : courir\r\nespace : sauter\r\ne : attaquer la base ennemie\r\nq
+    / fl\xE8che gauche : d\xE9placement \n\xE0 gauche\r\nd / fl\xE8che droite : d\xE9placement
+    \n\xE0 droite\r\na / fl\xE8che haut : d\xE9placement en\n haut\r\ns / fl\xE8che
+    bas : d\xE9placement en\nbas\n"
 --- !u!222 &1960424722
 CanvasRenderer:
   m_ObjectHideFlags: 0
