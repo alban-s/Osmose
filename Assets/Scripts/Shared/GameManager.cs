@@ -30,11 +30,14 @@ public class GameManager : NetworkBehaviour
         return redPlayer;
     }
 
+    [Command]
     public void update_names(){
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
         foreach (GameObject player in players)
         {
-            gameObject.GetComponent<PlayerSetup>().update_player_name();
+            string name = player.transform.name;
+            player.GetComponent<PlayerSetup>().update_player_name_clients(name);
+            Debug.Log(" name player : " + player.transform.name);
         }
 
     }
