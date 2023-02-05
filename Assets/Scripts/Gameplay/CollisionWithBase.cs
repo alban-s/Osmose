@@ -9,13 +9,13 @@ namespace Osmose.Gameplay
 {
     public class CollisionWithBase : MonoBehaviour
     {
-        public bool HasReachedEnemyBase { get; set; }
+        //public bool HasReachedEnemyBase { get; set; }
         public bool isActive;
         private GameObject player;
         // Start is called before the first frame update
         void Start()
         {
-            HasReachedEnemyBase = false;
+            //HasReachedEnemyBase = false;
             isActive = false;
             // get the parent of the object
             GameObject player = transform.parent.gameObject;
@@ -57,11 +57,11 @@ namespace Osmose.Gameplay
                     {
                         Debug.Log(HasReachedEnemyBase);
                         Debug.Log(player.GetComponent<Health>().CanMatch);
-                        if (gameObject.GetComponent<Health>().CanMatch == true && HasReachedEnemyBase == false)
+                        if (gameObject.GetComponent<Health>().CanMatch == true)// && HasReachedEnemyBase == false)
                         {
                             Debug.Log("hoy");
                             player.GetComponent<Health>().IncreasePoints(10000, other.gameObject);
-                            HasReachedEnemyBase = true;
+                            //HasReachedEnemyBase = true;
                             player.GetComponent<Health>().CanMatch = false;
                         }
                     }

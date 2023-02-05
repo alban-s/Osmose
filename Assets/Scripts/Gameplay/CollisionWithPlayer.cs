@@ -38,14 +38,14 @@ namespace Osmose.Gameplay
                         //if player IsInBase, wins match
                         if (player.GetComponent<Health>().IsInBase == true)
                         {
-                            player.GetComponent<Health>().IncreasePoints(500, other.gameObject);
-                            otherPlayer.GetComponent<Health>().DecreasePoints(500, gameObject);
+                            player.GetComponent<Health>().IncreasePoints(10000, other.gameObject);
+                            otherPlayer.GetComponent<Health>().DecreasePoints(10000, gameObject);
                         }
                         // if other player IsInBase, loses match
                         else if (otherPlayer.GetComponent<Health>().IsInBase == true)
                         {
-                            otherPlayer.GetComponent<Health>().IncreasePoints(500, gameObject);
-                            player.GetComponent<Health>().DecreasePoints(500, other.gameObject);
+                            otherPlayer.GetComponent<Health>().IncreasePoints(10000, gameObject);
+                            player.GetComponent<Health>().DecreasePoints(10000, other.gameObject);
                         }
                         // if neither player is in base, compare points
                         else if (otherPlayer.GetComponent<Health>().GetPoints() > gameObject.GetComponent<Health>().GetPoints())
