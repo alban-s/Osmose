@@ -87,6 +87,8 @@ public class SelectPtsWindow : MonoBehaviour
         }
         player.GetComponent<Health>().SetStartPoints(playerPts);
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         thisWindow.SetActive(false);
     }
 

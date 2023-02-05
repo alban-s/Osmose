@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 using Osmose.Game;
 using TMPro;
+using System;
 
 public class GameWindow : MonoBehaviour
 {
@@ -73,8 +74,7 @@ public class GameWindow : MonoBehaviour
 
         // Display time
         float curTime = GameManager.GetComponent<Timer>().GetTime();
-        gameTime.SetText(curTime.ToString("."));
-
+        gameTime.SetText((Math.Truncate(curTime / 60)).ToString() + ":" + (Math.Truncate(curTime % 60)).ToString());
     }
 }
 
