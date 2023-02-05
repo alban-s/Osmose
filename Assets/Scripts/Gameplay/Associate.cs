@@ -49,8 +49,8 @@ namespace Osmose.Gameplay
                     {
                         otherPlayer = null;
                     }
-                    Debug.Log(isAssociated);
-                    Debug.Log(otherPlayer);
+                    //Debug.Log(isAssociated);
+                    //Debug.Log(otherPlayer);
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace Osmose.Gameplay
         }
 
         // GetAssociatedPlayer method returns otherPlayer
-        GameObject GetAssociatePlayer()
+        public GameObject GetAssociatedPlayer()
         {
             return otherPlayer;
         }
