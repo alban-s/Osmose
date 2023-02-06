@@ -19,7 +19,7 @@ namespace Osmose.Gameplay
             //HasReachedEnemyBase = false;
             isActive = false;
             // get the parent of the object
-            GameObject player = transform.parent.gameObject;
+            player = transform.parent.gameObject;
             motor = transform.parent.gameObject.GetComponent<PlayerMotor>();
         }
 
@@ -59,6 +59,8 @@ namespace Osmose.Gameplay
                         //motor.playPoints();
                     }
                     else*/
+                    Debug.Log(other.gameObject.GetComponent<Team>().GetTeam());
+                    Debug.Log(player.GetComponent<Team>().GetTeam());
                     if (other.gameObject.GetComponent<Team>().GetTeam() != player.GetComponent<Team>().GetTeam())
                     {
                         Debug.Log(player.GetComponent<Health>().CanMatch);
