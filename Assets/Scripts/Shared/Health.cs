@@ -18,7 +18,7 @@ namespace Osmose.Game
         public UnityAction OnDie;
 
         public bool Invincible { get; set; }
-        public bool CanMatch { get; set; }
+        [SerializeField] public bool CanMatch;  //{ get; set; }
         public bool IsInBase { get; set; }
         public float GetPoints() => (!transform.GetChild(2).gameObject.GetComponent<Associate>().isAssociated)? CurrentPoints :
             transform.GetChild(2).gameObject.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().CurrentPoints + CurrentPoints;
@@ -29,6 +29,7 @@ namespace Osmose.Game
         {
             CurrentPoints = StartPoints;
             CanMatch = true;
+            IsInBase = false;
         }
 
 
@@ -71,7 +72,7 @@ namespace Osmose.Game
             }
             else
             {
-                CurrentPoints += damage;
+                CurrentPoints -= damage;
             }
             //CurrentPoints -= damage;
 
