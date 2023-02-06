@@ -40,6 +40,8 @@ namespace Osmose.Gameplay
         [SerializeField] private AudioClip audioRun = null;
         [SerializeField] private AudioClip audioWalk = null;
         [SerializeField] private AudioClip audioChest = null;
+        [SerializeField] private AudioClip audioPraise = null;
+        [SerializeField] private AudioClip shilili = null;
         private AudioSource controller_AudioSource;
 
         bool isMovementPressed;
@@ -183,6 +185,7 @@ namespace Osmose.Gameplay
                     {
                         jumpMultiplier = 2.0f;
                         animator.Play("Base Layer.Still Jump");
+                        controller_AudioSource.PlayOneShot(shilili);
                         controller_AudioSource.PlayOneShot(audioJump);
                     }
                     else
@@ -199,14 +202,10 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "OpenChest" (f)
         public void OpenChest()
         {
-            
-            
-            
             if (controller.isGrounded
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge"))
             {
-                
                 GetComponent<AttackHitboxHandler>().OnOpenChest();
                 animator.Play("Base Layer.OpenChest");
                 
@@ -215,11 +214,13 @@ namespace Osmose.Gameplay
                     controller_AudioSource.Stop();
                     controller_AudioSource.clip = audioChest;
                     controller_AudioSource.Play();
-                    
                 }
-                
-
             }
+        }
+
+        public void playChest()
+        {
+            controller_AudioSource.PlayOneShot(audioChest);
         }
 
         // Appele par PlayerController quand on appuie sur "Attack" (clic gauche)
@@ -265,6 +266,12 @@ namespace Osmose.Gameplay
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
             {
+                if (controller_AudioSource != audioPraise)
+                {
+                    controller_AudioSource.Stop();
+                    controller_AudioSource.clip = audioPraise;
+                    controller_AudioSource.Play();
+                }
                 animator.Play("Base Layer.Praise");
             }
         }
