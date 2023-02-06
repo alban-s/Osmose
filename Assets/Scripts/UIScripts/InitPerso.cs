@@ -6,7 +6,7 @@ using TMPro;
 using Mirror;
 using Osmose.Game;
 
-public class InitPerso : MonoBehaviour
+public class InitPerso : NetworkBehaviour
 {
     IEnumerator wait_and_close()
     {
@@ -43,12 +43,8 @@ public class InitPerso : MonoBehaviour
         thisWindow.SetActive(false);
     }
 
-    public void LaunchGame()
-    {
-        choseTeam = equipeDropdown.value;
-        chosePseudo  = pseudo.text;
-        print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);
-
+    [Command]
+    public void update_spawns(){
         TeamColour team = (TeamColour)choseTeam;
         NetworkManagerCustom nmc = GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>();
         if (team == TeamColour.Blue){
@@ -67,7 +63,14 @@ public class InitPerso : MonoBehaviour
                 spawn.SetActive(false);
             }
         }
+    }
 
+    public void LaunchGame()
+    {
+        choseTeam = equipeDropdown.value;
+        chosePseudo  = pseudo.text;
+        print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);
+        update_spawns();
         NetworkClient.AddPlayer();
 
         mainWindow.SetActive(false);
