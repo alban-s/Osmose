@@ -40,7 +40,7 @@ namespace Osmose.Gameplay
             {
                 if (other.gameObject.CompareTag("Base"))
                 {
-                    //if your base set IsInBase, and if !CanMatch, sets CanMatch to true, if enemy base and canMatch is true, get 10000 points
+                    /*//if your base set IsInBase, and if !CanMatch, sets CanMatch to true, if enemy base and canMatch is true, get 10000 points
                     if (other.gameObject.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
                         if (player.GetComponent<Health>().IsInBase == false)
@@ -58,7 +58,8 @@ namespace Osmose.Gameplay
                         Debug.Log(player.GetComponent<Health>().CanMatch);
                         //motor.playPoints();
                     }
-                    else if (other.gameObject.GetComponent<Team>().GetTeam() != player.GetComponent<Team>().GetTeam())
+                    else*/
+                    if (other.gameObject.GetComponent<Team>().GetTeam() != player.GetComponent<Team>().GetTeam())
                     {
                         Debug.Log(player.GetComponent<Health>().CanMatch);
                         if (player.GetComponent<Health>().CanMatch == true)// && HasReachedEnemyBase == false)
@@ -72,7 +73,7 @@ namespace Osmose.Gameplay
                 }
             }
         }
-
+        /*
         //When Player is not touching the base, set IsInBase to false
         void OnTriggerExit(Collider other)
         {
@@ -84,6 +85,6 @@ namespace Osmose.Gameplay
                     Debug.Log("Hey");
                 }
             }
-        }
+        }*/
     }
 }
