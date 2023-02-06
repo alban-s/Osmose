@@ -10,6 +10,7 @@ namespace Osmose.Gameplay
     {
         [Header("Parameters")]
         [Tooltip("Amount of health to heal on pickup")]
+        
         private ushort PointsAmount;
         private GameObject player;
         public bool isActive;
@@ -40,11 +41,13 @@ namespace Osmose.Gameplay
                 Debug.Log(other.gameObject.tag);
                 if (other.gameObject.CompareTag("Chest"))
                 {
+
                     Debug.Log("Collision with chest");
                     PointsAmount = other.gameObject.GetComponent<ChestController>().GetPoints();
                     Debug.Log(PointsAmount);
                     player.GetComponent<Health>().IncreasePoints(PointsAmount, other.gameObject);
                     other.gameObject.SetActive(false);
+                    
                     //other.gameObject.GetComponent<ChestController>().PickedUp();
                 }
             }
