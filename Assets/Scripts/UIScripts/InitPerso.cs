@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Mirror;
+using Osmose.Game;
 
 public class InitPerso : MonoBehaviour
 {
@@ -47,6 +48,26 @@ public class InitPerso : MonoBehaviour
         choseTeam = equipeDropdown.value;
         chosePseudo  = pseudo.text;
         print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);
+
+        TeamColour team = (TeamColour)choseTeam;
+        NetworkManagerCustom nmc = GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>();
+        if (team == TeamColour.Blue){
+            foreach (GameObject spawn in nmc.red_spawns){
+                spawn.SetActive(false);
+            }
+            foreach (GameObject spawn in nmc.blue_spawns){
+                spawn.SetActive(true);
+            }
+        }
+        if (team == TeamColour.Red){
+            foreach (GameObject spawn in nmc.red_spawns){
+                spawn.SetActive(true);
+            }
+            foreach (GameObject spawn in nmc.blue_spawns){
+                spawn.SetActive(false);
+            }
+        }
+
         NetworkClient.AddPlayer();
 
         mainWindow.SetActive(false);

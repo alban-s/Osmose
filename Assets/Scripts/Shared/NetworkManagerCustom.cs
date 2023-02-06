@@ -5,4 +5,6 @@ using Mirror;
 
 public class NetworkManagerCustom : NetworkManager
 {
+    public GameObject[] red_spawns;
+    public GameObject[] blue_spawns;
 }

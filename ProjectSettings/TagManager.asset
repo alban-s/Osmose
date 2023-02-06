@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Base
+  - spawn_blue
+  - SpawnBlue
+  - SpawnRed
   layers:
   - Default
   - TransparentFX
