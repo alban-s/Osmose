@@ -43,7 +43,7 @@ public class InitPerso : NetworkBehaviour
         thisWindow.SetActive(false);
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void update_spawns(){
         TeamColour team = (TeamColour)choseTeam;
         NetworkManagerCustom nmc = GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>();
