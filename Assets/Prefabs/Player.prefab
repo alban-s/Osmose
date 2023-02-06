@@ -357,6 +357,10 @@ MonoBehaviour:
   audioJump: {fileID: 8300000, guid: e4b1dde97405ce7428a0560d41c1b451, type: 3}
   audioRun: {fileID: 8300000, guid: 1ece52cea8e6b5a44950fbb036d5a595, type: 3}
   audioWalk: {fileID: 8300000, guid: 5b409a1ea123dab478e0effe5840b118, type: 3}
+  audioChest: {fileID: 8300000, guid: 2c0886e3b713b674a9b8d80f1c0d1626, type: 3}
+  shilili: {fileID: 8300000, guid: bf7867c2d497ef6429a1f7ec17892853, type: 3}
+  praise: {fileID: 8300000, guid: 0f57bcd03b14e9944b7b90306e5b1327, type: 3}
+  controller_AudioSource: {fileID: 0}
 --- !u!114 &667742240836363126
 MonoBehaviour:
   m_ObjectHideFlags: 0

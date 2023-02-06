@@ -13,17 +13,18 @@ namespace Osmose.Gameplay
         private ushort PointsAmount;
         private GameObject player;
         public bool isActive;
+        PlayerMotor motor;
 
         // Start is called before the first frame update
         void Start()
         {
-
             // get the parent of the object
             player = transform.parent.gameObject;
             isActive = false;
             Debug.Log(player);
             Debug.Log(player.tag);
             Debug.Log(player.GetComponent<Health>().GetPoints());
+            motor = transform.parent.gameObject.GetComponent<PlayerMotor>();
         }
 
         // Update is called once per frame
@@ -41,10 +42,12 @@ namespace Osmose.Gameplay
                 if (other.gameObject.CompareTag("Chest"))
                 {
                     Debug.Log("Collision with chest");
+                    motor.playChest();
                     PointsAmount = other.gameObject.GetComponent<ChestController>().GetPoints();
                     Debug.Log(PointsAmount);
                     player.GetComponent<Health>().IncreasePoints(PointsAmount, other.gameObject);
-                    other.gameObject.SetActive(false);
+                    //other.gameObject.SetActive(false);
+                    other.gameObject.GetComponent<MeshCollider>().enabled = false;
                     //other.gameObject.GetComponent<ChestController>().PickedUp();
                 }
             }
