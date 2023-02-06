@@ -8,23 +8,23 @@ namespace Mirror
     [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-start-position")]
     public class NetworkStartPosition : MonoBehaviour
     {
-        bool enabled;
+        bool enabled_;
         public void Awake()
         {
             NetworkManager.RegisterStartPosition(transform);
-            enabled =true;
+            enabled_ =true;
         }
 
         public void OnEnable(){
-            if (!enabled) {
+            if (!enabled_) {
                 NetworkManager.RegisterStartPosition(transform);
-                enabled = true;    
+                enabled_ = true;    
             }
         }
 
         public void OnDisable(){
             NetworkManager.UnRegisterStartPosition(transform);
-            enabled = false;
+            enabled_ = false;
         }
 
         public void OnDestroy()
