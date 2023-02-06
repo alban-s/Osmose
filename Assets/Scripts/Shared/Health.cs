@@ -55,7 +55,7 @@ namespace Osmose.Game
             if (trueWinAmount > 0)
             {
                 OnWinMatch?.Invoke(trueWinAmount, pointsSource);
-                Debug.Log("+" + trueWinAmount);
+                Debug.Log("+" + trueWinAmount + "->" + CurrentPoints);
             }
         }
         public void DecreasePoints(ushort damage, GameObject damageSource, bool associated = false)
