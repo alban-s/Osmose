@@ -18956,6 +18956,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300008, guid: a4cabfc647d3e0641a915c6ca627a680, type: 3}
+--- !u!1 &1018829095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8969349479097794800, guid: fa8b3e987ad725a4882340230af319ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1317779468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1018829106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018829095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a6b3fbc4873734a9a1caf3221be69e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1022756768
 GameObject:
   m_ObjectHideFlags: 0
@@ -34768,12 +34786,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 662126811}
-  - {fileID: 1661164864}
-  - {fileID: 681138106}
-  - {fileID: 2141054149}
-  - {fileID: 2066454225}
-  - {fileID: 2011666140}
   - {fileID: 887908322}
+  - {fileID: 1661164864}
+  - {fileID: 2011666140}
+  - {fileID: 2066454225}
+  - {fileID: 2141054149}
+  - {fileID: 681138106}
   m_Father: {fileID: 553197798}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
