@@ -57,13 +57,13 @@ public class Health : NetworkBehaviour
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
         foreach (GameObject player in players)
         {
-            player.GetComponent<Health>().rpc_update_score_client(CurrentPoints);
+            ushort score = player.GetComponent<Health>.CurrentPoints;
+            player.GetComponent<Health>().rpc_update_score_client(score);
         }
     }
 
     [ClientRpc]
     void rpc_update_score_client(ushort score){
-        Debug.Log("cp : " + score);
         CurrentPoints = score;
         Debug.Log("cp : " + GetComponent<Health>().CurrentPoints);
     }
