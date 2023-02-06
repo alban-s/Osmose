@@ -15,6 +15,10 @@ namespace Osmose.Gameplay
         private GameObject player;
         public bool isActive;
         PlayerMotor motor;
+        float tim = 0.0f;
+        GameObject cylinderOn;
+        GameObject cylinderOff;
+        bool collisionChest = false;
 
         // Start is called before the first frame update
         void Start()
@@ -30,8 +34,15 @@ namespace Osmose.Gameplay
 
         // Update is called once per frame
         void Update()
-        {
-
+        {            
+            //tim -= 1.0f;
+            tim -= Time.deltaTime;
+            if(tim < 0.0f && collisionChest) 
+            {
+                collisionChest = false;
+                cylinderOn.SetActive(false);
+                cylinderOff.SetActive(true);
+            }
         }
 
         void OnTriggerEnter(Collider other)
@@ -42,7 +53,8 @@ namespace Osmose.Gameplay
                 Debug.Log(other.gameObject.tag);
                 if (other.gameObject.CompareTag("Chest"))
                 {
-
+                    tim = 1.7f;
+                    collisionChest = true;
                     Debug.Log("Collision with chest");
                     motor.playChest();
                     PointsAmount = other.gameObject.GetComponent<ChestController>().GetPoints();
@@ -51,6 +63,12 @@ namespace Osmose.Gameplay
                     
                     //other.gameObject.SetActive(false);
                     other.gameObject.GetComponent<MeshCollider>().enabled = false;
+                    //other.gameObject.transform.Find("cylinderOn").gameObject.SetActive(false);
+                    //other.gameObject.transform.Find("cylinderOff").gameObject.SetActive(true);
+
+                    cylinderOn = other.gameObject.transform.Find("cylinderOn").gameObject;
+                    cylinderOff = other.gameObject.transform.Find("cylinderOff").gameObject;
+                    
                     //other.gameObject.GetComponent<ChestController>().PickedUp();
                 }
                 
