@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8118577208221739462}
   - component: {fileID: 8118577208220969446}
   - component: {fileID: 8118577208219839270}
-  - component: {fileID: 5991891384388715321}
+  - component: {fileID: 3370994837566990863}
   m_Layer: 0
   m_Name: metal_crate_02b_01
   m_TagString: Untagged
@@ -85,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5991891384388715321
+--- !u!64 &3370994837566990863
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
