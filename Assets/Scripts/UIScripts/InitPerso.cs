@@ -44,8 +44,7 @@ public class InitPerso : NetworkBehaviour
     }
 
     [Command(requiresAuthority = false)]
-    public void update_spawns(){
-        TeamColour team = (TeamColour)choseTeam;
+    public void update_spawns(TeamColour team){
         NetworkManagerCustom nmc = GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>();
         if (team == TeamColour.Blue){
             foreach (GameObject spawn in nmc.red_spawns){
@@ -70,7 +69,7 @@ public class InitPerso : NetworkBehaviour
         choseTeam = equipeDropdown.value;
         chosePseudo  = pseudo.text;
         print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);
-        update_spawns();
+        update_spawns((TeamColour)choseTeam);
         NetworkClient.AddPlayer();
 
         mainWindow.SetActive(false);
