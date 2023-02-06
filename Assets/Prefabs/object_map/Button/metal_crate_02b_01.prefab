@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8118577208221739462}
   - component: {fileID: 8118577208220969446}
   - component: {fileID: 8118577208219839270}
+  - component: {fileID: 5991891384388715321}
   m_Layer: 0
   m_Name: metal_crate_02b_01
   m_TagString: Untagged
@@ -84,6 +85,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5991891384388715321
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118577208221775334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 90f50cba3d2380147bb9c0dcd80f177c, type: 3}
 --- !u!1001 &932248522785627625
 PrefabInstance:
   m_ObjectHideFlags: 0
