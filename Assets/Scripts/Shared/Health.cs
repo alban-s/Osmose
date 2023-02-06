@@ -52,14 +52,20 @@ public class Health : NetworkBehaviour
         }*/
     }
 
-    [ClientRpc]
-    void update_score_clients(ushort score){
+    [Command]
+    void update_score_clients(){
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
-        // Debug.Log("size "+players.Count);
         foreach (GameObject player in players)
         {
-            player.GetComponent<Health>().CurrentPoints = score;
+            player.GetComponent<Health>().rpc_update_score_client(CurrentPoints);
         }
+    }
+
+    [ClientRpc]
+    void rpc_update_score_client(ushort score){
+        Debug.Log("cp : " + score);
+        CurrentPoints = score;
+        Debug.Log("cp : " + GetComponent<Health>().CurrentPoints);
     }
 
     [Command]
@@ -67,7 +73,7 @@ public class Health : NetworkBehaviour
     {
         StartPoints = startPoints;
         CurrentPoints = StartPoints;
-        update_score_clients(CurrentPoints);
+        update_score_clients();
     }
 
     [Command]
@@ -75,7 +81,7 @@ public class Health : NetworkBehaviour
     {
         ushort tempPoints = CurrentPoints;
         CurrentPoints += increaseAmount;
-        update_score_clients(CurrentPoints);
+        update_score_clients();
 
         //call OnWinMatch action
         ushort trueWinAmount = (ushort) (CurrentPoints - tempPoints);
@@ -93,7 +99,7 @@ public class Health : NetworkBehaviour
 
         ushort tempPoints = CurrentPoints;
         CurrentPoints -= damage;
-        update_score_clients(CurrentPoints);
+        update_score_clients();
 
         //call OnLoseMatch action
         ushort trueLoseAmount = (ushort) (tempPoints - CurrentPoints);
@@ -109,7 +115,7 @@ public class Health : NetworkBehaviour
     public void Kill()
     {
         CurrentPoints = 0;
-        update_score_clients(CurrentPoints);
+        update_score_clients();
         //call OnLoseMatch action
         OnLoseMatch?.Invoke(CurrentPoints);
             
