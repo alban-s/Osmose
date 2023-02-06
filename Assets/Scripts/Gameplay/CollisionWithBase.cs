@@ -41,7 +41,7 @@ namespace Osmose.Gameplay
                 if (other.gameObject.CompareTag("Base"))
                 {
                     //if your base set IsInBase, and if !CanMatch, sets CanMatch to true, if enemy base and canMatch is true, get 10000 points
-                    if (other.gameObject.GetComponent<Team>().GetTeam() == gameObject.GetComponent<Team>().GetTeam())
+                    if (other.gameObject.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
                         if (player.GetComponent<Health>().IsInBase == false)
                         {
@@ -58,10 +58,10 @@ namespace Osmose.Gameplay
                         Debug.Log(player.GetComponent<Health>().CanMatch);
                         //motor.playPoints();
                     }
-                    else if (other.gameObject.GetComponent<Team>().GetTeam() != gameObject.GetComponent<Team>().GetTeam())
+                    else if (other.gameObject.GetComponent<Team>().GetTeam() != player.GetComponent<Team>().GetTeam())
                     {
                         Debug.Log(player.GetComponent<Health>().CanMatch);
-                        if (gameObject.GetComponent<Health>().CanMatch == true)// && HasReachedEnemyBase == false)
+                        if (player.GetComponent<Health>().CanMatch == true)// && HasReachedEnemyBase == false)
                         {
                             Debug.Log("hoy");
                             player.GetComponent<Health>().IncreasePoints(10000, other.gameObject);
@@ -78,7 +78,7 @@ namespace Osmose.Gameplay
         {
             if (other.gameObject.CompareTag("Base"))
             {
-                if (other.gameObject.GetComponent<Team>().GetTeam() == gameObject.GetComponent<Team>().GetTeam())
+                if (other.gameObject.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                 {
                     player.GetComponent<Health>().IsInBase = false;
                     Debug.Log("Hey");
