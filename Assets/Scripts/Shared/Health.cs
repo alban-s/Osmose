@@ -57,7 +57,7 @@ public class Health : NetworkBehaviour
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
         foreach (GameObject player in players)
         {
-            ushort score = player.GetComponent<Health>.CurrentPoints;
+            ushort score = player.GetComponent<Health>().CurrentPoints;
             player.GetComponent<Health>().rpc_update_score_client(score);
         }
     }
