@@ -52,7 +52,7 @@ public class Health : NetworkBehaviour
         }*/
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     void update_score_clients(){
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
         foreach (GameObject player in players)
