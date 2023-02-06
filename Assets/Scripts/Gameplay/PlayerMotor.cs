@@ -40,13 +40,12 @@ namespace Osmose.Gameplay
         [SerializeField] private AudioClip audioRun = null;
         [SerializeField] private AudioClip audioWalk = null;
         [SerializeField] private AudioClip audioChest = null;
-        [SerializeField] private AudioClip shilili = null;
-        [SerializeField] private AudioClip praise = null;
-        public AudioSource controller_AudioSource;
+        private AudioSource controller_AudioSource;
 
         bool isMovementPressed;
         bool isRunPressed;
-
+        
+        bool isOpen = false;
 
         private void Start()
         {
@@ -184,7 +183,6 @@ namespace Osmose.Gameplay
                     {
                         jumpMultiplier = 2.0f;
                         animator.Play("Base Layer.Still Jump");
-                        controller_AudioSource.PlayOneShot(shilili);
                         controller_AudioSource.PlayOneShot(audioJump);
                     }
                     else
@@ -201,18 +199,27 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "OpenChest" (f)
         public void OpenChest()
         {
+            
+            
+            
             if (controller.isGrounded
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge"))
             {
+                
                 GetComponent<AttackHitboxHandler>().OnOpenChest();
                 animator.Play("Base Layer.OpenChest");
-            }
-        }
+                
+                if(!isOpen &&controller_AudioSource !=audioChest){
+                    isOpen = true;
+                    controller_AudioSource.Stop();
+                    controller_AudioSource.clip = audioChest;
+                    controller_AudioSource.Play();
+                    
+                }
+                
 
-        public void playChest()
-        {
-            controller_AudioSource.PlayOneShot(audioChest);
+            }
         }
 
         // Appele par PlayerController quand on appuie sur "Attack" (clic gauche)
@@ -258,12 +265,6 @@ namespace Osmose.Gameplay
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
             {
-                if (controller_AudioSource != praise)
-                {
-                    controller_AudioSource.Stop();
-                    controller_AudioSource.clip = praise;
-                    controller_AudioSource.Play();
-                }
                 animator.Play("Base Layer.Praise");
             }
         }
