@@ -56,7 +56,7 @@ namespace Osmose.Gameplay
         void Start()
         {
             timer = 0;
-            HitboxObject = transform.GetChild(2).gameObject;
+            HitboxObject =  transform.Find("attackCollider").gameObject;
             AttackHitbox = HitboxObject.GetComponent<CapsuleCollider>();
             //AttackHitbox = transform.GetChild(2).gameObject.GetComponent<CapsuleCollider>();
             
