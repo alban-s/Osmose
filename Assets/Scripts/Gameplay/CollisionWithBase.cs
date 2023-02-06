@@ -12,6 +12,7 @@ namespace Osmose.Gameplay
         //public bool HasReachedEnemyBase { get; set; }
         public bool isActive;
         private GameObject player;
+        PlayerMotor motor;
         // Start is called before the first frame update
         void Start()
         {
@@ -19,6 +20,7 @@ namespace Osmose.Gameplay
             isActive = false;
             // get the parent of the object
             GameObject player = transform.parent.gameObject;
+            motor = transform.parent.gameObject.GetComponent<PlayerMotor>();
         }
 
         // Update is called once per frame
@@ -43,15 +45,18 @@ namespace Osmose.Gameplay
                     {
                         if (player.GetComponent<Health>().IsInBase == false)
                         {
+                            
                             player.GetComponent<Health>().IsInBase = true;
                             if (player.GetComponent<Health>().CanMatch == false)
                             {
+                                
                                 player.GetComponent<Health>().CanMatch = true;
                             }
                             // set IsInBase
                             player.GetComponent<Health>().IsInBase = true;
                         }
                         Debug.Log(player.GetComponent<Health>().CanMatch);
+                        //motor.playPoints();
                     }
                     else if (other.gameObject.GetComponent<Team>().GetTeam() != gameObject.GetComponent<Team>().GetTeam())
                     {

@@ -48,10 +48,12 @@ namespace Osmose.Gameplay
                     PointsAmount = other.gameObject.GetComponent<ChestController>().GetPoints();
                     Debug.Log(PointsAmount);
                     player.GetComponent<Health>().IncreasePoints(PointsAmount, other.gameObject);
+                    
                     //other.gameObject.SetActive(false);
                     other.gameObject.GetComponent<MeshCollider>().enabled = false;
                     //other.gameObject.GetComponent<ChestController>().PickedUp();
                 }
+                
             }
         }
     }

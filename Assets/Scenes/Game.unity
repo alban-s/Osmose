@@ -24842,6 +24842,11 @@ PrefabInstance:
       propertyPath: audioChest
       value: 
       objectReference: {fileID: 8300000, guid: 2c0886e3b713b674a9b8d80f1c0d1626, type: 3}
+    - target: {fileID: -944490804475347827, guid: fa8b3e987ad725a4882340230af319ba,
+        type: 3}
+      propertyPath: audioPoints
+      value: 
+      objectReference: {fileID: 8300000, guid: 9b19f13b3d94d7141908c9113fe26c16, type: 3}
     - target: {fileID: -133013500302973191, guid: fa8b3e987ad725a4882340230af319ba,
         type: 3}
       propertyPath: m_Enabled
@@ -39550,6 +39555,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317783991173419454, guid: fc6d5cc9f47761842b54009a2c77dc3a,
+        type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8317783991173419454, guid: fc6d5cc9f47761842b54009a2c77dc3a,
         type: 3}

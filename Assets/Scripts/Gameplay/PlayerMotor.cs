@@ -40,6 +40,7 @@ namespace Osmose.Gameplay
         [SerializeField] private AudioClip audioRun = null;
         [SerializeField] private AudioClip audioWalk = null;
         [SerializeField] private AudioClip audioChest = null;
+        [SerializeField] private AudioClip audioPoints = null;
         [SerializeField] private AudioClip audioPraise = null;
         [SerializeField] private AudioClip shilili = null;
         private AudioSource controller_AudioSource;
@@ -47,13 +48,13 @@ namespace Osmose.Gameplay
         bool isMovementPressed;
         bool isRunPressed;
         
-        bool isOpen = false;
 
         private void Start()
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
             controller_AudioSource = GetComponent<AudioSource>();
+           
 
             isWalkingHash = Animator.StringToHash("isWalking");
             isRunningHash = Animator.StringToHash("isRunning");
@@ -92,6 +93,7 @@ namespace Osmose.Gameplay
             {
                 animator.SetBool(isRunningHash, false);
                 animator.Play("Base Layer.Run To Stop");
+                controller_AudioSource.Stop();
             }
             // S'arrete de courir, commence a marcher : mouvement appuye et courir pas appuye, avant il courrait
             else if (!isRunPressed && isRunning)
@@ -208,19 +210,19 @@ namespace Osmose.Gameplay
             {
                 GetComponent<AttackHitboxHandler>().OnOpenChest();
                 animator.Play("Base Layer.OpenChest");
-                
-                if(!isOpen &&controller_AudioSource !=audioChest){
-                    isOpen = true;
-                    controller_AudioSource.Stop();
-                    controller_AudioSource.clip = audioChest;
-                    controller_AudioSource.Play();
-                }
             }
         }
 
         public void playChest()
         {
             controller_AudioSource.PlayOneShot(audioChest);
+            controller_AudioSource.clip = audioPoints;
+            controller_AudioSource.PlayDelayed(audioChest.length + 0.5f);
+        }
+
+        public void playPoints()
+        {
+            controller_AudioSource.PlayOneShot(audioPoints);
         }
 
         // Appele par PlayerController quand on appuie sur "Attack" (clic gauche)
