@@ -208,8 +208,8 @@ namespace Osmose.Gameplay
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge"))
             {
-                GetComponent<AttackHitboxHandler>().OnOpenChest();
                 animator.Play("Base Layer.OpenChest");
+                GetComponent<AttackHitboxHandler>().OnOpenChest();
             }
         }
 
