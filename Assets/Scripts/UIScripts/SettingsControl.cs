@@ -8,7 +8,8 @@ using TMPro;
 public class SettingsControl : MonoBehaviour
 {
     public GameObject thisWindow;
-    public AudioMixer audioMixer;
+    public AudioMixer AmbiantMixer;
+    public AudioMixer EffectMixer;
     public TMP_Dropdown resolutionDropdown;
     public GameObject data;
 
@@ -46,9 +47,14 @@ public class SettingsControl : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void SetVolume(float volume)
+    public void AmbiantMusic(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        AmbiantMixer.SetFloat("ambiantMusic", volume);
+    }
+  
+    public void EffectMusic(float effetsSonore)
+    {
+        EffectMixer.SetFloat("effectMusic", effetsSonore);
     }
 
     public void SetCamSentibilityX(float sentibility)
