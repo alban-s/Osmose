@@ -419,6 +419,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
+  material_blue: {fileID: 2100000, guid: 864afef33664e4849acf48af9d19c624, type: 2}
+  material_red: {fileID: 2100000, guid: 8322a1a5f7ae25d40b646aeaffa9c604, type: 2}
 --- !u!114 &5651658211646591347
 MonoBehaviour:
   m_ObjectHideFlags: 0
