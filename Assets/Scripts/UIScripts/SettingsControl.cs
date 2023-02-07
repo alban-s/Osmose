@@ -52,6 +52,11 @@ public class SettingsControl : MonoBehaviour
         audioMixer.SetFloat("volume", volume);
     }
 
+    public void SetSoundEffect(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+    }
+
     public void SetCamSentibilityX(float sentibility)
     {
         manager.GetComponent<CameraData>().setCamX(sentibility);
