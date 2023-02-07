@@ -24,23 +24,26 @@ namespace Osmose.Gameplay
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Base"))
+            if (other.gameObject.CompareTag("BaseHitbox"))
             {
                 if (other.gameObject.GetComponent<Team>().GetTeam() == gameObject.GetComponent<Team>().GetTeam())
                 {
                     //IsInOwnBase = true;
+                    Debug.Log("IsInOwnBase");
                     gameObject.GetComponent<Health>().IsInBase = true;
+                    gameObject.GetComponent<Health>().CanMatch = true;
                 }
             }
         }
 
         void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag("Base"))
+            if (other.gameObject.CompareTag("BaseHitbox"))
             {
                 if (other.gameObject.GetComponent<Team>().GetTeam() == gameObject.GetComponent<Team>().GetTeam())
                 {
                     //IsInOwnBase = false;
+                    Debug.Log("IsNotInOwnBase");
                     gameObject.GetComponent<Health>().IsInBase = false;
                 }
             }
