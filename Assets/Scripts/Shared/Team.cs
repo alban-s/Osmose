@@ -16,10 +16,12 @@ namespace Osmose.Game
         
         public TeamColour team;
         // Start is called before the first frame update
+        public Material material_blue;
+        public Material material_red;
         void Start()
         {
             SetTeam(team);
-            ChoixEquipe();
+            // ChoixEquipe();
         }
 
         // Update is called once per frame
@@ -47,15 +49,20 @@ namespace Osmose.Game
         {
             if(GetComponent<Renderer>() != null)
             {
-                if (team == TeamColour.Red)
-                {
-                    GetComponent<Renderer>().material.color = Color.red;
+                if(CompareTag("Player")){
+                    if (team == TeamColour.Red)
+                        {
+                            transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_red;
+                            transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_red;
 
+                        }
+                        if (team == TeamColour.Blue)
+                        {
+                            transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_blue;
+                            transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_blue;
+                        }
                 }
-                if (team == TeamColour.Blue)
-                {
-                    GetComponent<Renderer>().material.color = Color.blue;
-                }
+                
             }
         }
     }
