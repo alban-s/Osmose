@@ -53,9 +53,7 @@ public class PlayerSetup : NetworkBehaviour
         {
             GetComponent<NetworkTransformReliable>().syncDirection = SyncDirection.ClientToServer;
         }
-        gather_names();
-
-        
+        broadcast_players_infos();
     }
 
     [Command]
@@ -79,7 +77,7 @@ public class PlayerSetup : NetworkBehaviour
     }
 
     [Command]
-    public void gather_names(){
+    public void broadcast_players_infos(){
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
         Debug.Log("size "+players.Count);
         foreach (GameObject player in players)
@@ -87,12 +85,19 @@ public class PlayerSetup : NetworkBehaviour
             string name = player.transform.name;
             player.GetComponent<PlayerSetup>().update_player_name_clients(name);
             Debug.Log(" name player : " + player.transform.name);
+            TeamColour team = gameObject.GetComponent<Team>().team;
+            player.GetComponent<PlayerSetup>().update_player_team_clients(team);
         }
     }
 
     [ClientRpc]
     public void update_player_name_clients(string name){
         gameObject.transform.name = name;
+    }
+
+        [ClientRpc]
+    public void update_player_team_clients(TeamColour team){
+        gameObject.GetComponent<Team>().team = team;
     }
 
     private void DisableComponents()
