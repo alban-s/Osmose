@@ -84,6 +84,6 @@ public class EndGameWindow : MonoBehaviour
 
     public void ReturnMenu()
     {
-        SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Menu");
     }
 }
