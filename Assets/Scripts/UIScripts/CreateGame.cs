@@ -1,62 +1,72 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Net;
 using Mirror;
 
-    public class CreateGame : MonoBehaviour
+public class CreateGame : MonoBehaviour
+{
+    public NetworkManager manager;
+
+    public GameObject thisWindow;
+    public GameObject persoSelectionWindow;
+    public InputField maxTeamPoints;
+    public InputField gameDuration;
+
+    private GameObject GameManager;
+    private ushort nbPlayers;
+    private ushort nbPtsPerTeam;
+    private float gameTime;
+
+    private void Awake()
     {
-        public NetworkManager manager;
-
-        public GameObject thisWindow;
-        public GameObject persoSelectionWindow;
-
-        private int nbPlayers = 4;
-        private int nbPtsPerTeam = 1000;
-        private double gameTime = 2.0;
-
-        // void Awake()
-        // {
-        //     manager = GetComponent<NetworkManager>();
-        // }
-        
-        public void InitNbPlayers(string value)
-        {
-            nbPlayers = int.Parse(value); // Conversion pas propre a reprendre
-        }
-
-        public void InitPtsPerTeam(string value)
-        {
-            nbPtsPerTeam = int.Parse(value); // Conversion pas propre a reprendre
-        }
-
-        public void InitGameTime(string value)
-        {
-            gameTime = double.Parse(value);// Conversion pas propre a reprendre
-        }
-
-
-        public void LaunchGame()
-        {
-            print("serveurToLink\n");
-            print("nb Joueurs =" + nbPlayers.ToString() + ", Points par �quipes =" +
-                nbPtsPerTeam.ToString() + " et gameTime =" + gameTime.ToString(".##"));
-           
-            manager.StartHost();
-            string host = Dns.GetHostName();
-            Console.WriteLine("Le nom de l'h�te est :" + host);
-            // R�cup�rer l'adresse IP
-            string ip = Dns.GetHostEntry(host).AddressList[1].ToString();
-            print("Mon adresse IP est :" + ip);
-            thisWindow.SetActive(false);
-            persoSelectionWindow.SetActive(true);
-        }
-
-        public void ReturnMenu()
-        {
-            if (NetworkServer.active && NetworkClient.isConnected)
-                manager.StopHost();
-            thisWindow.SetActive(false);
-        }
+        GameManager = GameObject.Find("GameManager");
     }
+
+    public void InitNbPlayers(string value)
+    {
+        nbPlayers = ushort.Parse(value); // Conversion pas propre a reprendre
+    }
+
+    public void InitPtsPerTeam(string value)
+    {
+        nbPtsPerTeam = ushort.Parse(value); // Conversion pas propre a reprendre
+    }
+
+    public void InitGameTime(string value)
+    {
+        gameTime = float.Parse(value);// Conversion pas propre a reprendre
+    }
+
+
+    public void LaunchGame()
+    {
+        InitPtsPerTeam(maxTeamPoints.text);
+        InitGameTime(gameDuration.text);
+
+        GameManager.GetComponent<Score>().SetTeamMaxScore(nbPtsPerTeam);
+        GameManager.GetComponent<Timer>().SetDuration(gameTime);
+
+        print("serveurToLink\n");
+        print("nb Joueurs =" + nbPlayers.ToString() + ", Points par �quipes =" +
+            nbPtsPerTeam.ToString() + " et gameTime =" + gameTime.ToString(".##"));
+           
+        manager.StartHost();
+        string host = Dns.GetHostName();
+        Console.WriteLine("Le nom de l'h�te est :" + host);
+
+        string ip = Dns.GetHostEntry(host).AddressList[1].ToString();
+        print("Mon adresse IP est :" + ip);
+        thisWindow.SetActive(false);
+        persoSelectionWindow.SetActive(true);
+    }
+
+    public void ReturnMenu()
+    {
+        if (NetworkServer.active && NetworkClient.isConnected)
+            manager.StopHost();
+        thisWindow.SetActive(false);
+    }
+}

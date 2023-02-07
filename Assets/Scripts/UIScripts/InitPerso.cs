@@ -43,25 +43,21 @@ public class InitPerso : NetworkBehaviour
         thisWindow.SetActive(false);
     }
 
-    [Command(requiresAuthority = false)]
-    public void update_spawns(TeamColour team){
-        NetworkManagerCustom nmc = GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>();
-        Debug.Log("updt spawns team : " + team);
-        foreach (GameObject spawn in nmc.red_spawns){
-                spawn.SetActive(team == TeamColour.Red);
-        }
-        foreach (GameObject spawn in nmc.blue_spawns){
-                spawn.SetActive(team == TeamColour.Blue);
-        }
-    }
-
     public void LaunchGame()
     {
         choseTeam = equipeDropdown.value;
         chosePseudo  = pseudo.text;
         print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);
-        update_spawns((TeamColour)choseTeam);
-        NetworkClient.AddPlayer();
+        NetworkManagerCustom nmc = GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>();
+        
+        NetworkManagerCustom.CreatePlayerMessage createdMessage = new NetworkManagerCustom.CreatePlayerMessage
+        {
+            team = (TeamColour)choseTeam,
+            name = chosePseudo
+        };
+
+        NetworkClient.Send(createdMessage);
+        // NetworkClient.AddPlayer();
 
         mainWindow.SetActive(false);
         //SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);

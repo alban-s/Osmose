@@ -9,12 +9,13 @@ using Osmose.Gameplay;
 public class Score : NetworkBehaviour
 {
     public int nb_equipe = 2;
-    public ushort team_max_score = 10000;
     public ushort min_score_player = 100;
 
     public GameObject[] player_list_blue;
     public GameObject[] player_list_red;
 
+    [SyncVar]
+    public ushort team_max_score;
     [SyncVar]
     public ushort team_red_score = 0;
     [SyncVar]
@@ -106,6 +107,16 @@ public class Score : NetworkBehaviour
     public ushort GetScoreRestantRed()
     {
         return remaining_score_red;
+    }
+
+    public ushort GetTeamMaxScore()
+    {
+        return team_max_score;
+    }
+
+    public void SetTeamMaxScore(ushort value)
+    {
+        team_max_score = value;
     }
 
     public GameObject[] GetPlayersBlue()
