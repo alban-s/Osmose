@@ -6,7 +6,8 @@ using Mirror;
 using Osmose.Game;
 
 public class Health : NetworkBehaviour
-{
+using Osmose.Gameplay;
+
     [Tooltip("Starting amount of points")] public ushort StartPoints;
     [Tooltip("Current amount of points")]public ushort CurrentPoints;
 
@@ -22,9 +23,21 @@ public class Health : NetworkBehaviour
     private GameObject instance;
 
     public bool Invincible { get; set; }
-    public bool IsActive { get; set; }
+
     public bool IsInBase { get; set; }
     public ushort GetPoints() => CurrentPoints;
+    [SerializeField] public bool CanMatch;
+    bool m_IsDead;
+    public bool isTest;
+    public UnityAction<ushort, GameObject> OnLoseMatch;
+    public UnityAction<ushort, GameObject> OnWinMatch;
+    public UnityAction OnDie;
+
+
+    
+
+    public float GetPoints() => (!transform.GetChild(2).gameObject.GetComponent<Associate>().isAssociated)? CurrentPoints :
+        transform.GetChild(2).gameObject.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().CurrentPoints + CurrentPoints;
 
     bool m_IsDead;
 
@@ -34,7 +47,8 @@ public class Health : NetworkBehaviour
         animator = GetComponentInChildren<Animator>();
         GameManager = GameObject.Find("GameManager");
         CurrentPoints = StartPoints;
-        IsActive = true;
+        CanMatch = true;
+        IsInBase = false;
         if (GetComponent<Team>().team == TeamColour.Red)
         {
             OnWinMatch += GameManager.GetComponent<Score>().IncreaseScoreRed;
@@ -45,11 +59,6 @@ public class Health : NetworkBehaviour
             OnWinMatch += GameManager.GetComponent<Score>().IncreaseScoreBlue;
             OnLoseMatch += GameManager.GetComponent<Score>().DecreaseScoreBlue;
         }
-        /*m_IsDead = true;
-        if(m_IsDead){
-            dead();
-            StartCoroutine(wait());
-        }*/
     }
 
     [Command(requiresAuthority = false)]
@@ -80,32 +89,56 @@ public class Health : NetworkBehaviour
     public void IncreasePoints(ushort increaseAmount, GameObject pointsSource)
     {
         ushort tempPoints = CurrentPoints;
-        CurrentPoints += increaseAmount;
+        
+        // if the player is associated with another, both gain half the points otherwise the player gains all the points
+        GameObject attackHitbox = transform.GetChild(2).gameObject;
+        if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && !associated)
+        {
+            CurrentPoints += (ushort)(increaseAmount / 2);
+            attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((ushort)(increaseAmount / 2), pointsSource, true);
+        }
+        else
+        {
+            CurrentPoints += increaseAmount;
+        }
         update_score_clients();
 
+        //CurrentPoints += increaseAmount;
+
         //call OnWinMatch action
-        ushort trueWinAmount = (ushort) (CurrentPoints - tempPoints);
+        ushort trueWinAmount = (ushort)(CurrentPoints - tempPoints);
         if (trueWinAmount > 0)
         {
-            OnWinMatch?.Invoke(trueWinAmount);
-            Debug.Log("+" + trueWinAmount);
+            OnWinMatch?.Invoke(trueWinAmount, pointsSource);
+            Debug.Log("+" + trueWinAmount + "->" + CurrentPoints);
         }
     }
+
     [Command]
     public void DecreasePoints(ushort damage, GameObject damageSource)
     {
         if (Invincible)
-            return;
+                return;
 
         ushort tempPoints = CurrentPoints;
-        CurrentPoints -= damage;
+        GameObject attackHitbox = transform.GetChild(2).gameObject;
+        if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && !associated)
+        {
+            CurrentPoints -= (ushort)(damage / 2);
+            attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((ushort)(damage / 2), damageSource, true);
+        }
+        else
+        {
+            CurrentPoints -= damage;
+                    }
         update_score_clients();
+        //CurrentPoints -= damage;
 
         //call OnLoseMatch action
-        ushort trueLoseAmount = (ushort) (tempPoints - CurrentPoints);
+        ushort trueLoseAmount = (ushort)(tempPoints - CurrentPoints);
         if (trueLoseAmount > 0)
         {
-            OnLoseMatch?.Invoke(trueLoseAmount);
+            OnLoseMatch?.Invoke(trueLoseAmount, damageSource);
             Debug.Log("-" + trueLoseAmount);
         }
 
@@ -117,7 +150,7 @@ public class Health : NetworkBehaviour
         CurrentPoints = 0;
         update_score_clients();
         //call OnLoseMatch action
-        OnLoseMatch?.Invoke(CurrentPoints);
+        OnLoseMatch?.Invoke(CurrentPoints, null);
             
         HandleDeath();
     }

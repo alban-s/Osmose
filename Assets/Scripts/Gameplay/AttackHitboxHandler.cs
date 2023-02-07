@@ -9,35 +9,78 @@ namespace Osmose.Gameplay
     public class AttackHitboxHandler : MonoBehaviour
     {
 
-        public Collider AttackHitbox;
-
+        private CapsuleCollider AttackHitbox;
+        private GameObject HitboxObject;
+        
         private bool isActivated;
+        private int timer;
         // Start is called before the first frame update
 
-        private void OnEnable()
+        public void OnAttack()
         {
             isActivated = true;
+            HitboxObject.GetComponent<CollisionWithPlayer>().isActive = true;
+            timer = 83;
         }
 
-        
+        public void OnAttackBase()
+        {
+            isActivated = true;
+            HitboxObject.GetComponent<CollisionWithBase>().isActive = true;
+            timer = 83;
+        }
+
+        public void OnOpenChest()
+        {
+            isActivated = true;
+            HitboxObject.GetComponent<CollisionWithChest>().isActive = true;
+            timer = 30;
+        }
+
+        public void OnAssociate()
+        {
+            isActivated = true;
+            timer = 150;
+        }
+
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player") && isActivated)
+            /*if (other.gameObject.CompareTag("Player") && isActivated)
             {
                 gameObject.GetComponent<CollisionWithPlayer>().HitPlayer(other.gameObject);
                 //isActivated = false;
-            }
+            }*/
         }
 
         void Start()
         {
-
+            timer = 0;
+            HitboxObject =  transform.Find("attackCollider").gameObject;
+            AttackHitbox = HitboxObject.GetComponent<CapsuleCollider>();
+            //AttackHitbox = transform.GetChild(2).gameObject.GetComponent<CapsuleCollider>();
+            
+            Physics.IgnoreCollision(AttackHitbox, gameObject.GetComponent<CapsuleCollider>());
+            Physics.IgnoreCollision(AttackHitbox, gameObject.GetComponent<CharacterController>());
+            // Debug
+            Debug.Log(AttackHitbox.enabled);
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (isActivated)
+            {
+                timer--;
+                if (timer <= 0)
+                {
+                    isActivated = false;
+                    HitboxObject.GetComponent<CollisionWithPlayer>().isActive = false;
+                    HitboxObject.GetComponent<CollisionWithChest>().isActive = false;
+                    HitboxObject.GetComponent<CollisionWithBase>().isActive = false;
+                }
+            }
+            AttackHitbox.enabled = isActivated;
         }
     }
 }

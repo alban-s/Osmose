@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Base
-  - spawn_blue
   - SpawnBlue
   - SpawnRed
+  - Chest
+  - AttackHitbox
   layers:
   - Default
   - TransparentFX
