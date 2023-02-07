@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029143, g: 0.22572419, b: 0.30693057, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -32056,7 +32056,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  timerDuration: 60
+  timerDuration: 90
   countDown: 1
   flashDuration: 1
 --- !u!4 &1351107396
@@ -43846,17 +43846,17 @@ MonoBehaviour:
   timeInterpolationGui: 0
   red_spawns:
   - {fileID: 102327883}
-  - {fileID: 878538146}
-  - {fileID: 2010609377}
-  - {fileID: 1019029101}
   - {fileID: 695872326}
+  - {fileID: 1019029101}
+  - {fileID: 2010609377}
+  - {fileID: 878538146}
   - {fileID: 888075512}
   blue_spawns:
-  - {fileID: 249954067}
-  - {fileID: 377285463}
-  - {fileID: 215161009}
-  - {fileID: 408511988}
   - {fileID: 2008938396}
+  - {fileID: 408511988}
+  - {fileID: 215161009}
+  - {fileID: 377285463}
+  - {fileID: 249954067}
   - {fileID: 1564499454}
 --- !u!1001 &1860967873
 PrefabInstance:
