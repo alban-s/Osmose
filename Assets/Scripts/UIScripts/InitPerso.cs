@@ -46,7 +46,7 @@ public class InitPerso : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void update_spawns(TeamColour team){
         NetworkManagerCustom nmc = GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>();
-
+        Debug.Log("updt spawns team : " + team);
         foreach (GameObject spawn in nmc.red_spawns){
                 spawn.SetActive(team == TeamColour.Red);
         }

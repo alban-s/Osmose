@@ -78,8 +78,12 @@ namespace Osmose.Gameplay
             update_score_clients();
         }
 
-        //[Command]
-        public void IncreasePoints(ushort increaseAmount, GameObject pointsSource, bool associated = false)
+
+        public void IncreasePoints(ushort increaseAmount, GameObject pointsSource, bool associated = false){
+            CmdIncreasePoints(increaseAmount, pointsSource, associated);
+        }
+        [Command]
+        public void CmdIncreasePoints(ushort increaseAmount, GameObject pointsSource, bool associated)
         {
             ushort tempPoints = CurrentPoints;
 
@@ -107,8 +111,11 @@ namespace Osmose.Gameplay
             }
         }
 
-        //[Command]
-        public void DecreasePoints(ushort damage, GameObject damageSource, bool associated = false)
+        public void DecreasePoints(ushort damage, GameObject damageSource, bool associated = false){
+            CmdDecreasePoints(damage, damageSource, associated);
+        }
+        [Command]
+        public void CmdDecreasePoints(ushort damage, GameObject damageSource, bool associated)
         {
             if (Invincible)
                 return;
