@@ -46,6 +46,7 @@ namespace Osmose.Gameplay
 
         void OnTriggerEnter(Collider other)
         {
+            
             // Debug show tag of other
             if (isActive)
             {

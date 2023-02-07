@@ -805,7 +805,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5555650353254894872}
         m_TargetAssemblyTypeName: SettingsControl, Assembly-CSharp
         m_MethodName: SetSoundEffect
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3701,7 +3701,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisWindow: {fileID: 5555650353254894874}
-  audioMixer: {fileID: 24100000, guid: 4c72527fb2fc9e9428434f87323a6a21, type: 2}
+  AmbiantMixer: {fileID: 24100000, guid: 54e20d708b326f34aae28c579248a213, type: 2}
+  EffectMixer: {fileID: 24100000, guid: 143f8da4aacac464b97b1b86687f191d, type: 2}
   resolutionDropdown: {fileID: 5555650352659103218}
 --- !u!1 &5555650353283772352
 GameObject:
@@ -6782,7 +6783,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5555650353254894872}
-        m_TargetAssemblyTypeName: TMPro.SettingsControl, Assembly-CSharp
+        m_TargetAssemblyTypeName: SettingsControl, Assembly-CSharp
         m_MethodName: SetCamSentibilityX
         m_Mode: 4
         m_Arguments:
@@ -9145,7 +9146,7 @@ MonoBehaviour:
       - m_Target: {fileID: 5555650353254894872}
         m_TargetAssemblyTypeName: SettingsControl, Assembly-CSharp
         m_MethodName: SetVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
