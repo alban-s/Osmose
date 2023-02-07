@@ -9,11 +9,14 @@ namespace Osmose.Gameplay
     public class IsInOwnBase : MonoBehaviour
     {
         CapsuleCollider playerHitbox;
+        PlayerMotor motor;
+
         //public bool IsInOwnBase { get; set; }
         // Start is called before the first frame update
         void Start()
         {
             playerHitbox = GetComponent<CapsuleCollider>();
+            motor = GetComponent<PlayerMotor>();
         }
 
         // Update is called once per frame
@@ -30,6 +33,7 @@ namespace Osmose.Gameplay
                 {
                     //IsInOwnBase = true;
                     Debug.Log("IsInOwnBase");
+                    motor.playBase();
                     gameObject.GetComponent<Health>().IsInBase = true;
                     gameObject.GetComponent<Health>().CanMatch = true;
                 }

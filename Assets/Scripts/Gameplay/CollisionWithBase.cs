@@ -67,6 +67,7 @@ namespace Osmose.Gameplay
                         if (player.GetComponent<Health>().CanMatch == true)// && HasReachedEnemyBase == false)
                         {
                             Debug.Log("hoy");
+                            motor.playEnnemyBase();
                             player.GetComponent<Health>().IncreasePoints(10000, other.gameObject);
                             //HasReachedEnemyBase = true;
                             player.GetComponent<Health>().CanMatch = false;
