@@ -39,13 +39,14 @@ public class NetworkManagerCustom : NetworkManager
         Debug.Log("pos ll : "+pos);
         // playerPrefab is the one assigned in the inspector in Network
         // Manager but you can use different prefabs per race for example
-        GameObject gameobject = Instantiate(playerPrefab,pos);
+        GameObject player = pos != null?Instantiate(playerPrefab,pos.position, pos.rotation)
+                                        :Instantiate(playerPrefab);
         // Apply data from the message however appropriate for your game
         // Typically Player would be a component you write with syncvars or properties
-        gameobject.name = message.name;
+        player.name = message.name;
 
         // call this to use this gameobject as the primary controller
-        NetworkServer.AddPlayerForConnection(conn, gameobject);
+        NetworkServer.AddPlayerForConnection(conn, player);
     }
 
     public override Transform GetStartPosition()
