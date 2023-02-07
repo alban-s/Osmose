@@ -9,6 +9,7 @@ TagManager:
   - SpawnRed
   - Chest
   - AttackHitbox
+  - BaseHitbox
   layers:
   - Default
   - TransparentFX

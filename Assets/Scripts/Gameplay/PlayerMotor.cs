@@ -43,6 +43,9 @@ namespace Osmose.Gameplay
         [SerializeField] private AudioClip audioChest = null;
         [SerializeField] private AudioClip audioPoints = null;
         [SerializeField] private AudioClip audioPraise = null;
+        [SerializeField] private AudioClip audioBase = null;
+        [SerializeField] private AudioClip audioAttack = null;
+        [SerializeField] private AudioClip audioAttackNull = null;
         [SerializeField] private AudioClip shilili = null;
         private AudioSource controller_AudioSource;
 
@@ -236,6 +239,34 @@ namespace Osmose.Gameplay
             controller_AudioSource.PlayOneShot(audioPoints);
         }
 
+        public void playBase()
+        {
+            controller_AudioSource.PlayOneShot(audioBase);
+        }
+
+        public void playEnnemyBase()
+        {
+            controller_AudioSource.PlayOneShot(audioBase);
+            controller_AudioSource.clip = audioPoints;
+            controller_AudioSource.PlayDelayed(audioBase.length + 0.3f);
+        }
+
+        public void playAttack()
+        {
+            controller_AudioSource.PlayOneShot(audioAttack);
+        }
+
+        public void playAttackNull()
+        {
+            controller_AudioSource.PlayOneShot(audioAttackNull);
+        }
+
+        public void cantMoveAttackNull()
+        {
+            // TODO
+        }
+
+
         // Appele par PlayerController quand on appuie sur "Attack" (clic gauche)
         public void Attack()
         {
@@ -311,8 +342,9 @@ namespace Osmose.Gameplay
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge"))
             {
                 transform.Rotate(rotation);
-                playerCamera.localEulerAngles = cameraRotation;
             }
+            playerCamera.localEulerAngles = cameraRotation;
+
         }
 
         // Mouvements lies au clavier, deplacement devant-derriere droite-gauche

@@ -9,6 +9,8 @@ namespace Osmose.Gameplay
     {
         GameObject player;
         public bool isActive;
+        PlayerMotor motor;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -16,6 +18,7 @@ namespace Osmose.Gameplay
             isActive = false;
             // get the parent of the object
             player = transform.parent.gameObject;
+            motor = transform.parent.gameObject.GetComponent<PlayerMotor>();            
         }
 
         // Update is called once per frame
@@ -35,6 +38,7 @@ namespace Osmose.Gameplay
                     Debug.Log("collision");
                     if (otherPlayer.GetComponent<Health>().CanMatch && !player.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
                     {
+                        motor.playAttack();
                         //if player IsInBase, wins match
                         if (player.GetComponent<Health>().IsInBase == true)
                         {
@@ -71,6 +75,24 @@ namespace Osmose.Gameplay
                         //set both players to !CanMatch
                         if (!otherPlayer.GetComponent<Health>().isTest) other.gameObject.GetComponent<Health>().CanMatch = false;
                         if (!player.GetComponent<Health>().isTest) player.GetComponent<Health>().CanMatch = false;
+                    }
+                    else if (!otherPlayer.GetComponent<Health>().CanMatch && !player.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
+                    {
+                        motor.playAttackNull();
+                        motor.cantMoveAttackNull();
+                        otherPlayer.GetComponent<PlayerMotor>().cantMoveAttackNull();
+                    }
+                }
+            }
+            else if(!player.GetComponent<Health>().CanMatch)
+            {
+                if (other.gameObject.CompareTag("Player"))
+                {
+                    if (!player.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
+                    {
+                        motor.playAttackNull();
+                        motor.cantMoveAttackNull();
+                        other.gameObject.GetComponent<PlayerMotor>().cantMoveAttackNull();
                     }
                 }
             }

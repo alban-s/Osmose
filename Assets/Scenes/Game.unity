@@ -6762,7 +6762,7 @@ MeshCollider:
   m_GameObject: {fileID: 339669805}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -12589,12 +12589,32 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 17ea0cfaea102404c8b608bb9f5c6ed5, type: 2}
+    - target: {fileID: 65000010856413394, guid: df8b2e05e6bc70e4eb740280ce078f7f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 137000011640025020, guid: df8b2e05e6bc70e4eb740280ce078f7f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dba8d79d49560d54fa2f9fef4f8ede62, type: 2}
+    - target: {fileID: 3912197055925716307, guid: df8b2e05e6bc70e4eb740280ce078f7f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912197055925716307, guid: df8b2e05e6bc70e4eb740280ce078f7f,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6410356603916971691, guid: df8b2e05e6bc70e4eb740280ce078f7f,
+        type: 3}
+      propertyPath: team
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887918575855009104, guid: df8b2e05e6bc70e4eb740280ce078f7f,
         type: 3}
       propertyPath: team
       value: 1
@@ -23454,11 +23474,16 @@ PrefabInstance:
         type: 3}
       propertyPath: audioPoints
       value: 
-      objectReference: {fileID: 8300000, guid: 9b19f13b3d94d7141908c9113fe26c16, type: 3}
+      objectReference: {fileID: 8300000, guid: be10244776907d74cad263c069487cd0, type: 3}
     - target: {fileID: -133013500302973191, guid: fa8b3e987ad725a4882340230af319ba,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -133013500302973191, guid: fa8b3e987ad725a4882340230af319ba,
+        type: 3}
+      propertyPath: StartPoints
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 1558792372541830537, guid: fa8b3e987ad725a4882340230af319ba,
         type: 3}
