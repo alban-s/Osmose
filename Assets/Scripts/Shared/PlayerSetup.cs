@@ -85,7 +85,7 @@ public class PlayerSetup : NetworkBehaviour
             string name = player.transform.name;
             player.GetComponent<PlayerSetup>().update_player_name_clients(name);
             Debug.Log(" name player : " + player.transform.name);
-            TeamColour team = gameObject.GetComponent<Team>().team;
+            TeamColour team = player.GetComponent<Team>().team;
             player.GetComponent<PlayerSetup>().update_player_team_clients(team);
         }
     }
