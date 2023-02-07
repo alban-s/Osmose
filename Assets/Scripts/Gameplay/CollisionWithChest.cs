@@ -52,10 +52,10 @@ namespace Osmose.Gameplay
             {
                 Debug.Log(other.gameObject.tag);
                 if (other.gameObject.CompareTag("Chest"))
-                {
+                {                    
+                    Debug.Log("Collision with chest");
                     tim = 1.7f;
                     collisionChest = true;
-                    Debug.Log("Collision with chest");
                     motor.playChest();
                     PointsAmount = other.gameObject.GetComponent<ChestController>().GetPoints();
                     Debug.Log(PointsAmount);
