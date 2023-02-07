@@ -3,7 +3,7 @@ using TMPro;
 using Mirror;
 public class Timer : NetworkBehaviour {
     [SerializeField]
-    private float timerDuration = 3f * 60f; //Duration of the timer in seconds
+    private float timerDuration; //Duration of the timer in seconds
 
     [SerializeField]
     private bool countDown = true;
@@ -36,6 +36,11 @@ public class Timer : NetworkBehaviour {
     public float GetTime()
     {
         return timer;
+    }
+
+    public void SetDuration(float duration)
+    {
+        timerDuration = duration;
     }
 
     private void ResetTimer() {

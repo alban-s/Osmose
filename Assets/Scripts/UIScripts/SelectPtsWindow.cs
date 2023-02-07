@@ -56,15 +56,11 @@ public class SelectPtsWindow : MonoBehaviour
         // Debug.Log(manager.GetComponent<Score>().GetScoreRestantRed());
         if(playerTeam == TeamColour.Blue)
         {
-            teamPoints = manager.GetComponent<Score>().GetTeamBlueScore();
-            displayTotalTeamPoints.SetText(teamPoints.ToString());
             curTeamPoints = manager.GetComponent<Score>().GetScoreRestantBlue();
             displayCurTeamPoints.SetText(curTeamPoints.ToString());
         }
         else
         {
-            teamPoints = manager.GetComponent<Score>().GetTeamRedScore();
-            displayTotalTeamPoints.SetText(teamPoints.ToString());
             curTeamPoints = manager.GetComponent<Score>().GetScoreRestantRed();
             displayCurTeamPoints.SetText(curTeamPoints.ToString());
         }
