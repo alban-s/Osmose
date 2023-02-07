@@ -73,13 +73,7 @@ namespace Osmose.Gameplay
         }
 
         void handleAnimation()
-        {
-            // Affectation des variables
-            bool moving = _direction.x != 0 || _direction.y != 0;
-            bool running = _isRunning == 1;
-
-            if(isLocalPlayer) update_inputs(moving,running);
-            
+        {           
             bool isWalking = animator.GetBool(isWalkingHash);
             bool isRunning = animator.GetBool(isRunningHash);
             bool isStopping = animator.GetBool(isStoppingHash);
@@ -139,8 +133,10 @@ namespace Osmose.Gameplay
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Run To Stop"))
             {
                 // Affectation des variables
-                isMovementPressed = _direction.x != 0 || _direction.y != 0;
-                isRunPressed = _isRunning == 1;
+                bool moving = _direction.x != 0 || _direction.y != 0;
+                bool running = _isRunning == 1;
+
+                if (isLocalPlayer) update_inputs(moving, running);
 
                 if (isRunPressed)
                 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Osmose.Game
+namespace Osmose.Gameplay
 {
     public class PointsDisplay : MonoBehaviour
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Osmose.Game;
+using Osmose.Gameplay;
 using TMPro;
 using System;
 

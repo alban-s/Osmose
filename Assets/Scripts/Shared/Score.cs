@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
-using Osmose.Game;
+using Osmose.Gameplay;
 
 
 public class Score : NetworkBehaviour

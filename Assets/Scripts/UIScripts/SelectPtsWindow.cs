@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 
 using Osmose.Game;
+using Osmose.Gameplay;
 using TMPro;
 
 public class SelectPtsWindow : MonoBehaviour

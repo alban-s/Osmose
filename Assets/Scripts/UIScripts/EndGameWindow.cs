@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-using Osmose.Game;
+using Osmose.Gameplay;
 using TMPro;
 
 public class EndGameWindow : MonoBehaviour
