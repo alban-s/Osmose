@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Mirror;
-using Osmose.Game;
+using Osmose.Gameplay;
 
 public class InitPerso : NetworkBehaviour
 {

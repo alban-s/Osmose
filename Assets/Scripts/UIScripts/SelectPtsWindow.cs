@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
-using Osmose.Game;
 using Osmose.Gameplay;
 using TMPro;
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 using Mirror;
-using Osmose.Game;
+using Osmose.Gameplay;
 using System.Collections.Generic;
 public class PlayerSetup : NetworkBehaviour
 {
@@ -87,6 +87,8 @@ public class PlayerSetup : NetworkBehaviour
             Debug.Log(" name player : " + player.transform.name);
             TeamColour team = player.GetComponent<Team>().team;
             player.GetComponent<PlayerSetup>().update_player_team_clients(team);
+            Debug.Log(" name player : " + player.GetComponent<Team>().team);
+            player.GetComponent<Team>().ChoixEquipe();
         }
     }
 
@@ -95,7 +97,7 @@ public class PlayerSetup : NetworkBehaviour
         gameObject.transform.name = name;
     }
 
-        [ClientRpc]
+    [ClientRpc]
     public void update_player_team_clients(TeamColour team){
         gameObject.GetComponent<Team>().team = team;
     }

@@ -1,8 +1,8 @@
-using Osmose.Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Osmose.Gameplay;
 
 public class GameManager : NetworkBehaviour
 {

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-using Osmose.Game;
-
 /* TODO :   Edit > Project Settings > Input Manager
  *          Use Physical Keys -> check
  *          Dans Axes > Fire3 > Alt Positive > mouse 1

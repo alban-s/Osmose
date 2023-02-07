@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Osmose.Game
+namespace Osmose.Gameplay
 {
     public enum TeamColour
     {
@@ -10,10 +10,9 @@ namespace Osmose.Game
         Blue
     }
 
-
     public class Team : MonoBehaviour
     {
-        
+
         public TeamColour team;
         // Start is called before the first frame update
         public Material material_blue;
@@ -21,7 +20,6 @@ namespace Osmose.Game
         void Start()
         {
             SetTeam(team);
-            // ChoixEquipe();
         }
 
         // Update is called once per frame
@@ -45,24 +43,21 @@ namespace Osmose.Game
             return this.team == team;
         }
 
-        void ChoixEquipe()
+        public void ChoixEquipe()
         {
-            if(GetComponent<Renderer>() != null)
+            if (CompareTag("Player"))
             {
-                if(CompareTag("Player")){
-                    if (team == TeamColour.Red)
-                        {
-                            transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_red;
-                            transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_red;
+                if (team == TeamColour.Red)
+                {
+                    transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_red;
+                    transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_red;
 
-                        }
-                        if (team == TeamColour.Blue)
-                        {
-                            transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_blue;
-                            transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_blue;
-                        }
                 }
-                
+                if (team == TeamColour.Blue)
+                {
+                    transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_blue;
+                    transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_blue;
+                }
             }
         }
     }

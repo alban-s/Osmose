@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using Osmose.Game;
-
-
 public class WindowControl : MonoBehaviour
 {
     public GameObject choseScoreWindow;

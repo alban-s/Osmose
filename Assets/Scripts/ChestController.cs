@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Osmose.Game;
 
 namespace Osmose.Gameplay
 {

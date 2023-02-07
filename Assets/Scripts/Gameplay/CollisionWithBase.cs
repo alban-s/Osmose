@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-using Osmose.Game;
-
 namespace Osmose.Gameplay
 {
     public class CollisionWithBase : MonoBehaviour

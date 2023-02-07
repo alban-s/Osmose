@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Osmose.Game;
-
 namespace Osmose.Gameplay
 {
     public class IsInOwnBase : MonoBehaviour
