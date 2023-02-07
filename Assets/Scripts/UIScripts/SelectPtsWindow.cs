@@ -29,14 +29,14 @@ public class SelectPtsWindow : MonoBehaviour
         playerTeam = player.GetComponent<Team>().GetTeam();
         if(playerTeam == TeamColour.Blue)
         {
-            teamPoints = manager.GetComponent<Score>().GetTeamBlueScore();
+            teamPoints = manager.GetComponent<Score>().GetTeamMaxScore();
             displayTotalTeamPoints.SetText(teamPoints.ToString());
             curTeamPoints = manager.GetComponent<Score>().GetScoreRestantBlue();
             displayCurTeamPoints.SetText(curTeamPoints.ToString());
         }
         else
         {
-            teamPoints = manager.GetComponent<Score>().GetTeamRedScore();
+            teamPoints = manager.GetComponent<Score>().GetTeamMaxScore();
             displayTotalTeamPoints.SetText(teamPoints.ToString());
             curTeamPoints = manager.GetComponent<Score>().GetScoreRestantRed();
             displayCurTeamPoints.SetText(curTeamPoints.ToString());

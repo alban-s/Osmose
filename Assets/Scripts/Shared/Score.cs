@@ -108,6 +108,11 @@ public class Score : NetworkBehaviour
         return remaining_score_red;
     }
 
+    public ushort GetTeamMaxScore()
+    {
+        return team_max_score;
+    }
+
     public GameObject[] GetPlayersBlue()
     {
         return player_list_blue;
