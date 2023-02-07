@@ -45,14 +45,17 @@ namespace Osmose.Game
 
         void ChoixEquipe()
         {
-            if (team == TeamColour.Red)
+            if(GetComponent<Renderer>() != null)
             {
-                GetComponent<Renderer>().material.color = Color.red;
+                if (team == TeamColour.Red)
+                {
+                    GetComponent<Renderer>().material.color = Color.red;
 
-            }
-            if (team == TeamColour.Blue)
-            {
-                GetComponent<Renderer>().material.color = Color.blue;
+                }
+                if (team == TeamColour.Blue)
+                {
+                    GetComponent<Renderer>().material.color = Color.blue;
+                }
             }
         }
     }

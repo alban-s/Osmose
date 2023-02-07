@@ -14,7 +14,7 @@ namespace Osmose.Gameplay
         void Start()
         {
             isAssociated = false;
-            player = transform.parent.gameObject;
+            player = gameObject;
             otherPlayer = null;
         }
 
@@ -40,7 +40,7 @@ namespace Osmose.Gameplay
             {
                 if (other.gameObject.CompareTag("AttackHitbox"))
                 {
-                    otherPlayer = other.transform.parent.gameObject;
+                    otherPlayer = other.gameObject;
                     if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
                         isAssociated = true;
