@@ -38,24 +38,22 @@ namespace Osmose.Gameplay
                     Debug.Log("collision");
                     if (otherPlayer.GetComponent<Health>().CanMatch && !player.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
                     {
+                        motor.playAttack();
                         //if player IsInBase, wins match
                         if (player.GetComponent<Health>().IsInBase == true)
                         {
-                            motor.playAttack();
                             player.GetComponent<Health>().IncreasePoints(10000, other.gameObject);
                             otherPlayer.GetComponent<Health>().DecreasePoints(10000, player);
                         }
                         // if other player IsInBase, loses match
                         else if (otherPlayer.GetComponent<Health>().IsInBase == true)
                         {
-                            motor.playAttack();                            
                             otherPlayer.GetComponent<Health>().IncreasePoints(10000, player);
                             player.GetComponent<Health>().DecreasePoints(10000, other.gameObject);
                         }
                         // if neither player is in base, compare points
                         else if (otherPlayer.GetComponent<Health>().GetPoints() > player.GetComponent<Health>().GetPoints())
                         {
-                            motor.playAttack();  
                             //winning player steals 500 points from losing player
                             otherPlayer.GetComponent<Health>().IncreasePoints(500, player);
                             player.GetComponent<Health>().DecreasePoints(500, other.gameObject);
@@ -63,7 +61,6 @@ namespace Osmose.Gameplay
                         }
                         else if (otherPlayer.GetComponent<Health>().GetPoints() < player.GetComponent<Health>().GetPoints())
                         {
-                            motor.playAttack();  
                             //winning player steals 500 points from losing player
                             otherPlayer.GetComponent<Health>().DecreasePoints(500, player);
                             player.GetComponent<Health>().IncreasePoints(500, other.gameObject);
@@ -78,6 +75,24 @@ namespace Osmose.Gameplay
                         //set both players to !CanMatch
                         if (!otherPlayer.GetComponent<Health>().isTest) other.gameObject.GetComponent<Health>().CanMatch = false;
                         if (!player.GetComponent<Health>().isTest) player.GetComponent<Health>().CanMatch = false;
+                    }
+                    else if (!otherPlayer.GetComponent<Health>().CanMatch && !player.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
+                    {
+                        motor.playAttackNull();
+                        motor.cantMoveAttackNull();
+                        otherPlayer.GetComponent<PlayerMotor>().cantMoveAttackNull();
+                    }
+                }
+            }
+            else if(!player.GetComponent<Health>().CanMatch)
+            {
+                if (other.gameObject.CompareTag("Player"))
+                {
+                    if (!player.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
+                    {
+                        motor.playAttackNull();
+                        motor.cantMoveAttackNull();
+                        other.gameObject.GetComponent<PlayerMotor>().cantMoveAttackNull();
                     }
                 }
             }

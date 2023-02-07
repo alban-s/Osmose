@@ -44,6 +44,7 @@ namespace Osmose.Gameplay
         [SerializeField] private AudioClip audioPraise = null;
         [SerializeField] private AudioClip audioBase = null;
         [SerializeField] private AudioClip audioAttack = null;
+        [SerializeField] private AudioClip audioAttackNull = null;
         [SerializeField] private AudioClip shilili = null;
         private AudioSource controller_AudioSource;
 
@@ -242,9 +243,18 @@ namespace Osmose.Gameplay
         public void playAttack()
         {
             controller_AudioSource.PlayOneShot(audioAttack);
-            controller_AudioSource.clip = audioPoints;
-            controller_AudioSource.PlayDelayed(audioBase.length + 0.5f);
         }
+
+        public void playAttackNull()
+        {
+            controller_AudioSource.PlayOneShot(audioAttackNull);
+        }
+
+        public void cantMoveAttackNull()
+        {
+            // TODO
+        }
+
 
         // Appele par PlayerController quand on appuie sur "Attack" (clic gauche)
         public void Attack()
