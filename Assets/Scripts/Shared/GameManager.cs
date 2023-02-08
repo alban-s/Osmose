@@ -8,15 +8,17 @@ public class GameManager : NetworkBehaviour
 {
     [SyncVar]
     public bool gameStarted = false;
+
+    [SyncVar]
     [SerializeField]
     private ushort maxNbOfPlayer;
 
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void StartGame(){
         this.gameStarted = true;
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void StopGame(){
         this.gameStarted = true;
     }
@@ -24,10 +26,10 @@ public class GameManager : NetworkBehaviour
     {
         return maxNbOfPlayer;
     }
-
+    [Command]
     public void SetMaxNbOfPlayer(ushort value)
     {
-        maxNbOfPlayer = value;
+        this.maxNbOfPlayer = value;
     }
 
     public List<GameObject> GetPlayerBlueList()
