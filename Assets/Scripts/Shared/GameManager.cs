@@ -29,7 +29,8 @@ public class GameManager : NetworkBehaviour
     [Command]
     public void SetMaxNbOfPlayer(ushort value)
     {
-        this.maxNbOfPlayer = value;
+        Debug.Log("DANS LE sET : " + value);
+        maxNbOfPlayer = value;
     }
 
     public List<GameObject> GetPlayerBlueList()
