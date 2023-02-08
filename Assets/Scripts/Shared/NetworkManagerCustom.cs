@@ -37,9 +37,6 @@ public class NetworkManagerCustom : NetworkManager
     public override void OnClientConnect()
     {
         base.OnClientConnect();
-        nbPlayersConnected++;
-        if (nbPlayersConnected == gameManager.GetComponent<GameManager>().GetNbOfPlayer())
-            gameManager.GetComponent<Timer>().ResetTimer();
     }
     void OnCreatePlayer(NetworkConnectionToClient conn, CreatePlayerMessage message)
     {
@@ -57,6 +54,14 @@ public class NetworkManagerCustom : NetworkManager
 
         // call this to use this gameobject as the primary controller
         NetworkServer.AddPlayerForConnection(conn, player);
+
+        nbPlayersConnected++;
+        Debug.Log("nombre attendu : " + gameManager.GetComponent<GameManager>().GetNbOfPlayer() + "  nombre actuel : " + nbPlayersConnected);
+        if (nbPlayersConnected == gameManager.GetComponent<GameManager>().GetNbOfPlayer())
+        {
+            gameManager.GetComponent<Timer>().ResetTimer();
+            Debug.Log("TIMER GO");
+        }  
     }
 
     public override Transform GetStartPosition()
