@@ -14,9 +14,13 @@ public class NetworkManagerCustom : NetworkManager
     private int index_pos_blue = 0;
     public GameObject[] red_spawns;
     public GameObject[] blue_spawns;
-    public GameObject gameManagerPrefab;
-
     private GameObject gameManager;
+
+    public override void Awake()
+    {
+        base.Awake();
+        gameManager = GameObject.Find("GameManager");
+    }
 
     public struct CreatePlayerMessage : NetworkMessage
     {
@@ -27,10 +31,6 @@ public class NetworkManagerCustom : NetworkManager
     public override void OnStartServer()
     {
         base.OnStartServer();
-
-        gameManager = Instantiate(gameManagerPrefab);
-        gameManager.transform.name = "GameManager";
-        NetworkServer.Spawn(gameManager);
 
         NetworkServer.RegisterHandler<CreatePlayerMessage>(OnCreatePlayer);
     }

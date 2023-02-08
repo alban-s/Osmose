@@ -13,11 +13,19 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     private ushort maxNbOfPlayer;
 
+
+    [Command(requiresAuthority = false)]
+    public void StartGame(){
+        this.gameStarted = true;
+    }
+    [Command(requiresAuthority = false)]
+    public void StopGame(){
+        this.gameStarted = true;
+    }
     public ushort GetMaxNbOfPlayer()
     {
         return maxNbOfPlayer;
     }
-
     [Command]
     public void SetMaxNbOfPlayer(ushort value)
     {
