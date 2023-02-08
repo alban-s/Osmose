@@ -7,16 +7,16 @@ using Osmose.Gameplay;
 public class GameManager : NetworkBehaviour
 {
     [SerializeField]
-    private ushort nbOfPlayer;
+    private ushort maxNbOfPlayer;
 
-    public ushort GetNbOfPlayer()
+    public ushort GetMaxNbOfPlayer()
     {
-        return nbOfPlayer;
+        return maxNbOfPlayer;
     }
 
-    public void SetNbOfPlayer(ushort value)
+    public void SetMaxNbOfPlayer(ushort value)
     {
-        nbOfPlayer = value;
+        maxNbOfPlayer = value;
     }
 
     public List<GameObject> GetPlayerBlueList()

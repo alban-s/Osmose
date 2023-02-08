@@ -71,6 +71,7 @@ public class PlayerSetup : NetworkBehaviour
             {
                 gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
                 gameObject.transform.name = ip.chosePseudo;
+                gameObject.GetComponent<Team>().ChoixEquipe();
                 SendClientValues((TeamColour)ip.choseTeam, ip.chosePseudo);
             }
         }

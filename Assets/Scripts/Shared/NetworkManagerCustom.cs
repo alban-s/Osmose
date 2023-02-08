@@ -56,12 +56,12 @@ public class NetworkManagerCustom : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, player);
 
         nbPlayersConnected++;
-        Debug.Log("nombre attendu : " + gameManager.GetComponent<GameManager>().GetNbOfPlayer() + "  nombre actuel : " + nbPlayersConnected);
-        if (nbPlayersConnected == gameManager.GetComponent<GameManager>().GetNbOfPlayer())
+        Debug.Log("nombre attendu : " + gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer() + "  nombre actuel : " + nbPlayersConnected);
+        if (nbPlayersConnected == gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer())
         {
             gameManager.GetComponent<Timer>().ResetTimer();
             Debug.Log("TIMER GO");
-        }  
+        }
     }
 
     public override Transform GetStartPosition()

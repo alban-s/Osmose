@@ -48,6 +48,7 @@ public class CreateGame : MonoBehaviour
         InitPtsPerTeam(maxTeamPoints.text);
         InitGameTime(gameDuration.text);
 
+        gameManager.GetComponent<GameManager>().SetMaxNbOfPlayer(nbPlayers);
         gameManager.GetComponent<Score>().SetTeamMaxScore(nbPtsPerTeam);
         gameManager.GetComponent<Timer>().SetDuration(gameTime);
 
