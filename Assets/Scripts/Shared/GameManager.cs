@@ -10,8 +10,7 @@ public class GameManager : NetworkBehaviour
     public bool gameStarted = false;
 
     [SyncVar]
-    [SerializeField]
-    private ushort maxNbOfPlayer;
+    public ushort maxNbOfPlayer;
 
 
     [Command(requiresAuthority = false)]
@@ -26,10 +25,9 @@ public class GameManager : NetworkBehaviour
     {
         return maxNbOfPlayer;
     }
-    [Command]
+    // [Command(requiresAuthority = false)]
     public void SetMaxNbOfPlayer(ushort value)
     {
-        Debug.Log("DANS LE sET : " + value);
         maxNbOfPlayer = value;
     }
 
