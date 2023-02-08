@@ -10,6 +10,9 @@ public class GameManager : NetworkBehaviour
     public bool gameStarted = false;
 
     [SyncVar]
+    public ushort readyCount = 0;
+
+    [SyncVar]
     public ushort maxNbOfPlayer;
 
 

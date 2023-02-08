@@ -83,6 +83,7 @@ public class SelectPtsWindow : MonoBehaviour
             manager.GetComponent<Score>().IncreaseScoreRed(playerPts);
         }
         player.GetComponent<Health>().SetStartPoints(playerPts);
+        manager.GetComponent<GameManager>().readyCount++;
 
         waitWindow.SetActive(true);
         thisWindow.SetActive(false);

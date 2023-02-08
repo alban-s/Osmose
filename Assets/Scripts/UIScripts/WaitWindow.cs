@@ -28,7 +28,7 @@ public class WaitWindow : MonoBehaviour
          blueCountText.GetComponent<TextMeshProUGUI>().text = manager.GetBlueCount().ToString() + " joueurs";
          redCountText.GetComponent<TextMeshProUGUI>().text = manager.GetRedCount().ToString() + " joueurs";
          int remaining = manager.GetMaxNbOfPlayer() - manager.GetTotalPlayerCount();
-         if(remaining == 0){
+         if(remaining == 0 && manager.readyCount == manager.GetMaxNbOfPlayer()){
             remainingText.GetComponent<TextMeshProUGUI>().text = "Ready to Start";
             startButton.GetComponent<Button>().interactable = true;
         }else{
