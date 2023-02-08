@@ -15,8 +15,8 @@ namespace Osmose.Gameplay
 
         public TeamColour team;
         // Start is called before the first frame update
-        public Material material_blue;
-        public Material material_red;
+        [SerializeField] private Material material_blue;
+        [SerializeField] private Material material_red;
         void Start()
         {
             SetTeam(team);
@@ -49,14 +49,18 @@ namespace Osmose.Gameplay
             {
                 if (team == TeamColour.Red)
                 {
-                    transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_red;
-                    transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_red;
+                    //transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_red;
+                    //transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_red;
+                    transform.Find("Graphics").GetChild(0).Find("Body").GetComponent<SkinnedMeshRenderer>().material = material_red;
+                    transform.Find("Graphics").GetChild(0).Find("Joints").GetComponent<SkinnedMeshRenderer>().material = material_red;
 
                 }
                 if (team == TeamColour.Blue)
                 {
-                    transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_blue;
-                    transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_blue;
+                    //transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material = material_blue;
+                    //transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = material_blue;
+                    transform.Find("Graphics").GetChild(0).Find("Body").GetComponent<SkinnedMeshRenderer>().material = material_blue;
+                    transform.Find("Graphics").GetChild(0).Find("Joints").GetComponent<SkinnedMeshRenderer>().material = material_blue;
                 }
             }
         }
