@@ -10,6 +10,8 @@ public class WindowControl : MonoBehaviour
     public GameObject settingWindow;
     public GameObject endGameWindow;
 
+    public GameObject waitWindow;
+
     private GameObject manager;
 
     private bool gameOn;
@@ -25,6 +27,7 @@ public class WindowControl : MonoBehaviour
         gameWindow.SetActive(false);
         endGameWindow.SetActive(false);
         settingWindow.SetActive(false);
+        waitWindow.SetActive(false);
         gameOn = false;
         gameStart = false;
 
@@ -37,7 +40,7 @@ public class WindowControl : MonoBehaviour
         gameOn = manager.GetComponent<Timer>().GameOn();
 
 
-        // Lancement de la fenetre de jeu quand partie lancé
+        // Lancement de la fenetre de jeu quand partie lancï¿½
         if (gameOn)
         {
             gameWindow.SetActive(true);

@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 4681238417484631913}
   - component: {fileID: 239755222481489741}
   - component: {fileID: 4417676318760354803}
+  - component: {fileID: 892319837857468271}
   m_Layer: 5
   m_Name: WaitingWindow
   m_TagString: Untagged
@@ -196,6 +197,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &892319837857468271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570408070897835826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82aa2057d53db7529899e7689f82e638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blueCountText: {fileID: 5100093586593542473}
+  redCountText: {fileID: 7672358548707611121}
+  remainingText: {fileID: 3743917192541227749}
+  startButton: {fileID: 3815478759124354394}
 --- !u!1 &679250134485588500
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "D\xE9marrer partie"
+  m_text: Demarrer partie
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42568931d1ccfaf41b8d12c7e0f62611, type: 2}
   m_sharedMaterial: {fileID: -818552399142504263, guid: 42568931d1ccfaf41b8d12c7e0f62611,
@@ -1139,7 +1156,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -20.133606, w: 0}
+  m_margin: {x: -105.27173, y: 0, z: -147.94464, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1267,9 +1284,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectPtsWindow, Assembly-CSharp
-        m_MethodName: OnSelectClicked
+      - m_Target: {fileID: 892319837857468271}
+        m_TargetAssemblyTypeName: WaitWindow, Assembly-CSharp
+        m_MethodName: onStartButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4914,6 +4931,7 @@ MonoBehaviour:
   displayTotalTeamPoints: {fileID: 5555650353707199984}
   displayCurTeamPoints: {fileID: 5555650353123355232}
   selectedPts: {fileID: 7175420239400662876}
+  waitWindow: {fileID: 570408070897835826}
 --- !u!1 &5555650353297302123
 GameObject:
   m_ObjectHideFlags: 0
@@ -5458,6 +5476,7 @@ MonoBehaviour:
   gameWindow: {fileID: 5555650352991958149}
   settingWindow: {fileID: 5555650353254894874}
   endGameWindow: {fileID: 5555650353167398937}
+  waitWindow: {fileID: 570408070897835826}
 --- !u!1 &5555650353435472538
 GameObject:
   m_ObjectHideFlags: 0

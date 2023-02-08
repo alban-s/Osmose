@@ -42,4 +42,16 @@ public class GameManager : NetworkBehaviour
         }
         return redPlayer;
     }
+
+    public int GetBlueCount(){
+        return GetPlayerBlueList().Count;
+    }
+
+    public int GetRedCount(){
+        return GetPlayerRedList().Count;
+    }
+
+    public int GetTotalPlayerCount(){
+        return (new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"))).Count;
+    }
 }

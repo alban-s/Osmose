@@ -15,6 +15,8 @@ public class SelectPtsWindow : MonoBehaviour
     public TextMeshProUGUI displayCurTeamPoints;
     public InputField selectedPts;
 
+    public GameObject waitWindow;
+
     private TeamColour playerTeam;
     private ushort teamPoints;
     private ushort curTeamPoints;
@@ -82,9 +84,9 @@ public class SelectPtsWindow : MonoBehaviour
         }
         player.GetComponent<Health>().SetStartPoints(playerPts);
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        waitWindow.SetActive(true);
         thisWindow.SetActive(false);
+        
     }
 
 
