@@ -32,8 +32,8 @@ public class Score : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player_list_blue = GetComponent<GameManager>().GetPlayerRedList().ToArray();
-        player_list_blue = GetComponent<GameManager>().GetPlayerRedList().ToArray();
+        player_list_blue = GetComponent<GameManager>().GetPlayerBlueList().ToArray();
+        player_list_red = GetComponent<GameManager>().GetPlayerRedList().ToArray();
         remaining_score_blue = team_max_score;
         remaining_score_red = team_max_score;
         ComputeScoreEquipe(team_blue_score, player_list_blue);
@@ -43,8 +43,8 @@ public class Score : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        player_list_blue = GetComponent<GameManager>().GetPlayerRedList().ToArray();
-        player_list_blue = GetComponent<GameManager>().GetPlayerRedList().ToArray();
+        player_list_blue = GetComponent<GameManager>().GetPlayerBlueList().ToArray();
+        player_list_red = GetComponent<GameManager>().GetPlayerRedList().ToArray();
         ComputeScoreEquipe(team_blue_score, player_list_blue);
         ComputeScoreEquipe(team_red_score, player_list_red);
     }
