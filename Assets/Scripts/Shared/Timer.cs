@@ -30,7 +30,7 @@ public class Timer : NetworkBehaviour {
     private float flashDuration = 1f; //The full length of the flash
 
     private void Start() {
-        ResetTimer();
+        //ResetTimer();
     }
 
     public float GetTime()
@@ -43,7 +43,7 @@ public class Timer : NetworkBehaviour {
         timerDuration = duration;
     }
 
-    private void ResetTimer() {
+    public void ResetTimer() {
         if (countDown) {
             timer = timerDuration;
         } else {

@@ -12,17 +12,18 @@ public class CreateGame : MonoBehaviour
 
     public GameObject thisWindow;
     public GameObject persoSelectionWindow;
+    public InputField playerNb;
     public InputField maxTeamPoints;
     public InputField gameDuration;
 
-    private GameObject GameManager;
+    private GameObject gameManager;
     private ushort nbPlayers;
     private ushort nbPtsPerTeam;
     private float gameTime;
 
     private void Awake()
     {
-        GameManager = GameObject.Find("GameManager");
+        gameManager = GameObject.Find("GameManager");
     }
 
     public void InitNbPlayers(string value)
@@ -43,11 +44,12 @@ public class CreateGame : MonoBehaviour
 
     public void LaunchGame()
     {
+        InitNbPlayers(playerNb.text);
         InitPtsPerTeam(maxTeamPoints.text);
         InitGameTime(gameDuration.text);
 
-        GameManager.GetComponent<Score>().SetTeamMaxScore(nbPtsPerTeam);
-        GameManager.GetComponent<Timer>().SetDuration(gameTime);
+        gameManager.GetComponent<Score>().SetTeamMaxScore(nbPtsPerTeam);
+        gameManager.GetComponent<Timer>().SetDuration(gameTime);
 
         print("serveurToLink\n");
         print("nb Joueurs =" + nbPlayers.ToString() + ", Points par �quipes =" +

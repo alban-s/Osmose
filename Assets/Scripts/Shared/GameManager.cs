@@ -6,6 +6,19 @@ using Osmose.Gameplay;
 
 public class GameManager : NetworkBehaviour
 {
+    [SerializeField]
+    private ushort nbOfPlayer;
+
+    public ushort GetNbOfPlayer()
+    {
+        return nbOfPlayer;
+    }
+
+    public void SetNbOfPlayer(ushort value)
+    {
+        nbOfPlayer = value;
+    }
+
     public List<GameObject> GetPlayerBlueList()
     {
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));

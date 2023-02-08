@@ -9,10 +9,18 @@ public class NetworkManagerCustom : NetworkManager
 
     TeamColour team = TeamColour.Blue;
 
-    int index_pos_red = 0;
-    int index_pos_blue = 0;
+    private int nbPlayersConnected = 0;
+    private int index_pos_red = 0;
+    private int index_pos_blue = 0;
     public GameObject[] red_spawns;
     public GameObject[] blue_spawns;
+    private GameObject gameManager;
+
+    private void Awake()
+    {
+        gameManager = GameObject.Find("GameManager");
+    }
+
     public struct CreatePlayerMessage : NetworkMessage
     {
         public TeamColour team;
@@ -29,7 +37,9 @@ public class NetworkManagerCustom : NetworkManager
     public override void OnClientConnect()
     {
         base.OnClientConnect();
-
+        nbPlayersConnected++;
+        if (nbPlayersConnected == gameManager.GetComponent<GameManager>().GetNbOfPlayer())
+            gameManager.GetComponent<Timer>().ResetTimer();
     }
     void OnCreatePlayer(NetworkConnectionToClient conn, CreatePlayerMessage message)
     {
