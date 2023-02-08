@@ -24,10 +24,6 @@ public class Score : NetworkBehaviour
     public ushort remaining_score_blue;
     [SyncVar]
     public ushort remaining_score_red;
-/*    [SyncVar]
-    public ushort[] players_score_blue;
-    [SyncVar]
-    public ushort[] players_score_red;*/
 
     // Start is called before the first frame update
     void Start()
@@ -128,21 +124,5 @@ public class Score : NetworkBehaviour
     {
         return player_list_red;
     }
-
-    /*    void SetScorePlayerEquipeBlue()
-        {
-            for (int i = 0; i < player_list_blue.Length; i++)
-            {
-                players_score_blue[i] = player_list_blue[i].GetComponent<Health>().GetPoints();
-            }
-        }
-
-        void SetScorePlayerEquipeRed()
-        {
-            for (int i = 0; i < player_list_red.Length; i++)
-            {
-                players_score_red[i] = player_list_red[i].GetComponent<Health>().GetPoints();
-            }
-        }*/
 }
 

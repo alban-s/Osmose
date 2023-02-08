@@ -25,7 +25,7 @@ public class GameManager : NetworkBehaviour
     {
         return maxNbOfPlayer;
     }
-    // [Command(requiresAuthority = false)]
+
     public void SetMaxNbOfPlayer(ushort value)
     {
         maxNbOfPlayer = value;
