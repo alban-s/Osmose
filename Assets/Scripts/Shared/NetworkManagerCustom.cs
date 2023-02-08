@@ -16,8 +16,9 @@ public class NetworkManagerCustom : NetworkManager
     public GameObject[] blue_spawns;
     private GameObject gameManager;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         gameManager = GameObject.Find("GameManager");
     }
 
@@ -70,12 +71,10 @@ public class NetworkManagerCustom : NetworkManager
             if (team == TeamColour.Blue){
                 index_pos_blue =( index_pos_blue + 1) % blue_spawns.Length;
                 return blue_spawns[index_pos_blue].transform;
-                Debug.Log("BLUE : ");
             }
             if (team == TeamColour.Red){
                 index_pos_red =( index_pos_red + 1) % red_spawns.Length;
                 return red_spawns[index_pos_red].transform;
-                Debug.Log("RED : ");
             }
             return blue_spawns[1].transform;
         }
