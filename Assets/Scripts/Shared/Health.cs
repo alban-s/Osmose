@@ -28,9 +28,11 @@ namespace Osmose.Gameplay
         public bool Invincible { get; set; }
 
         public bool IsInBase { get; set; }
-        public ushort GetPoints() => (ushort)((!gameObject.GetComponent<Associate>().isAssociated) ? CurrentPoints :
-            gameObject.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().CurrentPoints + CurrentPoints);
+        //public ushort GetPoints() => (ushort)((!gameObject.GetComponent<Associate>().isAssociated) ? CurrentPoints :
+        //    gameObject.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().CurrentPoints + CurrentPoints);
 
+        public ushort GetPoints() => (ushort)((!transform.Find("attackCollider").gameObject.GetComponent<Associate>().isAssociated)? CurrentPoints :
+            transform.Find("attackCollider").gameObject.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().CurrentPoints + CurrentPoints);
         void Start()
         {
             StartPoints = 0;
