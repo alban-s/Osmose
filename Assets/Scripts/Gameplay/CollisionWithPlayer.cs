@@ -29,70 +29,66 @@ namespace Osmose.Gameplay
 
         public void HitPlayer(GameObject other)
         {
-            
-            if (player.GetComponent<Health>().CanMatch)
+            if (other.gameObject.CompareTag("Player"))
             {
-                if (other.gameObject.CompareTag("Player"))
+                GameObject otherPlayer = other.gameObject;
+                if (player.GetComponent<Health>().CanMatch)
                 {
-                    GameObject otherPlayer = other.gameObject;
                     Debug.Log("collision");
-                    if (otherPlayer.GetComponent<Health>().CanMatch && !player.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
+                    if (otherPlayer.GetComponent<Health>().CanMatch && !player.GetComponent<Team>().IsSameTeam(otherPlayer.GetComponent<Team>().GetTeam()))
                     {
                         motor.playAttack();
                         //if player IsInBase, wins match
                         if (player.GetComponent<Health>().IsInBase == true)
                         {
-                            player.GetComponent<Health>().IncreasePoints(10000, other.gameObject);
+                            player.GetComponent<Health>().IncreasePoints(10000, otherPlayer);
                             otherPlayer.GetComponent<Health>().DecreasePoints(10000, player);
                         }
                         // if other player IsInBase, loses match
                         else if (otherPlayer.GetComponent<Health>().IsInBase == true)
                         {
                             otherPlayer.GetComponent<Health>().IncreasePoints(10000, player);
-                            player.GetComponent<Health>().DecreasePoints(10000, other.gameObject);
+                            player.GetComponent<Health>().DecreasePoints(10000, otherPlayer);
                         }
                         // if neither player is in base, compare points
                         else if (otherPlayer.GetComponent<Health>().GetPoints() > player.GetComponent<Health>().GetPoints())
                         {
                             //winning player steals 500 points from losing player
                             otherPlayer.GetComponent<Health>().IncreasePoints(500, player);
-                            player.GetComponent<Health>().DecreasePoints(500, other.gameObject);
+                            player.GetComponent<Health>().DecreasePoints(500, otherPlayer);
                             Debug.Log("You Lose : " + player.GetComponent<Health>().GetPoints());
                         }
                         else if (otherPlayer.GetComponent<Health>().GetPoints() < player.GetComponent<Health>().GetPoints())
                         {
                             //winning player steals 500 points from losing player
                             otherPlayer.GetComponent<Health>().DecreasePoints(500, player);
-                            player.GetComponent<Health>().IncreasePoints(500, other.gameObject);
+                            player.GetComponent<Health>().IncreasePoints(500, otherPlayer);
                             Debug.Log("You Win : " + player.GetComponent<Health>().GetPoints());
-                            // other.gameObject.GetComponent<Health>().winText.text = "You Lose!";
+                            // otherPlayer.GetComponent<Health>().winText.text = "You Lose!";
                         }
                         else
                         {
-                            //other.gameObject.GetComponent<Health>().winText.text = "Draw!";
+                            //otherPlayer.GetComponent<Health>().winText.text = "Draw!";
                             //gameObject.GetComponent<Health>().winText.text = "Draw!";
                         }
                         //set both players to !CanMatch
-                        if (!otherPlayer.GetComponent<Health>().isTest) other.gameObject.GetComponent<Health>().CanMatch = false;
+                        if (!otherPlayer.GetComponent<Health>().isTest) otherPlayer.GetComponent<Health>().CanMatch = false;
                         if (!player.GetComponent<Health>().isTest) player.GetComponent<Health>().CanMatch = false;
                     }
-                    else if (!otherPlayer.GetComponent<Health>().CanMatch && !player.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
+                    else if (!otherPlayer.GetComponent<Health>().CanMatch && !player.GetComponent<Team>().IsSameTeam(otherPlayer.GetComponent<Team>().GetTeam()))
                     {
                         motor.playAttackNull();
                         motor.cantMoveAttackNull();
                         otherPlayer.GetComponent<PlayerMotor>().cantMoveAttackNull();
                     }
                 }
-            }
-            else if(!player.GetComponent<Health>().CanMatch)
-            {
-                if (other.gameObject.CompareTag("Player"))
+                else if(!player.GetComponent<Health>().CanMatch)
                 {
-                    if (!player.GetComponent<Team>().IsSameTeam(other.gameObject.GetComponent<Team>().GetTeam()))
+                    if (!player.GetComponent<Team>().IsSameTeam(otherPlayer.GetComponent<Team>().GetTeam()))
                     {
                         motor.playAttackNull();
                         motor.cantMoveAttackNull();
-                        other.gameObject.GetComponent<PlayerMotor>().cantMoveAttackNull();
+                        otherPlayer.GetComponent<PlayerMotor>().cantMoveAttackNull();
                     }
                 }
             }
