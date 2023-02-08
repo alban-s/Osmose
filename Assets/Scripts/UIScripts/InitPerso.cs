@@ -10,7 +10,10 @@ public class InitPerso : NetworkBehaviour
 {
     IEnumerator wait_and_close()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
+        GameObject localPlayer = NetworkClient.localPlayer.gameObject;
+        localPlayer.GetComponent<PlayerController>().enabled = false;
+        localPlayer.GetComponent<PlayerMotor>().enabled = false;
         thisWindow.SetActive(false);
     }
     public GameObject mainWindow;
@@ -61,9 +64,7 @@ public class InitPerso : NetworkBehaviour
 
         mainWindow.SetActive(false);
         //SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);
-        GameObject localPlayer = NetworkClient.localPlayer.gameObject;
-        localPlayer.GetComponent<PlayerController>().enabled = false;
-        localPlayer.GetComponent<PlayerMotor>().enabled = false;
+        
         StartCoroutine(wait_and_close());
     }
 }
