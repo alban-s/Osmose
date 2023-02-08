@@ -6,9 +6,20 @@ using Osmose.Gameplay;
 
 public class GameManager : NetworkBehaviour
 {
+    [SyncVar]
+    public bool gameStarted = false;
     [SerializeField]
     private ushort maxNbOfPlayer;
 
+
+    [Command]
+    public void StartGame(){
+        this.gameStarted = true;
+    }
+    [Command]
+    public void StopGame(){
+        this.gameStarted = true;
+    }
     public ushort GetMaxNbOfPlayer()
     {
         return maxNbOfPlayer;

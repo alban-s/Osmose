@@ -35,6 +35,7 @@ public class WaitWindow : MonoBehaviour
             remainingText.GetComponent<TextMeshProUGUI>().text = "en attente de " + remaining + " joueurs";
             startButton.GetComponent<Button>().interactable = false;
         }
+        if (manager.gameStarted) onStartButtonClicked();
          
     }
 
@@ -42,6 +43,7 @@ public class WaitWindow : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        manager.StartGame();
         
         //WAIT
 
