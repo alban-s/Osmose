@@ -26,10 +26,10 @@ public class GameManager : NetworkBehaviour
     {
         return maxNbOfPlayer;
     }
-    [Command(requiresAuthority = false)]
+    [Command]
     public void SetMaxNbOfPlayer(ushort value)
     {
-        maxNbOfPlayer = value;
+        this.maxNbOfPlayer = value;
     }
 
     public List<GameObject> GetPlayerBlueList()
