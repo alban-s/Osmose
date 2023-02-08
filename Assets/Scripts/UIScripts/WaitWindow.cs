@@ -50,6 +50,7 @@ public class WaitWindow : MonoBehaviour
         GameObject localPlayer = NetworkClient.localPlayer.gameObject;
         localPlayer.GetComponent<PlayerController>().enabled = true;
         localPlayer.GetComponent<PlayerMotor>().enabled = true;
+        manager.GetComponent<Timer>().ResetTimer();
 
         gameObject.SetActive(false);
 

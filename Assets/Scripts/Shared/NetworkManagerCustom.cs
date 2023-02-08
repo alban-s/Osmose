@@ -8,8 +8,6 @@ public class NetworkManagerCustom : NetworkManager
 {
 
     TeamColour team = TeamColour.Blue;
-
-    private int nbPlayersConnected = 0;
     private int index_pos_red = 0;
     private int index_pos_blue = 0;
     public GameObject[] red_spawns;
@@ -55,14 +53,6 @@ public class NetworkManagerCustom : NetworkManager
 
         // call this to use this gameobject as the primary controller
         NetworkServer.AddPlayerForConnection(conn, player);
-
-        nbPlayersConnected++;
-        Debug.Log("nombre attendu : " + gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer() + "  nombre actuel : " + nbPlayersConnected);
-        if (nbPlayersConnected == gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer())
-        {
-            gameManager.GetComponent<Timer>().ResetTimer();
-            Debug.Log("TIMER GO");
-        }
     }
 
     public override Transform GetStartPosition()
