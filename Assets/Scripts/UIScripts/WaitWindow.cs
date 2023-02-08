@@ -27,10 +27,10 @@ public class WaitWindow : MonoBehaviour
     {
          blueCountText.GetComponent<TextMeshProUGUI>().text = manager.GetBlueCount().ToString() + " joueurs";
          redCountText.GetComponent<TextMeshProUGUI>().text = manager.GetRedCount().ToString() + " joueurs";
-         int remaining = manager.GetMaxNbOfPlayer() - manager.GetTotalPlayerCount();
+         int remaining = manager.GetMaxNbOfPlayer() - manager.GetPlayersReadyCount();
 
          if(remaining == 0 && manager.AllPlayersReady()){
-            remainingText.GetComponent<TextMeshProUGUI>().text = "Ready to Start";
+            remainingText.GetComponent<TextMeshProUGUI>().text = "Pret a demarrer";
             startButton.GetComponent<Button>().interactable = true;
         }else{
             remainingText.GetComponent<TextMeshProUGUI>().text = "en attente de " + remaining + " joueurs";

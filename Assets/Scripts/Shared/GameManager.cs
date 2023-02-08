@@ -75,4 +75,16 @@ public class GameManager : NetworkBehaviour
         }
         return true;
     }
+
+    public int GetPlayersReadyCount(){
+        int count = 0;
+        List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
+        foreach (GameObject player in players)
+        {
+            if(player.GetComponent<PlayerSetup>().ready) count++;
+        }
+        return count;
+
+    }
+    
 }
