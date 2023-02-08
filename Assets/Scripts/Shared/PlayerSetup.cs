@@ -80,16 +80,15 @@ public class PlayerSetup : NetworkBehaviour
     [Command]
     public void broadcast_players_infos(){
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
-        Debug.Log("size "+players.Count);
+        Debug.Log("nb player "+players.Count);
         foreach (GameObject player in players)
         {
             string name = player.transform.name;
             player.GetComponent<PlayerSetup>().update_player_name_clients(name);
-            Debug.Log(" name player : " + player.transform.name);
+            Debug.Log(" broadcast name player : " + player.transform.name);
             TeamColour team = player.GetComponent<Team>().team;
             player.GetComponent<PlayerSetup>().update_player_team_clients(team);
-            Debug.Log(" name player : " + player.GetComponent<Team>().team);
-            player.GetComponent<Team>().ChoixEquipe();
+            Debug.Log(" broadcast team player : " + player.GetComponent<Team>().team);
         }
     }
 
@@ -101,6 +100,7 @@ public class PlayerSetup : NetworkBehaviour
     [ClientRpc]
     public void update_player_team_clients(TeamColour team){
         gameObject.GetComponent<Team>().team = team;
+        gameObject.GetComponent<Team>().ChoixEquipe();
     }
 
     private void DisableComponents()
