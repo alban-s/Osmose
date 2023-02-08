@@ -10,9 +10,6 @@ public class GameManager : NetworkBehaviour
     public bool gameStarted = false;
 
     [SyncVar]
-    public ushort readyCount = 0;
-
-    [SyncVar]
     public ushort maxNbOfPlayer;
 
 
@@ -68,5 +65,14 @@ public class GameManager : NetworkBehaviour
 
     public int GetTotalPlayerCount(){
         return (new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"))).Count;
+    }
+
+    public bool AllPlayersReady(){
+        List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
+        foreach (GameObject player in players)
+        {
+            if(!player.GetComponent<PlayerSetup>().ready) return false;
+        }
+        return true;
     }
 }
