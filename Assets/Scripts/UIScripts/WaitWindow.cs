@@ -43,7 +43,6 @@ public class WaitWindow : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        manager.StartGame();
         
         //WAIT
 

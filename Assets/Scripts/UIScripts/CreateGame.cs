@@ -23,7 +23,7 @@ public class CreateGame : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager");
+        
     }
 
     public void InitNbPlayers(string value)
@@ -48,15 +48,19 @@ public class CreateGame : MonoBehaviour
         InitPtsPerTeam(maxTeamPoints.text);
         InitGameTime(gameDuration.text);
 
-        gameManager.GetComponent<GameManager>().SetMaxNbOfPlayer(nbPlayers);
-        gameManager.GetComponent<Score>().SetTeamMaxScore(nbPtsPerTeam);
-        gameManager.GetComponent<Timer>().SetDuration(gameTime);
+        
 
         print("serveurToLink\n");
         print("nb Joueurs =" + nbPlayers.ToString() + ", Points par �quipes =" +
             nbPtsPerTeam.ToString() + " et gameTime =" + gameTime.ToString(".##"));
            
         manager.StartHost();
+        gameManager = GameObject.Find("GameManager");
+
+        gameManager.GetComponent<GameManager>().SetMaxNbOfPlayer(nbPlayers);
+        gameManager.GetComponent<Score>().SetTeamMaxScore(nbPtsPerTeam);
+        gameManager.GetComponent<Timer>().SetDuration(gameTime);
+        
         string host = Dns.GetHostName();
         Console.WriteLine("Le nom de l'h�te est :" + host);
 
