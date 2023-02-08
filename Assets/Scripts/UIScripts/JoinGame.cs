@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 namespace Mirror
@@ -9,7 +10,8 @@ namespace Mirror
     {
         public GameObject thisWindow;
         public GameObject persoSelectionWindow;
-        public TextMeshProUGUI adresseIP;
+        //public TextMeshProUGUI adresseIP;
+        public InputField adresseIP;
 
         IEnumerator wait_and_close()
     {
@@ -26,10 +28,10 @@ namespace Mirror
         {
             if (!NetworkClient.active){
                 print("ip serveur : " + adresseIP.text);
-            
-                
-                NetworkManager.singleton.StartClient();
+
                 NetworkManager.singleton.networkAddress = adresseIP.text;
+                NetworkManager.singleton.StartClient();
+                
 
                 StartCoroutine(wait_and_close());
                 persoSelectionWindow.SetActive(true);

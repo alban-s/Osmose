@@ -27,14 +27,16 @@ public class WaitWindow : MonoBehaviour
     {
          blueCountText.GetComponent<TextMeshProUGUI>().text = manager.GetBlueCount().ToString() + " joueurs";
          redCountText.GetComponent<TextMeshProUGUI>().text = manager.GetRedCount().ToString() + " joueurs";
-         int remaining = manager.GetMaxNbOfPlayer() - manager.GetTotalPlayerCount();
-         if(remaining == 0){
-            remainingText.GetComponent<TextMeshProUGUI>().text = "Ready to Start";
+         int remaining = manager.GetMaxNbOfPlayer() - manager.GetPlayersReadyCount();
+
+         if(remaining == 0 && manager.AllPlayersReady()){
+            remainingText.GetComponent<TextMeshProUGUI>().text = "Pret a demarrer";
             startButton.GetComponent<Button>().interactable = true;
         }else{
             remainingText.GetComponent<TextMeshProUGUI>().text = "en attente de " + remaining + " joueurs";
             startButton.GetComponent<Button>().interactable = false;
         }
+        if (manager.gameStarted) onStartButtonClicked();
          
     }
 
@@ -42,12 +44,14 @@ public class WaitWindow : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        manager.StartGame();
         
         //WAIT
 
         GameObject localPlayer = NetworkClient.localPlayer.gameObject;
         localPlayer.GetComponent<PlayerController>().enabled = true;
         localPlayer.GetComponent<PlayerMotor>().enabled = true;
+        manager.GetComponent<Timer>().ResetTimer();
 
         gameObject.SetActive(false);
 

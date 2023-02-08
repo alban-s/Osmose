@@ -6,9 +6,21 @@ using Osmose.Gameplay;
 
 public class GameManager : NetworkBehaviour
 {
-    [SerializeField]
-    private ushort maxNbOfPlayer;
+    [SyncVar]
+    public bool gameStarted = false;
 
+    [SyncVar]
+    public ushort maxNbOfPlayer;
+
+
+    [Command(requiresAuthority = false)]
+    public void StartGame(){
+        this.gameStarted = true;
+    }
+    [Command(requiresAuthority = false)]
+    public void StopGame(){
+        this.gameStarted = true;
+    }
     public ushort GetMaxNbOfPlayer()
     {
         return maxNbOfPlayer;
@@ -54,4 +66,25 @@ public class GameManager : NetworkBehaviour
     public int GetTotalPlayerCount(){
         return (new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"))).Count;
     }
+
+    public bool AllPlayersReady(){
+        List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
+        foreach (GameObject player in players)
+        {
+            if(!player.GetComponent<PlayerSetup>().ready) return false;
+        }
+        return true;
+    }
+
+    public int GetPlayersReadyCount(){
+        int count = 0;
+        List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
+        foreach (GameObject player in players)
+        {
+            if(player.GetComponent<PlayerSetup>().ready) count++;
+        }
+        return count;
+
+    }
+    
 }

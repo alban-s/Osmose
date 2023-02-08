@@ -12,14 +12,10 @@ public class MainMenuGestion : MonoBehaviour
     public GameObject initPersoWindow;
     public GameObject cinematicWindow;
     private double timeBegin;
-    private GameObject NetworkManager;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        NetworkManager = GameObject.Find("NetworkManager");
-        NetworkManager.SetActive(true);
         Screen.fullScreen = false;
         timeBegin = Time.time;
 
@@ -37,7 +33,6 @@ public class MainMenuGestion : MonoBehaviour
         {
             cinematicWindow.SetActive(false);
             mainWindow.SetActive(true);
-            netHUD.SetActive(true);
         }*/
     }
 

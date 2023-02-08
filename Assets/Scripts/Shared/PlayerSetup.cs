@@ -13,6 +13,8 @@ public class PlayerSetup : NetworkBehaviour
     private GameObject GameWindowPrefab;
     private GameObject GameWindowInstance;
 
+    [SyncVar]
+    public bool ready = false;
     Camera sceneCamera;
      private void Start()
     {
@@ -54,6 +56,11 @@ public class PlayerSetup : NetworkBehaviour
             GetComponent<NetworkTransformReliable>().syncDirection = SyncDirection.ClientToServer;
         }
         broadcast_players_infos();
+    }
+
+    [Command]
+    public void CmdSetReady(bool rdy){
+        ready = rdy;
     }
 
     [Command]

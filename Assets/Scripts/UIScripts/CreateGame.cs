@@ -44,6 +44,12 @@ public class CreateGame : MonoBehaviour
 
     public void LaunchGame()
     {
+        print("serveurToLink\n");
+        print("nb Joueurs =" + nbPlayers.ToString() + ", Points par �quipes =" +
+            nbPtsPerTeam.ToString() + " et gameTime =" + gameTime.ToString(".##"));
+           
+        manager.StartHost();
+
         InitNbPlayers(playerNb.text);
         InitPtsPerTeam(maxTeamPoints.text);
         InitGameTime(gameDuration.text);
@@ -52,11 +58,7 @@ public class CreateGame : MonoBehaviour
         gameManager.GetComponent<Score>().SetTeamMaxScore(nbPtsPerTeam);
         gameManager.GetComponent<Timer>().SetDuration(gameTime);
 
-        print("serveurToLink\n");
-        print("nb Joueurs =" + nbPlayers.ToString() + ", Points par �quipes =" +
-            nbPtsPerTeam.ToString() + " et gameTime =" + gameTime.ToString(".##"));
-           
-        manager.StartHost();
+        
         string host = Dns.GetHostName();
         Console.WriteLine("Le nom de l'h�te est :" + host);
 
