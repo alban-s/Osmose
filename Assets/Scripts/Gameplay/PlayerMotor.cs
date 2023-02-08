@@ -26,7 +26,8 @@ namespace Osmose.Gameplay
         [SerializeField] private AnimationCurve jumpFallOff;
         [SerializeField] private float jumpMultiplier = 8.0f;
         bool isJumping;
-        float timeBfJumping;
+        float timeBfJumping = 0.0f;
+        float timeBfMoving = 0.0f;
 
         // Animations 
         Animator animator;
@@ -130,7 +131,8 @@ namespace Osmose.Gameplay
         {
             // Si il n'est pas bloque par une animation ouverture coffre, combats... 
             // Il peut bouger donc on calcule sa velocite
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
+            if (timeBfMoving <= 0
+                &&!animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Run To Stop"))
             {
@@ -179,7 +181,8 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "Jump"
         public void Jump()
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
+            if (timeBfMoving <= 0
+                && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge"))
             {
@@ -217,7 +220,7 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "OpenChest" (f)
         public void OpenChest()
         {
-            if (controller.isGrounded
+            if (controller.isGrounded && timeBfMoving <= 0
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge"))
             {
@@ -262,14 +265,14 @@ namespace Osmose.Gameplay
 
         public void cantMoveAttackNull()
         {
-            // TODO
+            timeBfMoving = 5.0f;
         }
 
 
         // Appele par PlayerController quand on appuie sur "Attack" (clic gauche)
         public void Attack()
         {
-            if (controller.isGrounded
+            if (controller.isGrounded && timeBfMoving <= 0
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise"))
             {
@@ -281,7 +284,7 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "AttackBase" (e)
         public void AttackBase()
         {
-            if (controller.isGrounded
+            if (controller.isGrounded && timeBfMoving <= 0
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise"))
             {
@@ -293,7 +296,7 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "Associate" (a)
         public void Associate()
         {
-            if (controller.isGrounded
+            if (controller.isGrounded && timeBfMoving <= 0
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise"))
@@ -305,7 +308,7 @@ namespace Osmose.Gameplay
         // Appele par PlayerController quand on appuie sur "Praise"
         public void Praise()
         {
-            if (controller.isGrounded
+            if (controller.isGrounded && timeBfMoving <= 0
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest"))
             {
@@ -330,13 +333,16 @@ namespace Osmose.Gameplay
         private void Update()
         {
             timeBfJumping -= Time.deltaTime;
+            timeBfMoving -= Time.deltaTime;
+
             handleAnimation();
         }
 
         // Mouvements lies a la souris, rotation haut-bas droite-gauche
         private void PerformRotation()
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
+            if (timeBfMoving <= 0
+                && !animator.GetCurrentAnimatorStateInfo(0).IsName("OpenChest")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Praise")
                 && !animator.GetCurrentAnimatorStateInfo(0).IsName("Challenge"))
             {

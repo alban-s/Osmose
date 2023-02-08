@@ -398,7 +398,7 @@ MonoBehaviour:
   audioPraise: {fileID: 8300000, guid: 0f57bcd03b14e9944b7b90306e5b1327, type: 3}
   audioBase: {fileID: 8300000, guid: 9b19f13b3d94d7141908c9113fe26c16, type: 3}
   audioAttack: {fileID: 8300000, guid: 91cdd6277f753ba439add602e0381448, type: 3}
-  audioAttackNull: {fileID: 8300000, guid: a6353ab551cb9af42be23068eb809dfc, type: 3}
+  audioAttackNull: {fileID: 8300000, guid: 4f0d0a070bb09564b929056348022c5a, type: 3}
   shilili: {fileID: 8300000, guid: bf7867c2d497ef6429a1f7ec17892853, type: 3}
 --- !u!114 &667742240836363126
 MonoBehaviour:
