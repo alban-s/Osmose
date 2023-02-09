@@ -45,6 +45,7 @@ public class Score : NetworkBehaviour
         ComputeScoreEquipe(team_red_score, player_list_red);
     }
 
+    [Command(requiresAuthority = false)]
     void ComputeScoreEquipe(ushort score_equipe, GameObject[] player_list)
     {
         foreach (GameObject objet in player_list)

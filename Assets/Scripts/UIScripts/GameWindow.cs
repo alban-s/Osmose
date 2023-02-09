@@ -28,7 +28,7 @@ public class GameWindow : MonoBehaviour
     {
         GameManager = GameObject.Find("GameManager");
         teamYellow = new Color32(255, 255, 255, 0);
-        teamRed = new Color32(255, 255, 0, 0);
+        teamRed = new Color32(255, 0, 0, 0);
         Update();
     }
 
