@@ -91,6 +91,7 @@ public class Score : NetworkBehaviour
 
     public ushort GetScoreRestantBlue()
     {
+        remaining_score_blue = (ushort)(team_max_score - team_blue_score);
         return remaining_score_blue;
     }
 
@@ -102,6 +103,7 @@ public class Score : NetworkBehaviour
 
     public ushort GetScoreRestantRed()
     {
+        remaining_score_red = (ushort)(team_max_score - team_red_score);
         return remaining_score_red;
     }
 

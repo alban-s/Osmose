@@ -37,7 +37,6 @@ public class WaitWindow : MonoBehaviour
             startButton.GetComponent<Button>().interactable = false;
         }
         if (manager.gameStarted) onStartButtonClicked();
-         
     }
 
     public void onStartButtonClicked(){
