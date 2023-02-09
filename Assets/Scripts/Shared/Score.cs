@@ -32,8 +32,8 @@ public class Score : NetworkBehaviour
         player_list_red = GetComponent<GameManager>().GetPlayerRedList().ToArray();
         remaining_score_blue = team_max_score;
         remaining_score_red = team_max_score;
-        ComputeScoreEquipe(team_blue_score, player_list_blue);
-        ComputeScoreEquipe(team_red_score, player_list_red);
+        team_blue_score = ComputeScoreEquipe(player_list_blue);
+        team_red_score = ComputeScoreEquipe(player_list_red);
     }
 
     // Update is called once per frame
@@ -41,17 +41,18 @@ public class Score : NetworkBehaviour
     {
         player_list_blue = GetComponent<GameManager>().GetPlayerBlueList().ToArray();
         player_list_red = GetComponent<GameManager>().GetPlayerRedList().ToArray();
-        ComputeScoreEquipe(team_blue_score, player_list_blue);
-        ComputeScoreEquipe(team_red_score, player_list_red);
+        team_blue_score = ComputeScoreEquipe(player_list_blue);
+        team_red_score = ComputeScoreEquipe(player_list_red);
     }
 
-    [Command(requiresAuthority = false)]
-    void ComputeScoreEquipe(ushort score_equipe, GameObject[] player_list)
+    ushort ComputeScoreEquipe(GameObject[] player_list)
     {
+        ushort score_equipe = 0;
         foreach (GameObject objet in player_list)
         {
             score_equipe += objet.GetComponent<Health>().GetPoints();
         }
+        return score_equipe;
     }
 
     [Command(requiresAuthority = false)]
