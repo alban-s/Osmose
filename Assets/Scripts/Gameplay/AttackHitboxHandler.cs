@@ -45,7 +45,7 @@ namespace Osmose.Gameplay
         }
 
         [Command]
-        private void SetActivated(bool active)
+        public void SetActivated(bool active)
         {
             isActivated = active;
         }
@@ -58,8 +58,8 @@ namespace Osmose.Gameplay
 
         [ClientRpc]
         public void RpcUpdateAssociated(bool asted){
-            GameObject ac = gameObject.transform.FindChild("attackCollider");
-            ac.GetComponent<Associate>().SetAssiociated(asted);
+            GameObject ac = gameObject.transform.Find("attackCollider").gameObject;
+            ac.GetComponent<Associate>().SetAssociated(asted);
         }
 
 

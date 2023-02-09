@@ -59,7 +59,7 @@ namespace Osmose.Gameplay
                 }
             }
         }
-        private void SetAssociated(bool associate)
+        public void SetAssociated(bool associate)
         {
             isAssociated = associate;
         }
