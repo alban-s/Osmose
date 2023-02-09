@@ -44,13 +44,15 @@ namespace Osmose.Gameplay
             timer = 150;
         }
 
-        [Command]
+        [Command(requiresAuthority = false)]
+
         public void SetActivated(bool active)
         {
             isActivated = active;
         }
 
-        [Command]
+        [Command(requiresAuthority = false)]
+
         public void CmdSetAssociateActivated(bool active)
         {
             RpcUpdateAssociated(active);
