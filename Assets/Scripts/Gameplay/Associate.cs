@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 
 namespace Osmose.Gameplay
 {
-    public class Associate : NetworkBehaviour
+    public class Associate : MonoBehaviour
     {
         // Start is called before the first frame update
         GameObject otherPlayer;

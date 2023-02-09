@@ -51,7 +51,7 @@ namespace Osmose.Gameplay
         }
 
         [Command]
-        private void CmdSetAssociateActivated(bool active)
+        public void CmdSetAssociateActivated(bool active)
         {
             RpcUpdateAssociated(active);
         }
