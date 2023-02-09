@@ -61,7 +61,7 @@ namespace Osmose.Gameplay
             }
         }
 
-        [Command(requireAuthority = false)]
+        [Command(requiresAuthority = false)]
         private void SetAssiociated(bool associate)
         {
             isAssociated = associate;
