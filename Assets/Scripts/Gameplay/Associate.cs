@@ -39,7 +39,7 @@ namespace Osmose.Gameplay
             {
                 if (other.gameObject.CompareTag("AttackHitbox"))
                 {
-                    otherPlayer = other.gameObject;
+                    otherPlayer = other.transform.parent.gameObject;
                     if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
                         isAssociated = true;
