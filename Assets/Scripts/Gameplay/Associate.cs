@@ -15,7 +15,7 @@ namespace Osmose.Gameplay
         void Start()
         {
             SetAssiociated(false);
-            player = gameObject;
+            player = gameObject.transform.parent.gameObject;
             otherPlayer = null;
         }
 
@@ -47,10 +47,7 @@ namespace Osmose.Gameplay
                 {
                     Debug.LogError("ASSOCIATION");
                     otherPlayer = other.transform.parent.gameObject;
-                    Debug.LogError(otherPlayer.transform.name);
-                    GameObject this_player = gameObject.transform.parent.gameObject;
-                    Debug.LogError(this_player.transform.name);
-                    if (otherPlayer.GetComponent<Team>().GetTeam() == this_player.GetComponent<Team>().GetTeam())
+                    if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
                         SetAssiociated(true);
                     }

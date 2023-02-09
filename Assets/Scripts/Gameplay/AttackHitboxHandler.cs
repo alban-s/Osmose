@@ -44,7 +44,7 @@ namespace Osmose.Gameplay
             timer = 150;
         }
 
-        [Command]
+        [Command(requiresAuthority = false)]
         private void SetActivated(bool active)
         {
             isActivated = active;
