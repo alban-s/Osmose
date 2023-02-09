@@ -424,9 +424,10 @@ GameObject:
   - component: {fileID: 54000013055774356}
   - component: {fileID: 138000014081588628}
   - component: {fileID: 6410356603916971691}
+  - component: {fileID: 339669813}
   m_Layer: 0
   m_Name: basest
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -552,7 +553,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb4cae7ddfe6694fba7413da447fb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
+  material_blue: {fileID: 0}
+  material_red: {fileID: 0}
+--- !u!64 &339669813
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013345796598}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1000014124467848
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +581,7 @@ GameObject:
   - component: {fileID: 4000013258905692}
   - component: {fileID: 95000012020201790}
   - component: {fileID: 9125846864437492906}
+  - component: {fileID: 1948488764}
   m_Layer: 0
   m_Name: flag_med
   m_TagString: Base
@@ -623,7 +641,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb4cae7ddfe6694fba7413da447fb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
+  material_blue: {fileID: 0}
+  material_red: {fileID: 0}
+--- !u!64 &1948488764
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000014124467848}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 90f50cba3d2380147bb9c0dcd80f177c, type: 3}
 --- !u!1 &5190064080013466893
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +802,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
+  material_blue: {fileID: 0}
+  material_red: {fileID: 0}
 --- !u!1 &8396269942178979174
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,4 +862,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb4cae7ddfe6694fba7413da447fb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
+  material_blue: {fileID: 0}
+  material_red: {fileID: 0}

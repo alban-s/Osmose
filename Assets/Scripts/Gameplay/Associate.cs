@@ -48,8 +48,8 @@ namespace Osmose.Gameplay
                     {
                         otherPlayer = null;
                     }
-                    //Debug.Log(isAssociated);
-                    //Debug.Log(otherPlayer);
+                    Debug.Log(isAssociated);
+                    Debug.Log(otherPlayer);
                 }
             }
         }
