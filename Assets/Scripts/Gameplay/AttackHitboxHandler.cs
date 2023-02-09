@@ -44,10 +44,22 @@ namespace Osmose.Gameplay
             timer = 150;
         }
 
-        [Command(requiresAuthority = false)]
+        [Command]
         private void SetActivated(bool active)
         {
             isActivated = active;
+        }
+
+        [Command]
+        private void CmdSetAssociateActivated(bool active)
+        {
+            RpcUpdateAssociated(active);
+        }
+
+        [ClientRpc]
+        public void RpcUpdateAssociated(bool asted){
+            GameObject ac = gameObject.transform.FindChild("attackCollider");
+            ac.GetComponent<Associate>().SetAssiociated(asted);
         }
 
 

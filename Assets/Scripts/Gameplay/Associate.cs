@@ -10,11 +10,10 @@ namespace Osmose.Gameplay
         // Start is called before the first frame update
         GameObject otherPlayer;
         GameObject player;
-        [SyncVar]
         public bool isAssociated;
         void Start()
         {
-            SetAssiociated(false);
+            SetAssociated(false);
             player = gameObject.transform.parent.gameObject;
             otherPlayer = null;
         }
@@ -29,7 +28,7 @@ namespace Osmose.Gameplay
                 // if the distance is too big, the players are not associated anymore
                 if (distance > 2.5f)
                 {
-                    SetAssiociated(false);
+                    SetAssociated(false);
                     Debug.Log(isAssociated);
                 }
             }
@@ -49,7 +48,7 @@ namespace Osmose.Gameplay
                     otherPlayer = other.transform.parent.gameObject;
                     if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
-                        SetAssiociated(true);
+                        player.GetComponent<AttackHitboxHandler>().CmdSetAssociateActivated(true);
                     }
                     else
                     {
@@ -60,9 +59,7 @@ namespace Osmose.Gameplay
                 }
             }
         }
-
-        [Command(requiresAuthority = false)]
-        private void SetAssiociated(bool associate)
+        private void SetAssociated(bool associate)
         {
             isAssociated = associate;
         }
