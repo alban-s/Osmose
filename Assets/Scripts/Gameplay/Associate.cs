@@ -44,14 +44,11 @@ namespace Osmose.Gameplay
                 if (other.gameObject.CompareTag("AttackHitbox"))
                 {
                     Debug.LogError("ASSOCIATION");
-                    otherPlayer = other.transform.parent.gameObject;
+                    
                     if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
+                        otherPlayer = other.transform.parent.gameObject;
                         player.GetComponent<AttackHitboxHandler>().CmdSetAssociateActivated(true);
-                    }
-                    else
-                    {
-                        otherPlayer = null;
                     }
                     Debug.Log(isAssociated);
                     Debug.Log(otherPlayer);

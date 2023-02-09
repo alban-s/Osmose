@@ -58,6 +58,7 @@ namespace Osmose.Gameplay
             RpcUpdateAssociated(active);
         }
 
+//TODO fix : ptetre mettre other en param
         [ClientRpc]
         public void RpcUpdateAssociated(bool asted){
             GameObject ac = gameObject.transform.Find("attackCollider").gameObject;

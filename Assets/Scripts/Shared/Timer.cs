@@ -52,8 +52,8 @@ public class Timer : NetworkBehaviour {
         //SetTextDisplay(true);
     }
 
-    [Server]
     void Update() {
+        if (!isServer)return;
         if (countDown && timer > 0) {
             timer -= Time.deltaTime;
             UpdateTimerDisplay(timer);
