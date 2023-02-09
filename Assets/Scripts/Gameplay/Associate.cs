@@ -45,9 +45,12 @@ namespace Osmose.Gameplay
                 Debug.LogError(other.gameObject.tag);
                 if (other.gameObject.CompareTag("AttackHitbox"))
                 {
-                    Debug.Log("ASSOCIATION");
+                    Debug.LogError("ASSOCIATION");
                     otherPlayer = other.transform.parent.gameObject;
-                    if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
+                    Debug.LogError(otherPlayer.transform.name);
+                    GameObject this_player = gameObject.transform.parent.gameObject;
+                    Debug.LogError(this_player.transform.name);
+                    if (otherPlayer.GetComponent<Team>().GetTeam() == this_player.GetComponent<Team>().GetTeam())
                     {
                         SetAssiociated(true);
                     }
