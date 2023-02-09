@@ -2,44 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Mirror;
 
 namespace Osmose.Gameplay
 {
-    public class AttackHitboxHandler : MonoBehaviour
+    public class AttackHitboxHandler : NetworkBehaviour
     {
 
         private CapsuleCollider AttackHitbox;
         private GameObject HitboxObject;
         
+        [SyncVar]
         private bool isActivated;
         private int timer;
         // Start is called before the first frame update
 
         public void OnAttack()
         {
-            isActivated = true;
+            SetActivated(true);
             HitboxObject.GetComponent<CollisionWithPlayer>().isActive = true;
             timer = 83;
         }
 
         public void OnAttackBase()
         {
-            isActivated = true;
+            SetActivated(true);
             HitboxObject.GetComponent<CollisionWithBase>().isActive = true;
             timer = 83;
         }
 
         public void OnOpenChest()
         {
-            isActivated = true;
+            SetActivated(true);
             HitboxObject.GetComponent<CollisionWithChest>().isActive = true;
             timer = 30;
         }
 
         public void OnAssociate()
         {
-            isActivated = true;
+            SetActivated(true);
             timer = 150;
+        }
+
+        [Command]
+        private void SetActivated(bool active)
+        {
+            isActivated = active;
         }
 
 
@@ -73,7 +81,7 @@ namespace Osmose.Gameplay
                 timer--;
                 if (timer <= 0)
                 {
-                    isActivated = false;
+                    SetActivated(false);
                     HitboxObject.GetComponent<CollisionWithPlayer>().isActive = false;
                     HitboxObject.GetComponent<CollisionWithChest>().isActive = false;
                     HitboxObject.GetComponent<CollisionWithBase>().isActive = false;

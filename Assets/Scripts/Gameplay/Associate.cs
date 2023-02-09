@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace Osmose.Gameplay
 {
-    public class Associate : MonoBehaviour
+    public class Associate : NetworkBehaviour
     {
         // Start is called before the first frame update
         GameObject otherPlayer;
         GameObject player;
+        [SyncVar]
         public bool isAssociated;
         void Start()
         {
-            isAssociated = false;
+            SetAssiociated(false);
             player = gameObject;
             otherPlayer = null;
         }
@@ -27,7 +29,7 @@ namespace Osmose.Gameplay
                 // if the distance is too big, the players are not associated anymore
                 if (distance > 2.5f)
                 {
-                    isAssociated = false;
+                    SetAssiociated(false);
                     Debug.Log(isAssociated);
                 }
             }
@@ -35,14 +37,17 @@ namespace Osmose.Gameplay
 
         void OnTriggerEnter(Collider other)
         {
+            Debug.Log("TRIGGER");
             if (!isAssociated)
             {
+                Debug.Log("PAS encore ASSOCIER");
                 if (other.gameObject.CompareTag("AttackHitbox"))
                 {
+                    Debug.Log("ASSOCIATION");
                     otherPlayer = other.transform.parent.gameObject;
                     if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
-                        isAssociated = true;
+                        SetAssiociated(true);
                     }
                     else
                     {
@@ -52,6 +57,12 @@ namespace Osmose.Gameplay
                     Debug.Log(otherPlayer);
                 }
             }
+        }
+
+        [Command]
+        private void SetAssiociated(bool associate)
+        {
+            isAssociated = associate;
         }
 
         void OnChangePoints()
