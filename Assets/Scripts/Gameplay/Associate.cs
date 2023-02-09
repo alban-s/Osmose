@@ -40,7 +40,9 @@ namespace Osmose.Gameplay
             Debug.Log("TRIGGER");
             if (!isAssociated)
             {
-                Debug.Log("PAS encore ASSOCIER");
+                Debug.LogError("PAS encore ASSOCIER");
+                Debug.LogError(other.gameObject.transform.name);
+                Debug.LogError(other.gameObject.tag);
                 if (other.gameObject.CompareTag("AttackHitbox"))
                 {
                     Debug.Log("ASSOCIATION");
@@ -59,7 +61,7 @@ namespace Osmose.Gameplay
             }
         }
 
-        [Command]
+        [Command(requireAuthority = false)]
         private void SetAssiociated(bool associate)
         {
             isAssociated = associate;
