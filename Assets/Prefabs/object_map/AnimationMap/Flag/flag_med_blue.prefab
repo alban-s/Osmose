@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 9125846864437492906}
   - component: {fileID: 1948488764}
   m_Layer: 0
-  m_Name: flag_med
+  m_Name: flag_med_blue
   m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb4cae7ddfe6694fba7413da447fb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
   material_blue: {fileID: 0}
   material_red: {fileID: 0}
 --- !u!1 &8396269942178979174
