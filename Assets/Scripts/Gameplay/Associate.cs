@@ -45,9 +45,10 @@ namespace Osmose.Gameplay
                 {
                     Debug.LogError("ASSOCIATION");
                     
+                    otherPlayer = other.transform.parent.gameObject;
                     if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
-                        otherPlayer = other.transform.parent.gameObject;
+                        
                         player.GetComponent<AttackHitboxHandler>().CmdSetAssociateActivated(true);
                     }
                     Debug.Log(isAssociated);
