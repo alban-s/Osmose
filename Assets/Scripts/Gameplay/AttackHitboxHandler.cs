@@ -53,9 +53,10 @@ namespace Osmose.Gameplay
 
         [Command(requiresAuthority = false)]
 
-        public void CmdSetAssociateActivated(bool active)
+        public void CmdSetAssociateActivated(GameObject otherPlayer,bool active)
         {
             RpcUpdateAssociated(active);
+            otherPlayer.GetComponent<AttackHitboxHandler>().RpcUpdateAssociated(active);
         }
 
 //TODO fix : ptetre mettre other en param

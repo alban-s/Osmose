@@ -35,24 +35,18 @@ namespace Osmose.Gameplay
 
         void OnTriggerEnter(Collider other)
         {
-            Debug.Log("TRIGGER");
             if (!isAssociated)
             {
-                Debug.LogError("PAS encore ASSOCIER");
-                Debug.LogError(other.gameObject.transform.name);
-                Debug.LogError(other.gameObject.tag);
                 if (other.gameObject.CompareTag("AttackHitbox"))
                 {
-                    Debug.LogError("ASSOCIATION");
-                    
                     otherPlayer = other.transform.parent.gameObject;
                     if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
-                        
-                        player.GetComponent<AttackHitboxHandler>().CmdSetAssociateActivated(true);
+                        Debug.LogError("ASSOCIATION");
+                        Debug.Log(otherPlayer);
+                        player.GetComponent<AttackHitboxHandler>().CmdSetAssociateActivated(otherPlayer,true);
                     }
-                    Debug.Log(isAssociated);
-                    Debug.Log(otherPlayer);
+                    
                 }
             }
         }
