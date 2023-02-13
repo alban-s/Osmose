@@ -7,7 +7,7 @@ namespace Osmose.Gameplay
     public class Associate : MonoBehaviour
     {
         // Start is called before the first frame update
-        GameObject otherPlayer;
+        public GameObject otherPlayer;
         GameObject player;
         public bool isAssociated;
         void Start()

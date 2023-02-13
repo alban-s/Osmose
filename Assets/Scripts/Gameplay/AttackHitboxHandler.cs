@@ -55,15 +55,15 @@ namespace Osmose.Gameplay
 
         public void CmdSetAssociateActivated(GameObject otherPlayer,bool active)
         {
-            RpcUpdateAssociated(active);
-            otherPlayer.GetComponent<AttackHitboxHandler>().RpcUpdateAssociated(active);
+            RpcUpdateAssociated(active, otherPlayer);
+            otherPlayer.GetComponent<AttackHitboxHandler>().RpcUpdateAssociated(active, gameObject);
         }
 
-//TODO fix : ptetre mettre other en param
         [ClientRpc]
-        public void RpcUpdateAssociated(bool asted){
+        public void RpcUpdateAssociated(bool associated, GameObject toWho){
             GameObject ac = gameObject.transform.Find("attackCollider").gameObject;
-            ac.GetComponent<Associate>().SetAssociated(asted);
+            ac.GetComponent<Associate>().SetAssociated(associated);
+            ac.GetComponent<Associate>().otherPlayer = associated ? toWho : null;         
         }
 
 
