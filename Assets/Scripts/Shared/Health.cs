@@ -68,7 +68,7 @@ namespace Osmose.Gameplay
         void rpc_update_score_client(ushort score)
         {
             CurrentPoints = score;
-            Debug.Log("cp : " + GetComponent<Health>().CurrentPoints);
+            // Debug.Log("cp : " + GetComponent<Health>().CurrentPoints);
         }
 
         [Command]
@@ -108,7 +108,7 @@ namespace Osmose.Gameplay
             if (trueWinAmount > 0)
             {
                 OnWinMatch?.Invoke(trueWinAmount, pointsSource);
-                Debug.Log("+" + trueWinAmount + "->" + CurrentPoints);
+                // Debug.Log("+" + trueWinAmount + "->" + CurrentPoints);
             }
         }
 
@@ -140,7 +140,7 @@ namespace Osmose.Gameplay
             if (trueLoseAmount > 0)
             {
                 OnLoseMatch?.Invoke(trueLoseAmount, damageSource);
-                Debug.Log("-" + trueLoseAmount);
+                // Debug.Log("-" + trueLoseAmount);
             }
 
             HandleDeath();

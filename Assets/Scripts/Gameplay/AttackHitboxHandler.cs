@@ -86,7 +86,7 @@ namespace Osmose.Gameplay
             Physics.IgnoreCollision(AttackHitbox, gameObject.GetComponent<CapsuleCollider>());
             Physics.IgnoreCollision(AttackHitbox, gameObject.GetComponent<CharacterController>());
             // Debug
-            Debug.Log(AttackHitbox.enabled);
+            // Debug.Log(AttackHitbox.enabled);
         }
 
         // Update is called once per frame

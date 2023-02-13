@@ -28,7 +28,7 @@ namespace Osmose.Gameplay
                 if (distance > 2.5f)
                 {
                     SetAssociated(false);
-                    Debug.Log(isAssociated);
+                    // Debug.Log(isAssociated);
                 }
             }
         }
@@ -42,8 +42,8 @@ namespace Osmose.Gameplay
                     otherPlayer = other.transform.parent.gameObject;
                     if (otherPlayer.GetComponent<Team>().GetTeam() == player.GetComponent<Team>().GetTeam())
                     {
-                        Debug.LogError("ASSOCIATION");
-                        Debug.Log(otherPlayer);
+                        // Debug.LogError("ASSOCIATION");
+                        // Debug.Log(otherPlayer);
                         player.GetComponent<AttackHitboxHandler>().CmdSetAssociateActivated(otherPlayer,true);
                     }
                     
