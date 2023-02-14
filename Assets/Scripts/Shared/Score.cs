@@ -50,7 +50,7 @@ public class Score : NetworkBehaviour
         ushort score_equipe = 0;
         foreach (GameObject objet in player_list)
         {
-            score_equipe += objet.GetComponent<Health>().GetPoints();
+            score_equipe += objet.GetComponent<Health>().CurrentPoints;
         }
         return score_equipe;
     }
