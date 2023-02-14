@@ -125,12 +125,12 @@ namespace Osmose.Gameplay
             GameObject attackHitbox = transform.Find("attackCollider").gameObject;
             if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && !associated)
             {
-                CurrentPoints = (damage/2>=CurrentPoints)? 0 : (ushort)(CurrentPoints - damage / 2);
+                CurrentPoints = (ushort)((damage/2>=CurrentPoints)? 0 : (ushort)(CurrentPoints - damage / 2));
                 attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((ushort)(damage / 2), damageSource, true);
             }
             else
             {
-                CurrentPoints = (damage>=CurrentPoints)? 0 : (ushort) (CurrentPoints - damage);
+                CurrentPoints = (ushort)((damage>=CurrentPoints)? 0 : (ushort) (CurrentPoints - damage));
             }
             update_score_clients();
             //CurrentPoints -= damage;
