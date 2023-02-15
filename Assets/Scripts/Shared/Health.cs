@@ -91,7 +91,7 @@ namespace Osmose.Gameplay
 
             // if the player is associated with another, both gain half the points otherwise the player gains all the points
             GameObject attackHitbox = transform.Find("attackCollider").gameObject;
-            if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && !associated)
+            if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && associated)
             {
                 CurrentPoints += (ushort)(increaseAmount / 2);
                 attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((ushort)(increaseAmount / 2), pointsSource, true);
@@ -124,7 +124,7 @@ namespace Osmose.Gameplay
 
             ushort tempPoints = CurrentPoints;
             GameObject attackHitbox = transform.Find("attackCollider").gameObject;
-            if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && !associated)
+            if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && associated)
             {
                 CurrentPoints = (ushort)((damage/2>=CurrentPoints)? 0 : (ushort)(CurrentPoints - damage / 2));
                 attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((ushort)(damage / 2), damageSource, true);
