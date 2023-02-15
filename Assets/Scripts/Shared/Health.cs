@@ -144,10 +144,10 @@ namespace Osmose.Gameplay
                 // Debug.Log("-" + trueLoseAmount);
             }
 
-            HandleDeath();
             RpcHandleDeath();
         }
 
+        //DEPRECATED / NEVER USED
         public void Kill()
         {
             CurrentPoints = 0;
@@ -155,23 +155,7 @@ namespace Osmose.Gameplay
             //call OnLoseMatch action
             OnLoseMatch?.Invoke(CurrentPoints, null);
 
-            HandleDeath();
-            //RpcHandleDeath()
-        }
-
-        void HandleDeath()
-        {
-            if (m_IsDead)
-                return;
-
-            if (CurrentPoints <= 0)
-            {
-                m_IsDead = true;
-                dead();
-                StartCoroutine(wait());
-                //gameObject.SetActive(false);
-                OnDie?.Invoke();
-            }
+            //HandleDeath();
         }
 
         [ClientRpc]
