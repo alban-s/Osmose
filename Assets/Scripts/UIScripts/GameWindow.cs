@@ -18,7 +18,7 @@ public class GameWindow : MonoBehaviour
     public TextMeshProUGUI gameTime;
 
     private GameObject player;
-    private Color32 teamYellow;
+    private Color32 teamBlue;
     private Color32 teamRed;
 
 
@@ -27,7 +27,7 @@ public class GameWindow : MonoBehaviour
     void Start()
     {
         GameManager = GameObject.Find("GameManager");
-        teamYellow = new Color32(255, 255, 0, 255);
+        teamBlue = new Color32(0, 0, 255, 255);
         teamRed = new Color32(255, 0, 0, 255);
         Update();
     }
@@ -48,23 +48,29 @@ public class GameWindow : MonoBehaviour
             gamerTeam.SetText("Rouge");
             gamerTeam.color = teamRed;
 
-            oppositTeam.SetText("Jaune");
-            oppositTeam.color = teamYellow;
+            oppositTeam.SetText("Bleu");
+            oppositTeam.color = teamBlue;
+
+            int curGamerTeamScore = GameManager.GetComponent<Score>().GetTeamRedScore();
+            gamerTeamScore.SetText(curGamerTeamScore.ToString());
+
+            int curOppositTeamScore = GameManager.GetComponent<Score>().GetTeamBlueScore();
+            oppositTeamScore.SetText(curOppositTeamScore.ToString());
         }
         else
         {
             oppositTeam.SetText("Rouge");
             oppositTeam.color = teamRed;
 
-            gamerTeam.SetText("Jaune");
-            gamerTeam.color = teamYellow;
+            gamerTeam.SetText("Bleu");
+            gamerTeam.color = teamBlue;
+
+            int curGamerTeamScore = GameManager.GetComponent<Score>().GetTeamBlueScore();
+            gamerTeamScore.SetText(curGamerTeamScore.ToString());
+
+            int curOppositTeamScore = GameManager.GetComponent<Score>().GetTeamRedScore();
+            oppositTeamScore.SetText(curOppositTeamScore.ToString());
         }
-
-        int curGamerTeamScore = GameManager.GetComponent<Score>().GetTeamRedScore();
-        gamerTeamScore.SetText(curGamerTeamScore.ToString());
-
-        int curOppositTeamScore = GameManager.GetComponent<Score>().GetTeamBlueScore();
-        oppositTeamScore.SetText(curOppositTeamScore.ToString());
 
         // Display gamer score
         int curScore = player.GetComponent<Health>().GetPoints();
