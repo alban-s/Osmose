@@ -13,6 +13,7 @@ namespace Osmose.Gameplay
         [Tooltip("Current amount of points")] public ushort CurrentPoints;
 
         [SerializeField] public bool CanMatch;
+        [SyncVar]
         bool m_IsDead;
         public bool isTest;
         public UnityAction<ushort, GameObject> OnLoseMatch;
@@ -144,6 +145,7 @@ namespace Osmose.Gameplay
             }
 
             HandleDeath();
+            RpcHandleDeath();
         }
 
         public void Kill()
@@ -154,6 +156,7 @@ namespace Osmose.Gameplay
             OnLoseMatch?.Invoke(CurrentPoints, null);
 
             HandleDeath();
+            //RpcHandleDeath()
         }
 
         void HandleDeath()
@@ -170,6 +173,22 @@ namespace Osmose.Gameplay
                 OnDie?.Invoke();
             }
         }
+
+        [ClientRpc]
+        void RpcHandleDeath(){
+            if (m_IsDead)
+                return;
+
+            if (CurrentPoints <= 0)
+            {
+                m_IsDead = true;
+                dead();
+                StartCoroutine(wait());
+                //gameObject.SetActive(false);
+                OnDie?.Invoke();
+            }
+        }
+
         void dead()
         {
             animator.Play("Base Layer.Death");
