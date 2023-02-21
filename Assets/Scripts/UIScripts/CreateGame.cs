@@ -12,14 +12,18 @@ public class CreateGame : MonoBehaviour
 
     public GameObject thisWindow;
     public GameObject persoSelectionWindow;
-/*    public InputField playerNb;
-    public InputField maxTeamPoints;
-    public InputField gameDuration;*/
 
     private GameObject gameManager;
     private ushort nbPlayers;
     private ushort nbPtsPerTeam;
     private ushort gameTime;
+
+    void Start()
+    {
+        nbPlayers = 10;
+        nbPtsPerTeam = 10000;
+        gameTime = 15;
+    }
 
     private void Awake()
     {
@@ -57,7 +61,7 @@ public class CreateGame : MonoBehaviour
 
         
         string host = Dns.GetHostName();
-        Console.WriteLine("Le nom de l'h�te est :" + host);
+        Console.WriteLine("Le nom de l'hote est :" + host);
 
         string ip = Dns.GetHostEntry(host).AddressList[1].ToString();
         print("Mon adresse IP est :" + ip);
