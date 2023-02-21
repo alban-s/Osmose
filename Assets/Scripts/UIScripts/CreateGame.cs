@@ -37,7 +37,16 @@ public class CreateGame : MonoBehaviour
 
     public void InitPtsPerTeam(string value)
     {
-        nbPtsPerTeam = ushort.Parse(value);
+        int testMaxUnshort = int.Parse(value);
+
+        if(testMaxUnshort > 65000)
+        {
+            nbPtsPerTeam = 65000;
+        }
+        else
+        {
+            nbPtsPerTeam = ushort.Parse(value);
+        }
     }
 
     public void InitGameTime(string minutes)
