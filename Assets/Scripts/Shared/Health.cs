@@ -12,6 +12,7 @@ namespace Osmose.Gameplay
         [Tooltip("Starting amount of points")] public ushort StartPoints;
         [Tooltip("Current amount of points")] public ushort CurrentPoints;
 
+        [SyncVar]
         [SerializeField] public bool CanMatch;
         [SyncVar]
         bool m_IsDead;
