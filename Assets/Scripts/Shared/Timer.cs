@@ -40,7 +40,7 @@ public class Timer : NetworkBehaviour {
 
     public void SetDuration(float duration)
     {
-        timerDuration = duration;
+        timerDuration = duration*60;
     }
 
     public void ResetTimer() {

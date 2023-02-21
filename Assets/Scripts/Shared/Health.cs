@@ -99,6 +99,7 @@ namespace Osmose.Gameplay
             else
             {
                 CurrentPoints += increaseAmount;
+                Debug.Log(gameObject.transform.name + " a gagné 500 se retrouve a " + CurrentPoints);
             }
             update_score_clients();
 
@@ -132,6 +133,7 @@ namespace Osmose.Gameplay
             else
             {
                 CurrentPoints = (ushort)((damage>=CurrentPoints)? 0 : (ushort) (CurrentPoints - damage));
+                Debug.Log(gameObject.transform.name + " a perdu " + damage + " se retrouve a " + CurrentPoints);
             }
             update_score_clients();
             //CurrentPoints -= damage;
