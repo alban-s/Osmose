@@ -84,7 +84,7 @@ namespace Osmose.Gameplay
         public void IncreasePoints(ushort increaseAmount, GameObject pointsSource, bool associated = false){
             CmdIncreasePoints(increaseAmount, pointsSource, associated);
         }
-        [Command]
+        [Command (requiresAuthority = false)]
         public void CmdIncreasePoints(ushort increaseAmount, GameObject pointsSource, bool associated)
         {
             ushort tempPoints = CurrentPoints;
@@ -117,7 +117,7 @@ namespace Osmose.Gameplay
         public void DecreasePoints(ushort damage, GameObject damageSource, bool associated = false){
             CmdDecreasePoints(damage, damageSource, associated);
         }
-        [Command]
+        [Command(requiresAuthority = false)]
         public void CmdDecreasePoints(ushort damage, GameObject damageSource, bool associated)
         {
             if (Invincible)
