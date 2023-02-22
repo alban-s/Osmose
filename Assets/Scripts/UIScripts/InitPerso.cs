@@ -51,13 +51,6 @@ public class InitPerso : NetworkBehaviour
 
     public void LaunchGame()
     {
-        manager = GameObject.Find("GameManager");
-        int remaining = manager.GetComponent<GameManager>().GetMaxNbOfPlayer() - manager.GetComponent<GameManager>().GetPlayersReadyCount();
-        if (remaining == 0 || manager.GetComponent<Timer>().GameOn())
-        {
-            NetworkManager.singleton.StopClient();
-        }
-
         choseTeam = equipeDropdown.value;
         chosePseudo  = pseudo.text;
         print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);

@@ -17,7 +17,6 @@ public class NetworkManagerCustom : NetworkManager
     public override void Awake()
     {
         base.Awake();
-        gameManager = GameObject.Find("GameManager");
     }
 
     public struct CreatePlayerMessage : NetworkMessage
@@ -36,6 +35,8 @@ public class NetworkManagerCustom : NetworkManager
     public override void OnClientConnect()
     {
         base.OnClientConnect();
+
+        NetworkServer.Spawn(gameManager);
     }
     void OnCreatePlayer(NetworkConnectionToClient conn, CreatePlayerMessage message)
     {
@@ -43,6 +44,10 @@ public class NetworkManagerCustom : NetworkManager
         Transform pos = GetStartPosition();
         Debug.Log("team ll : "+this.team);
         Debug.Log("pos ll : "+pos);
+
+        gameManager = GameObject.Find("GameManager");
+        int remaining = gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer() - gameManager.GetComponent<GameManager>().GetPlayersReadyCount();
+
         // playerPrefab is the one assigned in the inspector in Network
         // Manager but you can use different prefabs per race for example
         GameObject player = pos != null?Instantiate(playerPrefab,pos.position, pos.rotation)
@@ -52,7 +57,8 @@ public class NetworkManagerCustom : NetworkManager
         player.name = message.name;
 
         // call this to use this gameobject as the primary controller
-        NetworkServer.AddPlayerForConnection(conn, player);
+        if (remaining > 0 && !gameManager.GetComponent<Timer>().GameOn())
+            NetworkServer.AddPlayerForConnection(conn, player);
     }
 
     public override Transform GetStartPosition()
