@@ -40,8 +40,6 @@ public class InitPerso : NetworkBehaviour
         equipeDropdown.AddOptions(options);
 
         chosePseudo = pseudo.text;
-
-        manager = GameObject.Find("GameManager");
     }
 
 
@@ -53,6 +51,7 @@ public class InitPerso : NetworkBehaviour
 
     public void LaunchGame()
     {
+        manager = GameObject.Find("GameManager");
         int remaining = manager.GetComponent<GameManager>().GetMaxNbOfPlayer() - manager.GetComponent<GameManager>().GetPlayersReadyCount();
         if (remaining == 0 || manager.GetComponent<Timer>().GameOn())
         {

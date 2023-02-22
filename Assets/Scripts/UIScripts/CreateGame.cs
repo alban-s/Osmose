@@ -25,11 +25,6 @@ public class CreateGame : MonoBehaviour
         gameTime = 15;
     }
 
-    private void Awake()
-    {
-        gameManager = GameObject.Find("GameManager");
-    }
-
     public void InitNbPlayers(string value)
     {
         nbPlayers = ushort.Parse(value);
@@ -63,7 +58,7 @@ public class CreateGame : MonoBehaviour
            
         manager.StartHost();
 
-
+        gameManager = GameObject.Find("GameManager");
         gameManager.GetComponent<GameManager>().SetMaxNbOfPlayer(nbPlayers);
         gameManager.GetComponent<Score>().SetTeamMaxScore(nbPtsPerTeam);
         gameManager.GetComponent<Timer>().SetDuration(gameTime);
