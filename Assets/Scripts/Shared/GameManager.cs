@@ -86,5 +86,17 @@ public class GameManager : NetworkBehaviour
         return count;
 
     }
-    
+
+    public int GetPlayersConnectedCount()
+    {
+        int count = 0;
+        List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+        foreach (GameObject player in players)
+        {
+            count++;
+        }
+        return count;
+
+    }
+
 }
