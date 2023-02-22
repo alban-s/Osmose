@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4f643bd03ba9d4aa8fcadf4bd7187a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otherPlayer: {fileID: 0}
   isAssociated: 0
 --- !u!1 &8067350889733853689
 GameObject:
@@ -464,6 +465,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2a2f932ec6d064fb90779ffc735929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!114 &2182681988283857467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,8 +498,10 @@ MonoBehaviour:
   componentsToDisable:
   - {fileID: 1559547285206217139}
   - {fileID: 4192861821446835322}
+  - {fileID: 3259920060880173963}
   GameWindowPrefab: {fileID: 5555650353382435081, guid: 941347363926dce478a2a8b4e2f033ae,
     type: 3}
+  ready: 0
 --- !u!114 &4632041501341011891
 MonoBehaviour:
   m_ObjectHideFlags: 0
