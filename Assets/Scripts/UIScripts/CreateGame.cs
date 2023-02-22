@@ -14,9 +14,9 @@ public class CreateGame : MonoBehaviour
     public GameObject persoSelectionWindow;
 
     private GameObject gameManager;
-    private ushort nbPlayers;
-    private ushort nbPtsPerTeam;
-    private ushort gameTime;
+    private int nbPlayers;
+    private int nbPtsPerTeam;
+    private int gameTime;
 
     void Start()
     {
@@ -27,7 +27,7 @@ public class CreateGame : MonoBehaviour
 
     public void InitNbPlayers(string value)
     {
-        nbPlayers = ushort.Parse(value);
+        nbPlayers = int.Parse(value);
     }
 
     public void InitPtsPerTeam(string value)
@@ -40,13 +40,13 @@ public class CreateGame : MonoBehaviour
         }
         else
         {
-            nbPtsPerTeam = ushort.Parse(value);
+            nbPtsPerTeam = int.Parse(value);
         }
     }
 
     public void InitGameTime(string minutes)
     {
-        gameTime = ushort.Parse(minutes);
+        gameTime = int.Parse(minutes);
     }
 
 

@@ -9,21 +9,21 @@ using Osmose.Gameplay;
 public class Score : NetworkBehaviour
 {
     public int nb_equipe = 2;
-    public ushort min_score_player = 100;
+    public int min_score_player = 100;
 
     public GameObject[] player_list_blue;
     public GameObject[] player_list_red;
 
     [SyncVar]
-    public ushort team_max_score;
+    public int team_max_score;
     [SyncVar]
-    public ushort team_red_score = 0;
+    public int team_red_score = 0;
     [SyncVar]
-    public ushort team_blue_score = 0;
+    public int team_blue_score = 0;
     [SyncVar]
-    public ushort remaining_score_blue;
+    public int remaining_score_blue;
     [SyncVar]
-    public ushort remaining_score_red;
+    public int remaining_score_red;
 
     // Start is called before the first frame update
     void Start()
@@ -45,9 +45,9 @@ public class Score : NetworkBehaviour
         team_red_score = ComputeScoreEquipe(player_list_red);
     }
 
-    ushort ComputeScoreEquipe(GameObject[] player_list)
+    int ComputeScoreEquipe(GameObject[] player_list)
     {
-        ushort score_equipe = 0;
+        int score_equipe = 0;
         foreach (GameObject objet in player_list)
         {
             score_equipe += objet.GetComponent<Health>().CurrentPoints;
@@ -56,65 +56,65 @@ public class Score : NetworkBehaviour
     }
 
     [Command(requiresAuthority = false)]
-    public void IncreaseScoreBlue(ushort score)
+    public void IncreaseScoreBlue(int score)
     {
         team_blue_score += score;
     }
     [Command(requiresAuthority = false)]
-    public void IncreaseScoreRed(ushort score)
+    public void IncreaseScoreRed(int score)
     {
         team_red_score += score;
     }
     [Command(requiresAuthority = false)]
-    public void DecreaseScoreBlue(ushort score)
+    public void DecreaseScoreBlue(int score)
     {
         team_blue_score -= score;
     }
     [Command(requiresAuthority = false)]
-    public void DecreaseScoreRed(ushort score)
+    public void DecreaseScoreRed(int score)
     {
         team_red_score -= score;
     }
 
-    public ushort GetTeamBlueScore()
+    public int GetTeamBlueScore()
     {
         return team_blue_score;
     }
-    public ushort GetTeamRedScore()
+    public int GetTeamRedScore()
     {
         return team_red_score;
     }
 
     [Command(requiresAuthority = false)]
-    public void SetScoreRestantBlue(ushort score)
+    public void SetScoreRestantBlue(int score)
     {
         remaining_score_blue -= score;
     }
 
-    public ushort GetScoreRestantBlue()
+    public int GetScoreRestantBlue()
     {
-        remaining_score_blue = (ushort)(team_max_score - team_blue_score);
+        remaining_score_blue = (int)(team_max_score - team_blue_score);
         return remaining_score_blue;
     }
 
     [Command(requiresAuthority = false)]
-    public void SetScoreRestantRed(ushort score)
+    public void SetScoreRestantRed(int score)
     {
         remaining_score_red -= score;
     }
 
-    public ushort GetScoreRestantRed()
+    public int GetScoreRestantRed()
     {
-        remaining_score_red = (ushort)(team_max_score - team_red_score);
+        remaining_score_red = (int)(team_max_score - team_red_score);
         return remaining_score_red;
     }
 
-    public ushort GetTeamMaxScore()
+    public int GetTeamMaxScore()
     {
         return team_max_score;
     }
 
-    public void SetTeamMaxScore(ushort value)
+    public void SetTeamMaxScore(int value)
     {
         team_max_score = value;
     }

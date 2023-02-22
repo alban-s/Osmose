@@ -10,7 +10,7 @@ public class GameManager : NetworkBehaviour
     public bool gameStarted = false;
 
     [SyncVar]
-    public ushort maxNbOfPlayer;
+    public int maxNbOfPlayer;
 
 
     [Command(requiresAuthority = false)]
@@ -21,12 +21,12 @@ public class GameManager : NetworkBehaviour
     public void StopGame(){
         this.gameStarted = true;
     }
-    public ushort GetMaxNbOfPlayer()
+    public int GetMaxNbOfPlayer()
     {
         return maxNbOfPlayer;
     }
 
-    public void SetMaxNbOfPlayer(ushort value)
+    public void SetMaxNbOfPlayer(int value)
     {
         maxNbOfPlayer = value;
     }

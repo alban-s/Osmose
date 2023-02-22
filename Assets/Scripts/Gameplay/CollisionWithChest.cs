@@ -10,7 +10,7 @@ namespace Osmose.Gameplay
         [Header("Parameters")]
         [Tooltip("Amount of health to heal on pickup")]
         
-        private ushort PointsAmount;
+        private int PointsAmount;
         private GameObject player;
         public bool isActive;
         PlayerMotor motor;

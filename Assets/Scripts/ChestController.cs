@@ -7,14 +7,14 @@ namespace Osmose.Gameplay
 {
     public class ChestController : MonoBehaviour
     {
-        public ushort Points;
+        public int Points;
         // Start is called before the first frame update
         void Start()
         {
 
         }
 
-        public ushort GetPoints()
+        public int GetPoints()
         {
             return Points;
         }

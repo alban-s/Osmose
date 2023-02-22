@@ -9,16 +9,16 @@ namespace Osmose.Gameplay
     public class Health : NetworkBehaviour
     {
 
-        [Tooltip("Starting amount of points")] public ushort StartPoints;
-        [Tooltip("Current amount of points")] public ushort CurrentPoints;
+        [Tooltip("Starting amount of points")] public int StartPoints;
+        [Tooltip("Current amount of points")] public int CurrentPoints;
 
         [SyncVar]
         [SerializeField] public bool CanMatch;
         [SyncVar]
         bool m_IsDead;
         public bool isTest;
-        public UnityAction<ushort, GameObject> OnLoseMatch;
-        public UnityAction<ushort, GameObject> OnWinMatch;
+        public UnityAction<int, GameObject> OnLoseMatch;
+        public UnityAction<int, GameObject> OnWinMatch;
         public UnityAction OnDie;
         private GameObject GameManager;
 
@@ -30,10 +30,10 @@ namespace Osmose.Gameplay
         public bool Invincible { get; set; }
 
         public bool IsInBase { get; set; }
-        //public ushort GetPoints() => (ushort)((!gameObject.GetComponent<Associate>().isAssociated) ? CurrentPoints :
+        //public int GetPoints() => (int)((!gameObject.GetComponent<Associate>().isAssociated) ? CurrentPoints :
         //    gameObject.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().CurrentPoints + CurrentPoints);
 
-        public ushort GetPoints() => (ushort)((!transform.Find("attackCollider").gameObject.GetComponent<Associate>().isAssociated)? CurrentPoints :
+        public int GetPoints() => (int)((!transform.Find("attackCollider").gameObject.GetComponent<Associate>().isAssociated)? CurrentPoints :
             transform.Find("attackCollider").gameObject.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().CurrentPoints + CurrentPoints);
         void Start()
         {
@@ -61,20 +61,20 @@ namespace Osmose.Gameplay
             List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
             foreach (GameObject player in players)
             {
-                ushort score = player.GetComponent<Health>().CurrentPoints;
+                int score = player.GetComponent<Health>().CurrentPoints;
                 player.GetComponent<Health>().rpc_update_score_client(score);
             }
         }
 
         [ClientRpc]
-        void rpc_update_score_client(ushort score)
+        void rpc_update_score_client(int score)
         {
             CurrentPoints = score;
             // Debug.Log("cp : " + GetComponent<Health>().CurrentPoints);
         }
 
         [Command]
-        public void SetStartPoints(ushort startPoints)
+        public void SetStartPoints(int startPoints)
         {
             StartPoints = startPoints;
             CurrentPoints = StartPoints;
@@ -82,20 +82,20 @@ namespace Osmose.Gameplay
         }
 
 
-        public void IncreasePoints(ushort increaseAmount, GameObject pointsSource, bool associated = false){
+        public void IncreasePoints(int increaseAmount, GameObject pointsSource, bool associated = false){
             CmdIncreasePoints(increaseAmount, pointsSource, associated);
         }
         [Command (requiresAuthority = false)]
-        public void CmdIncreasePoints(ushort increaseAmount, GameObject pointsSource, bool associated)
+        public void CmdIncreasePoints(int increaseAmount, GameObject pointsSource, bool associated)
         {
-            ushort tempPoints = CurrentPoints;
+            int tempPoints = CurrentPoints;
 
             // if the player is associated with another, both gain half the points otherwise the player gains all the points
             GameObject attackHitbox = transform.Find("attackCollider").gameObject;
             if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && associated)
             {
-                CurrentPoints += (ushort)(increaseAmount / 2);
-                attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((ushort)(increaseAmount / 2), pointsSource, true);
+                CurrentPoints += (int)(increaseAmount / 2);
+                attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((int)(increaseAmount / 2), pointsSource, true);
             }
             else
             {
@@ -107,7 +107,7 @@ namespace Osmose.Gameplay
             //CurrentPoints += increaseAmount;
 
             //call OnWinMatch action
-            ushort trueWinAmount = (ushort)(CurrentPoints - tempPoints);
+            int trueWinAmount = (int)(CurrentPoints - tempPoints);
             if (trueWinAmount > 0)
             {
                 OnWinMatch?.Invoke(trueWinAmount, pointsSource);
@@ -115,32 +115,32 @@ namespace Osmose.Gameplay
             }
         }
 
-        public void DecreasePoints(ushort damage, GameObject damageSource, bool associated = false){
+        public void DecreasePoints(int damage, GameObject damageSource, bool associated = false){
             CmdDecreasePoints(damage, damageSource, associated);
         }
         [Command(requiresAuthority = false)]
-        public void CmdDecreasePoints(ushort damage, GameObject damageSource, bool associated)
+        public void CmdDecreasePoints(int damage, GameObject damageSource, bool associated)
         {
             if (Invincible)
                 return;
 
-            ushort tempPoints = CurrentPoints;
+            int tempPoints = CurrentPoints;
             GameObject attackHitbox = transform.Find("attackCollider").gameObject;
             if (attackHitbox.GetComponent<Associate>().GetAssociatedPlayer() != null && associated)
             {
-                CurrentPoints = (ushort)((damage/2>=CurrentPoints)? 0 : (ushort)(CurrentPoints - damage / 2));
-                attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((ushort)(damage / 2), damageSource, true);
+                CurrentPoints = (int)((damage/2>=CurrentPoints)? 0 : (int)(CurrentPoints - damage / 2));
+                attackHitbox.GetComponent<Associate>().GetAssociatedPlayer().GetComponent<Health>().IncreasePoints((int)(damage / 2), damageSource, true);
             }
             else
             {
-                CurrentPoints = (ushort)((damage>=CurrentPoints)? 0 : (ushort) (CurrentPoints - damage));
+                CurrentPoints = (int)((damage>=CurrentPoints)? 0 : (int) (CurrentPoints - damage));
                 Debug.Log(gameObject.transform.name + " a perdu " + damage + " se retrouve a " + CurrentPoints);
             }
             update_score_clients();
             //CurrentPoints -= damage;
 
             //call OnLoseMatch action
-            ushort trueLoseAmount = (ushort)(tempPoints - CurrentPoints);
+            int trueLoseAmount = (int)(tempPoints - CurrentPoints);
             if (trueLoseAmount > 0)
             {
                 OnLoseMatch?.Invoke(trueLoseAmount, damageSource);

@@ -18,9 +18,9 @@ public class SelectPtsWindow : MonoBehaviour
     public GameObject waitWindow;
 
     private TeamColour playerTeam;
-    private ushort teamPoints;
-    private ushort curTeamPoints;
-    private ushort playerPts;
+    private int teamPoints;
+    private int curTeamPoints;
+    private int playerPts;
 
 
 
@@ -93,7 +93,7 @@ public class SelectPtsWindow : MonoBehaviour
 
     public void PointsSelected()
     {
-        ushort.TryParse(selectedPts.text, out ushort selected);
+        int.TryParse(selectedPts.text, out int selected);
 
         if (selected < 100)
         {
