@@ -13,20 +13,24 @@ namespace Mirror
         //public TextMeshProUGUI adresseIP;
         public InputField adresseIP;
 
-        IEnumerator wait_and_close()
-    {
-        yield return new WaitForSeconds(0.5f);
-        thisWindow.SetActive(false);
-    }
+        GameManager manager;
 
-        // void Awake()
-        // {
-        //     manager = GetComponent<NetworkManager>();
-        // }
+        IEnumerator wait_and_close()
+        {
+            yield return new WaitForSeconds(0.5f);
+            thisWindow.SetActive(false);
+        }
+
+        void Start()
+        {
+            manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        }
 
         public void JoinServeur()
         {
-            if (!NetworkClient.active){
+            int remaining = manager.GetMaxNbOfPlayer() - manager.GetPlayersReadyCount();
+            if (!NetworkClient.active && remaining != 0)
+            {
                 print("ip serveur : " + adresseIP.text);
 
                 NetworkManager.singleton.networkAddress = adresseIP.text;
