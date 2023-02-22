@@ -14,6 +14,7 @@ public class SelectPtsWindow : MonoBehaviour
     public TextMeshProUGUI displayTotalTeamPoints;
     public TextMeshProUGUI displayCurTeamPoints;
     public InputField selectedPts;
+    public GameObject selectButton;
 
     public GameObject waitWindow;
 
@@ -65,6 +66,14 @@ public class SelectPtsWindow : MonoBehaviour
         {
             curTeamPoints = manager.GetComponent<Score>().GetScoreRestantRed();
             displayCurTeamPoints.SetText(curTeamPoints.ToString());
+        }
+        if(manager.GetComponent<GameManager>().GetPlayersConnectedCount() != manager.GetComponent<GameManager>().GetMaxNbOfPlayer())
+        {
+            selectButton.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            selectButton.GetComponent<Button>().interactable = true;
         }
     }
 

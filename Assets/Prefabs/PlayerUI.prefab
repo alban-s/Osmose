@@ -4931,6 +4931,7 @@ MonoBehaviour:
   displayTotalTeamPoints: {fileID: 5555650353707199984}
   displayCurTeamPoints: {fileID: 5555650353123355232}
   selectedPts: {fileID: 7175420239400662876}
+  selectButton: {fileID: 5555650353324857989}
   waitWindow: {fileID: 570408070897835826}
 --- !u!1 &5555650353297302123
 GameObject:
