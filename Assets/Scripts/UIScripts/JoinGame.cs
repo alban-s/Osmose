@@ -24,7 +24,7 @@ namespace Mirror
         public void JoinServeur()
         {
             
-            if (!NetworkClient.active && )
+            if (!NetworkClient.active)
             {
                 print("ip serveur : " + adresseIP.text);
 
