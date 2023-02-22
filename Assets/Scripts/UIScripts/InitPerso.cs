@@ -26,6 +26,9 @@ public class InitPerso : NetworkBehaviour
     public string chosePseudo;
     List<string> options;
 
+    GameObject manager;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +40,8 @@ public class InitPerso : NetworkBehaviour
         equipeDropdown.AddOptions(options);
 
         chosePseudo = pseudo.text;
+
+        manager = GameObject.Find("GameManager");
     }
 
 
@@ -48,6 +53,12 @@ public class InitPerso : NetworkBehaviour
 
     public void LaunchGame()
     {
+        int remaining = manager.GetComponent<GameManager>().GetMaxNbOfPlayer() - manager.GetComponent<GameManager>().GetPlayersReadyCount();
+        if (remaining == 0 || manager.GetComponent<Timer>().GameOn())
+        {
+            NetworkManager.singleton.StopClient();
+        }
+
         choseTeam = equipeDropdown.value;
         chosePseudo  = pseudo.text;
         print("lancer scene de jeu avec perso pseudo" + chosePseudo + "et equipe " + options[choseTeam]);

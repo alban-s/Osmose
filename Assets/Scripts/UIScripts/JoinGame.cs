@@ -13,35 +13,28 @@ namespace Mirror
         //public TextMeshProUGUI adresseIP;
         public InputField adresseIP;
 
-        GameObject gameManager;
-
         IEnumerator wait_and_close()
-        {
-            yield return new WaitForSeconds(0.5f);
-            thisWindow.SetActive(false);
-        }
+    {
+        yield return new WaitForSeconds(0.5f);
+        thisWindow.SetActive(false);
+    }
+
+        // void Awake()
+        // {
+        //     manager = GetComponent<NetworkManager>();
+        // }
 
         public void JoinServeur()
         {
-            
-            if (!NetworkClient.active)
-            {
+            if (!NetworkClient.active){
                 print("ip serveur : " + adresseIP.text);
 
                 NetworkManager.singleton.networkAddress = adresseIP.text;
                 NetworkManager.singleton.StartClient();
+                
 
-                gameManager = GameObject.Find("GameManager");
-                int remaining = gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer() - gameManager.GetComponent<GameManager>().GetPlayersReadyCount();
-                if(remaining != 0 || gameManager.GetComponent<Timer>().GameOn())
-                {
-                    NetworkManager.singleton.StopClient();
-                }
-                else
-                {
-                    StartCoroutine(wait_and_close());
-                    persoSelectionWindow.SetActive(true);
-                }
+                StartCoroutine(wait_and_close());
+                persoSelectionWindow.SetActive(true);
             }
             
         }
