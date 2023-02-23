@@ -63,10 +63,6 @@ public class GameManager : NetworkBehaviour
         return GetPlayerRedList().Count;
     }
 
-    public int GetTotalPlayerCount(){
-        return (new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"))).Count;
-    }
-
     public bool AllPlayersReady(){
         List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag ("Player"));
         foreach (GameObject player in players)
@@ -89,14 +85,7 @@ public class GameManager : NetworkBehaviour
 
     public int GetPlayersConnectedCount()
     {
-        int count = 0;
-        List<GameObject> players = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
-        foreach (GameObject player in players)
-        {
-            count++;
-        }
-        return count;
-
+        return (new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"))).Count;
     }
 
 }

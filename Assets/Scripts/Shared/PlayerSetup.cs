@@ -1,3 +1,4 @@
+using static System.Math;
 using UnityEngine;
 using Mirror;
 using Osmose.Gameplay;
@@ -12,6 +13,7 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     private GameObject GameWindowPrefab;
     private GameObject GameWindowInstance;
+    private GameObject gameManager;
 
     [SyncVar]
     public bool ready = false;
@@ -76,10 +78,27 @@ public class PlayerSetup : NetworkBehaviour
             InitPerso ip = initValueGUI.GetComponent<InitPerso>();
             if (ip != null)
             {
-                gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
+                gameManager = GameObject.Find("GameManager");
+                if ((TeamColour)ip.choseTeam == TeamColour.Red)
+                {
+                    Debug.LogError(gameManager.GetComponent<GameManager>().GetRedCount());
+                    Debug.LogError(Ceiling((double)gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer() / 2.0f));
+                    if (gameManager.GetComponent<GameManager>().GetRedCount() <= Ceiling((double)gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer() / 2.0f))
+                        gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
+                    else
+                        gameObject.GetComponent<Team>().team  = TeamColour.Blue;
+                }
+                else if ((TeamColour)ip.choseTeam == TeamColour.Blue)
+                {
+                    if (gameManager.GetComponent<GameManager>().GetBlueCount() <= Ceiling((double)gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer() / 2.0f))
+                        gameObject.GetComponent<Team>().team = (TeamColour)ip.choseTeam;
+                    else
+                        gameObject.GetComponent<Team>().team = TeamColour.Red;
+                }
+                Debug.LogError(gameObject.GetComponent<Team>().team);
                 gameObject.transform.name = ip.chosePseudo;
                 gameObject.GetComponent<Team>().ChoixEquipe();
-                SendClientValues((TeamColour)ip.choseTeam, ip.chosePseudo);
+                SendClientValues(gameObject.GetComponent<Team>().team, ip.chosePseudo);
             }
         }
     }

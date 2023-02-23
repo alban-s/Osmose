@@ -1,4 +1,4 @@
-using System.Collections;
+using static System.Math;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
@@ -43,7 +43,20 @@ public class NetworkManagerCustom : NetworkManager
         if (remaining <= 0 || gameManager.GetComponent<Timer>().GameOn())
             return;
 
-        this.team = message.team;
+        if(message.team == TeamColour.Red)
+        {
+            if (gameManager.GetComponent<GameManager>().GetRedCount() < Ceiling((double)gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer() / 2.0f))
+                this.team = message.team;
+            else
+                this.team = TeamColour.Blue;
+        }
+        else if (message.team == TeamColour.Blue)
+        {
+            if (gameManager.GetComponent<GameManager>().GetBlueCount() < Ceiling((double)gameManager.GetComponent<GameManager>().GetMaxNbOfPlayer() / 2.0f))
+                this.team = message.team;
+            else
+                this.team = TeamColour.Red;
+        }
         Transform pos = GetStartPosition();
         Debug.Log("team ll : "+this.team);
         Debug.Log("pos ll : "+pos);        
