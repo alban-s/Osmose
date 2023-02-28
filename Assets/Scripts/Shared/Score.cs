@@ -93,7 +93,7 @@ public class Score : NetworkBehaviour
 
     public int GetScoreRestantBlue()
     {
-        remaining_score_blue = (int)(team_max_score - team_blue_score);
+        remaining_score_blue = (int)(team_max_score - team_blue_score - 100*(GetComponent<GameManager>().GetBluePlayersNotReadyCount()-1));
         return remaining_score_blue;
     }
 
@@ -105,7 +105,7 @@ public class Score : NetworkBehaviour
 
     public int GetScoreRestantRed()
     {
-        remaining_score_red = (int)(team_max_score - team_red_score);
+        remaining_score_red = (int)(team_max_score - team_red_score - 100*(GetComponent<GameManager>().GetRedPlayersNotReadyCount()-1));
         return remaining_score_red;
     }
 

@@ -83,8 +83,7 @@ public class SelectPtsWindow : MonoBehaviour
         
         if (playerTeam == TeamColour.Blue)
         {
-            Debug.LogError(manager.GetComponent<GameManager>().GetBlueCount() - manager.GetComponent<GameManager>().GetBluePlayersReadyCount());
-            if(manager.GetComponent<GameManager>().GetBlueCount() - manager.GetComponent<GameManager>().GetBluePlayersReadyCount() <= 1)
+            if(manager.GetComponent<GameManager>().GetBluePlayersNotReadyCount() <= 1)
             {
                 playerPts = curTeamPoints;
             }
@@ -93,8 +92,7 @@ public class SelectPtsWindow : MonoBehaviour
         }
         else
         {
-            Debug.LogError(manager.GetComponent<GameManager>().GetRedCount() - manager.GetComponent<GameManager>().GetRedPlayersReadyCount());
-            if (manager.GetComponent<GameManager>().GetRedCount() - manager.GetComponent<GameManager>().GetRedPlayersReadyCount() <= 1)
+            if (manager.GetComponent<GameManager>().GetRedPlayersNotReadyCount() <= 1)
             {
                 playerPts = curTeamPoints;
             }
