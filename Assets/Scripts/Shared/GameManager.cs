@@ -80,7 +80,27 @@ public class GameManager : NetworkBehaviour
             if(player.GetComponent<PlayerSetup>().ready) count++;
         }
         return count;
+    }
 
+    public int GetBluePlayersReadyCount()
+    {
+        int count = 0;
+        List<GameObject> players = GetPlayerBlueList();
+        foreach (GameObject player in players)
+        {
+            if (player.GetComponent<PlayerSetup>().ready) count++;
+        }
+        return count;
+    }
+    public int GetRedPlayersReadyCount()
+    {
+        int count = 0;
+        List<GameObject> players = GetPlayerRedList();
+        foreach (GameObject player in players)
+        {
+            if (player.GetComponent<PlayerSetup>().ready) count++;
+        }
+        return count;
     }
 
     public int GetPlayersConnectedCount()
