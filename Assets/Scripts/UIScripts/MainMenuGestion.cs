@@ -12,6 +12,7 @@ public class MainMenuGestion : MonoBehaviour
     public GameObject initPersoWindow;
     public GameObject cinematicWindow;
     private double timeBegin;
+    private bool displayMenu = true;
 
     // Start is called before the first frame update
     void Start()
@@ -25,14 +26,15 @@ public class MainMenuGestion : MonoBehaviour
         joinGameWindow.SetActive(false);
         initPersoWindow.SetActive(false);
         cinematicWindow.SetActive(true);
-}
+    }
 
     void Update()
     {
-        if (Time.time - timeBegin >= 32.5)
+        if (Time.time - timeBegin >= 32.5 && displayMenu)
         {
             cinematicWindow.SetActive(false);
             mainWindow.SetActive(true);
+            displayMenu = false;
         }
     }
 
