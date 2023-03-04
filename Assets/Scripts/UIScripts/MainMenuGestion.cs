@@ -19,21 +19,21 @@ public class MainMenuGestion : MonoBehaviour
         Screen.fullScreen = false;
         timeBegin = Time.time;
 
-        mainWindow.SetActive(true);
+        mainWindow.SetActive(false);
         settingWindow.SetActive(false);
         newGameWindow.SetActive(false);
         joinGameWindow.SetActive(false);
         initPersoWindow.SetActive(false);
-        cinematicWindow.SetActive(false);
+        cinematicWindow.SetActive(true);
 }
 
     void Update()
     {
-        /*if(Time.time - timeBegin >= 32.5)
+        if (Time.time - timeBegin >= 32.5)
         {
             cinematicWindow.SetActive(false);
             mainWindow.SetActive(true);
-        }*/
+        }
     }
 
     public void StartNewGame()
